@@ -1,0 +1,12 @@
+.faceCSS-head {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.faceCSS-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 100;
+  letter-spacing: 0.8em;
+  /* text-transform: capitalize; */
+}
