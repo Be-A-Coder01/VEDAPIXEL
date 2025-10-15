@@ -1,3 +1,6 @@
+/* Update your ../CSS/Face.css */
+
+/* Custom Font Styles */
 .faceCSS-head {
   font-family: "Poppins", sans-serif;
   font-weight: 800;
@@ -8,5 +11,37 @@
   font-family: 'Montserrat', sans-serif;
   font-weight: 100;
   letter-spacing: 0.8em;
-  /* text-transform: capitalize; */
+}
+
+/* --- Gradient Glow Overlay (::after) - The "Sunlight" Effect --- */
+
+/* Ensure the main container has relative positioning for the glow */
+.h-screen.w-screen.flex.place-items-center.px-20.relative {
+  position: relative;
+}
+
+/* Gradient Glow Pseudo-element */
+.h-screen.w-screen.flex.place-items-center.px-20.relative::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60vh;
+  height: 60vh;
+
+  /* Yellowish-Green/Gold Gradient for the corner */
+  background: radial-gradient(circle at 90% 10%,
+      rgba(255, 230, 100, 0.30),
+      /* Brightest Yellow/Gold */
+      rgba(150, 150, 100, 0.20),
+      /* Fades into Olive/Gray */
+      rgba(26, 28, 34, 0) 70%
+      /* Fades to transparent background color */
+    );
+
+  filter: blur(80px);
+  /* Base opacity for the glow. The parent motion.div animates this entire element's opacity from 0 to 0.8. */
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
 }
