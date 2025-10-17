@@ -9,9 +9,7 @@ const Node = ({ children, isHighlighted, className = "", style }) => {
     "p-3 sm:p-4 text-white text-xs sm:text-sm font-medium uppercase tracking-wider rounded-lg cursor-pointer transition-all duration-200 ease-in-out border border-gray-700 whitespace-nowrap";
 
   const defaultClasses = `${baseClasses} bg-gray-900 hover:scale-[1.03] shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/40`;
-
-  const highlightedClasses = `${baseClasses} font-bold 
-    bg-gradient-to-r from-indigo-600 to-purple-600 border-none relative z-10`;
+  const highlightedClasses = `${baseClasses} font-bold bg-gradient-to-r from-indigo-600 to-purple-600 border-none relative z-10`;
 
   const glowStyle = {
     boxShadow: isHighlighted
@@ -43,7 +41,6 @@ const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
     "Custom Software",
     "Cloud Applications",
   ];
-
   const repeatedNodes = [...nodesData, ...nodesData];
 
   return (
@@ -74,13 +71,13 @@ const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
 
 const Body = () => {
   const [showBody, setShowBody] = useState(false);
-
   const [activeSection, setActiveSection] = useState("about");
 
-  // Refs for each section
   const aboutRef = useRef(null);
   const servicesRef = useRef(null);
   const teamRef = useRef(null);
+
+  // ✅ Smooth highlight detection
   useEffect(() => {
     const sections = [
       { id: "about", ref: aboutRef },
@@ -90,10 +87,13 @@ const Body = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible) setActiveSection(visible.target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
       },
-      { threshold: 0.4 } // adjust sensitivity
+      { threshold: 0.4 }
     );
 
     sections.forEach((s) => {
@@ -103,11 +103,11 @@ const Body = () => {
     return () => observer.disconnect();
   }, []);
 
+  // ✅ Body visibility trigger
   useEffect(() => {
     const handleScroll = () => {
       const menu = document.querySelector(".menu-sticky");
       if (!menu) return;
-
       const menuRect = menu.getBoundingClientRect();
       setShowBody(menuRect.top <= 0);
     };
@@ -116,6 +116,7 @@ const Body = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ✅ Animated Nav Item
   const navItem = (id, label) => {
     const isActive = activeSection === id;
 
@@ -153,12 +154,13 @@ const Body = () => {
     <>
       <div
         className={`body-content relative pr-[116px] pl-[132px] pt-[80px] pb-[40px] min-h-screen gap-[20px] flex transition-all duration-700 ease-out w-full ${
-          showBody ? "opacity-100" : "opacity-0 pointer-events-none"
+          showBody
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-20 pointer-events-none"
         }`}
-        // ✅ Remove translate transforms
         style={{ transform: "none" }}
       >
-        {/* ✅ Fixed Sidebar Navigation (kept inside parent) */}
+        {/* ✅ Animated Nav (kept inside) */}
         <AnimatePresence>
           {showBody && (
             <motion.nav
@@ -183,7 +185,6 @@ const Body = () => {
 
         {/* Main Content */}
         <div className="flex flex-col gap-[10rem] pl-[420px] pt-[54px]">
-          {/* About Section */}
           <section
             id="about"
             ref={aboutRef}
@@ -208,7 +209,6 @@ const Body = () => {
             </button>
           </section>
 
-          {/* Services Section */}
           <section
             id="services"
             ref={servicesRef}
@@ -222,7 +222,6 @@ const Body = () => {
             </div>
           </section>
 
-          {/* Team Section */}
           <section
             id="team"
             ref={teamRef}

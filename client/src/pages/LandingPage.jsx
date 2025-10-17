@@ -3,13 +3,17 @@
 import React from "react";
 import Menu from "./Menu";
 import Body from "./Body";
+import Contact from "./Contact";
 
 const LandingPage = () => {
   return (
     <>
-      <Menu />
-      <div className="min-h-[200vh]">
-        <Body />
+      <div className=" ">
+        <Menu />
+        <div className=" w-full pt-[32px] ">
+          <Body />
+          <Contact />
+        </div>
       </div>
     </>
   );

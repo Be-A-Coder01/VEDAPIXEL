@@ -1,0 +1,95 @@
+:root {
+  --grid-size: 110px;
+  --line-color: rgba(255, 255, 255, 0.1);
+  --line-bright: rgba(255, 255, 255, 0.25);
+  --dot-size: 4px;
+  --dot-opacity: 0.6;
+  --drift-speed: 25s;
+  /* medium speed */
+}
+
+/* === Base container === */
+.vedapixel-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-color: #0b0c10;
+  overflow: hidden;
+  z-index: 0;
+
+  /* Two sets of lines — vertical + horizontal */
+  background-image:
+    repeating-linear-gradient(to right,
+      var(--line-color) 0 1px,
+      transparent 1px var(--grid-size)),
+    repeating-linear-gradient(to bottom,
+      var(--line-color) 0 1px,
+      transparent 1px var(--grid-size));
+
+  background-size: var(--grid-size) var(--grid-size);
+  animation: gridDrift var(--drift-speed) linear infinite;
+}
+
+/* === Dots (static, fixed at intersections) === */
+.vedapixel-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at center,
+      rgba(255, 255, 255, var(--dot-opacity)) 0 var(--dot-size),
+      transparent var(--dot-size));
+  background-size: var(--grid-size) var(--grid-size);
+  opacity: 0.7;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+  animation: dotPulse 6s ease-in-out infinite;
+}
+
+/* === Line glow overlay === */
+.vedapixel-grid-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right,
+      var(--line-bright) 0 1px,
+      transparent 1px var(--grid-size)),
+    repeating-linear-gradient(to bottom,
+      var(--line-bright) 0 1px,
+      transparent 1px var(--grid-size));
+  background-size: var(--grid-size) var(--grid-size);
+  mix-blend-mode: screen;
+  animation: lineGlow 3s ease-in-out infinite alternate;
+  opacity: 0.4;
+}
+
+/* === Keyframes === */
+@keyframes gridDrift {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+
+  100% {
+    background-position: -200px 200px, -200px 200px;
+  }
+}
+
+@keyframes dotPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes lineGlow {
+  0% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}

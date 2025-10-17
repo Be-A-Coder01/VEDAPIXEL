@@ -13,6 +13,19 @@
   letter-spacing: 0.8em;
 }
 
+/* .bg-face::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../assets/bg-face.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+} */
+
 /* --- Gradient Glow Overlay (::after) - The "Sunlight" Effect --- */
 
 /* Ensure the main container has relative positioning for the glow */

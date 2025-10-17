@@ -1,11 +1,31 @@
+@font-face {
+  font-family: 'Garota Sans';
+  src: url('../fonts/garota_sans/GarotaSans-Regular-FFP.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 .body-nav {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins";
+  font-weight: 400;
   font-style: normal;
 }
 
 .about-card {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
+  font-style: normal;
+}
+
+.about-card-title {
+  font-family: 'Garota Sans', sans-serif;
+  font-weight: 400;
+  font-style: regular;
+}
+
+.about-card-desc {
+  font-family: "Poppins";
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -20,6 +40,54 @@
   font-weight: 500;
   font-style: normal;
 }
+
+.infinite-scroll-node {
+  font-family: 'Garota Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.begin-title {
+  font-family: 'Garota Sans';
+  font-weight: 700;
+  font-style: bold;
+}
+
+.begin-card-title {
+  font-family: 'Garota Sans';
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* .begin-card-desc {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+} */
+
+.begin-card-button {
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  background:
+    linear-gradient(#192029) padding-box,
+    /* inner background */
+    linear-gradient(90deg, #BBABEB, #6A6185) border-box;
+  /* gradient border */
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* .begin-card-desc:hover {
+  box-shadow: 0 0 10px rgba(187, 171, 235, 0.4);
+} */
+
+.begin-card-button:hover {
+  box-shadow: 0 0 10px rgba(187, 171, 235, 0.6);
+  transform: translateY(-2px);
+}
+
 
 /* Hide scrollbar but keep scroll functionality */
 .no-scrollbar {
@@ -45,6 +113,38 @@
   background-size: 40px 40px;
   z-index: 0;
 }
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+  will-change: transform;
+}
+
+
 
 
 /* Slide + fade animation */

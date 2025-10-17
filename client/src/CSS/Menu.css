@@ -18,9 +18,9 @@
 .contact-button {
   /* Subtle gradient from light greenish-yellow to light purplish-blue */
   background: linear-gradient(to right,
-      #e0ffe0,
+      #BBABEB,
       /* Light greenish-yellow (start) */
-      #e0e0ff
+      #6A6185
       /* Light purplish-blue (end) */
     );
   border: none;

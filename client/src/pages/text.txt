@@ -1,176 +1,180 @@
-import React from "react";
-import facelogo from "../assets/facelogo.png";
-import "../CSS/Face.css";
+import React, { useEffect, useState } from "react";
+import "../CSS/Body.css";
+import AnimatedGridBackground from "./AnimatedGridBackground";
 import { motion } from "framer-motion";
+import InfiniteScrollNodes from "./InfiniteScrollNodes";
 
-const Face = () => {
-  const lineVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 0.5,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+const Node = ({ children, isHighlighted, className = "", style }) => {
+  const baseClasses =
+    "p-3 sm:p-4 text-white text-xs sm:text-sm font-medium uppercase tracking-wider rounded-lg cursor-pointer transition-all duration-200 ease-in-out border border-gray-700 whitespace-nowrap";
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.03, when: "beforeChildren" },
-    },
-  };
+  const defaultClasses = `${baseClasses} bg-gray-900 hover:scale-[1.03] shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/40`;
 
-  const topRightGrid = {
-    startX: "50%",
-    startY: "0%",
-    width: "100%",
-    height: "50%",
-    numHorizontalLines: 4,
-    numVerticalLines: 20,
-  };
+  const highlightedClasses = `${baseClasses} font-bold 
+    bg-gradient-to-r from-indigo-600 to-purple-600 border-none relative z-10`;
 
-  const bottomRightGrid = {
-    startX: "50%",
-    startY: "50%",
-    width: "50%",
-    height: "50%",
-    numHorizontalLines: 5,
-    numVerticalLines: 5,
-  };
-
-  const renderGridSection = (config, sectionId) => {
-    const lines = [];
-
-    // Horizontal Lines
-    for (let i = 0; i < config.numHorizontalLines; i++) {
-      const top = `calc(${config.startY} + ${
-        (i / (config.numHorizontalLines - 1)) * parseFloat(config.height)
-      }%)`;
-      const isWhiteLine = sectionId === "top-right" && (i === 1 || i === 2);
-
-      lines.push(
-        <motion.div
-          key={`${sectionId}-h-line-${i}`}
-          className={`absolute ${isWhiteLine ? "bg-white" : "bg-gray-500"}`}
-          style={{
-            top: top,
-            left: 540,
-            width: config.width,
-            height: "1px",
-            opacity: isWhiteLine ? 1 : 0.2,
-            ...(isWhiteLine && {
-              maskImage:
-                "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
-            }),
-          }}
-          variants={lineVariants}
-        />
-      );
-    }
-
-    // Vertical Lines
-    for (let i = 0; i < config.numVerticalLines; i++) {
-      const left = `calc(${config.startX} + ${
-        (i / (config.numVerticalLines - 1)) * parseFloat(config.width)
-      }%)`;
-      const isWhiteLine =
-        sectionId === "top-right" && (i === 4 || i === 5 || i === 8);
-
-      lines.push(
-        <motion.div
-          key={`${sectionId}-v-line-${i}`}
-          className={`absolute ${isWhiteLine ? "bg-white" : "bg-gray-500"}`}
-          style={{
-            left: left,
-            top: config.startY,
-            height: config.height,
-            width: "1px",
-            opacity: isWhiteLine ? 1 : 0,
-          }}
-          variants={lineVariants}
-        />
-      );
-    }
-
-    // Dots at specific intersections
-    const dotPositions = [
-      { h: 2, v: 4 },
-      { h: 1, v: 5 },
-      { h: 2, v: 5 },
-      { h: 1, v: 8 },
-    ];
-
-    dotPositions.forEach(({ h, v }) => {
-      const top = `calc(${config.startY} + ${
-        (h / (config.numHorizontalLines - 1)) * parseFloat(config.height)
-      }% - 4px)`;
-      const left = `calc(${config.startX} + ${
-        (v / (config.numVerticalLines - 1)) * parseFloat(config.width)
-      }% - 4px)`;
-
-      lines.push(
-        <motion.div
-          key={`${sectionId}-dot-${h}-${v}`}
-          className="absolute bg-white rounded-full"
-          style={{
-            top: top,
-            left: left,
-            width: "8px",
-            height: "8px",
-            opacity: 0.9,
-          }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 0.9, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        />
-      );
-    });
-
-    return lines;
+  const glowStyle = {
+    boxShadow: isHighlighted
+      ? "0 0 25px rgba(130, 94, 228, 0.9), 0 0 50px rgba(130, 94, 228, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4)"
+      : "",
+    ...style,
   };
 
   return (
-    <div className="h-screen w-screen flex place-items-center px-20 relative overflow-hidden bg-[#1a1c22]">
-      {/* Grid Lines & Dots */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {renderGridSection(topRightGrid, "top-right")}
-        {renderGridSection(bottomRightGrid, "bottom-right")}
-      </motion.div>
-
-      {/* Content */}
-      <div className="z-10 flex w-full justify-between items-center">
-        <div>
-          <img src={facelogo} className="h-[60vh]" alt="VedaPixel Logo" />
-        </div>
-        <div className="text-white">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="faceCSS-head text-[150px] font-bold leading-32"
-          >
-            VedaPixel
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="faceCSS-tagline text-[25px] px-8"
-          >
-            Innovation in every Pixel
-          </motion.p>
-        </div>
-      </div>
+    <div
+      className={`${
+        isHighlighted ? highlightedClasses : defaultClasses
+      } ${className}`}
+      style={glowStyle}
+    >
+      {children}
     </div>
   );
 };
 
-export default Face;
+const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
+  const nodesData = [
+    "Mobile Applications",
+    "Web Developments",
+    "iOS Development",
+    "Web Design",
+    "UX Research",
+    "User Experience",
+    "Custom Software",
+    "Cloud Applications",
+  ];
+
+  const repeatedNodes = [...nodesData, ...nodesData];
+
+  return (
+    <div className="relative overflow-hidden w-[70vw]">
+      <motion.div
+        className={`flex gap-5 ${
+          direction === "right" ? "flex-row" : "flex-row-reverse"
+        }`}
+        animate={{
+          x: direction === "right" ? ["0%", "-50%"] : ["-50%", "0%"],
+        }}
+        transition={{
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: speed,
+            ease: "linear",
+          },
+        }}
+      >
+        {repeatedNodes.map((label, i) => (
+          <Node key={i}>{label}</Node>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+const Body = () => {
+  const [showBody, setShowBody] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const menu = document.querySelector(".menu-sticky");
+      if (!menu) return;
+
+      const menuRect = menu.getBoundingClientRect();
+      setShowBody(menuRect.top <= 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <>
+      <div
+        className={`body-content  relative  pr-[116px] pl-[132px] pt-[80px] pb-[40px] h-full flex transition-all duration-700 ease-out w-full  ${
+          showBody
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-20 pointer-events-none"
+        }`}
+      >
+        {/* Animated Background (Optional) */}
+        {/* <div className="absolute z-0 pointer-events-none left-[30%] top-[120px] w-[70%] h-full">
+          <AnimatedGridBackground />
+        </div> */}
+
+        {/* Sidebar Navigation */}
+        <nav className=" text-white w-[242px] h-[190px]  flex flex-col gap-[10px]">
+          <p className=" body-nav pr-[12px] h-[42px] text-[28px] font-medium text-[#b19cd9] border-[#b19cd9] ">
+            Our Aim
+          </p>
+          <p className="body-nav pr-[12px] h-[42px] text-[28px] text-gray-300 hover:text-[#b19cd9] transition-colors">
+            Our Services
+          </p>
+          <p className="body-na pr-[12px] v h-[42px] text-[28px] text-gray-300 hover:text-[#b19cd9] transition-colors">
+            Ready to Begin?
+          </p>
+        </nav>
+
+        {/* Main Scrollable Section */}
+        <div className="flex flex-col  overflow-auto no-scrollbar gap-[10rem] pt-[54px]">
+          {/* About Section */}
+          <section
+            id="about-card"
+            className="h-[358px] w-[832px] flex flex-col"
+          >
+            <p className="about-card-title text-white text-[36px] leading-[52px] ">
+              We bridge innovation and execution with
+              <br />
+              user-centric, future-ready systems that
+              <br />
+              <span className="text-[#b19cd9] font-semibold">
+                streamline operations
+              </span>
+            </p>
+            <p className="about-card-desc text-[#C8C1C1] text-[24px] ">
+              We offer future-ready solutions to streamline your business, drive
+              growth, and put your processes in place. Explore our range of
+              solutions below.
+            </p>
+            <button className="body-nav mt-6 h-[52px] w-[149px] text-[24px] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300 ">
+              know More
+            </button>
+          </section>
+
+          {/* Services Section */}
+          <section id="service-card" className="min-h-[100vh] flex flex-col">
+            <h2 className="text-white text-[48px] font-semibold font-garota mb-10">
+              Our Core Services
+            </h2>
+            <div className="w-[60vw] flex flex-col">
+              <InfiniteScrollNodes />
+              <InfiniteScrollNodes />
+            </div>
+            <p className="text-gray-400 text-lg mt-10 max-w-[700px] leading-relaxed font-garota font-light">
+              This interactive grid showcases our expertise in Mobile
+              Applications development and strategy.
+            </p>
+          </section>
+
+          {/* Team Section */}
+          <section id="team-card" className="min-h-[80vh] pt-10">
+            <p className="text-white text-[40px] leading-[54px] font-semibold font-garota">
+              We're a Global UI UX <br />
+              Design Agency Curating <br />
+              User Experiences That <br />
+              <span className="text-[#b19cd9] font-semibold">
+                scale businesses
+              </span>
+            </p>
+            <p className="text-gray-400 text-[18px] mt-6 leading-[30px] font-garota font-light max-w-[680px]">
+              We combine creativity with strategic insight to deliver
+              next-generation digital solutions that drive results.
+            </p>
+          </section>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Body;
