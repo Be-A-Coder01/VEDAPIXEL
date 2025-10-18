@@ -1,10 +1,12 @@
 import React from "react";
 import "../CSS/Contact.css";
-// import "../CSS/Body.css";
+import { motion } from "framer-motion";
+
 const Contact = () => {
   return (
     <>
-      <div className="w-[1120px] h-[427px]   mx-auto">
+      <div className="w-[1120px] h-[427px] pr-[116px] pl-[132px] flex">
+        {/* Contact Form Section */}
         <div
           className="w-[772px] p-[36px] rounded-tl-[80px] rounded-b-[80px] h-full border border-white flex flex-col gap-[16px]"
           style={{
@@ -19,9 +21,10 @@ const Contact = () => {
           <p className="contact-box-title text-[#C8C1C1] text-[24px]">
             Find Your Way Forward, we're here to support.
           </p>
+
           <form
             action=""
-            className="  h-[215px] w-[700px] flex flex-col gap-[26px]"
+            className="h-[215px] w-[700px] flex flex-col gap-[26px]"
           >
             <div className="flex flex-wrap gap-[26px]">
               <input
@@ -45,15 +48,29 @@ const Contact = () => {
                 placeholder="Contact no. *"
               />
             </div>
+
             <textarea
-              name=""
-              className="w-[700px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
+              className="w-[700px] rounded-[10px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
               placeholder="Project Idea *"
             ></textarea>
           </form>
-          <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border rounded-[8px] contact-box-title w-[372px] text-white h-[52px]">
+
+          <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border rounded-[8px] contact-box-title w-[372px] text-white h-[52px] hover:bg-[#B1A2DF]/10 transition">
             Get in Touch
           </button>
+        </div>
+
+        {/* Text Section — same animation, triggers every time */}
+        <div className="text-box">
+          <motion.p
+            className="text-[64px] contact-title leading-17 bg-gradient-to-r from-[#BBABEB] to-[#6A6185] bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 40 }} // starts below and invisible
+            whileInView={{ opacity: 1, y: 0 }} // animates when visible
+            transition={{ duration: 1.2, ease: "easeOut" }} // smooth animation
+            viewport={{ once: false, amount: 0.6 }} // 🔥 replays every time in view
+          >
+            Want to explore the possibilities?
+          </motion.p>
         </div>
       </div>
     </>

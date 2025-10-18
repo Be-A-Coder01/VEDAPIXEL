@@ -3,6 +3,7 @@ import "../CSS/Body.css";
 import AnimatedGridBackground from "./AnimatedGridBackground";
 import { motion, AnimatePresence } from "framer-motion";
 import InfiniteScrollNodes from "./InfiniteScrollNodes";
+import profileImg from "../assets/profileImg.png";
 
 const Node = ({ children, isHighlighted, className = "", style }) => {
   const baseClasses =
@@ -43,7 +44,6 @@ const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
     "Custom Software",
     "Cloud Applications",
   ];
-
   const repeatedNodes = [...nodesData, ...nodesData];
 
   return (
@@ -74,13 +74,13 @@ const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
 
 const Body = () => {
   const [showBody, setShowBody] = useState(false);
-
   const [activeSection, setActiveSection] = useState("about");
-
-  // Refs for each section
+  const [showTeamPopup, setShowTeamPopup] = useState(false);
   const aboutRef = useRef(null);
   const servicesRef = useRef(null);
   const teamRef = useRef(null);
+
+  // ✅ Detect visible section for nav highlight
   useEffect(() => {
     const sections = [
       { id: "about", ref: aboutRef },
@@ -93,7 +93,7 @@ const Body = () => {
         const visible = entries.find((entry) => entry.isIntersecting);
         if (visible) setActiveSection(visible.target.id);
       },
-      { threshold: 0.4 } // adjust sensitivity
+      { threshold: 0.4 }
     );
 
     sections.forEach((s) => {
@@ -103,19 +103,27 @@ const Body = () => {
     return () => observer.disconnect();
   }, []);
 
+  // ✅ Make nav disappear a bit earlier
   useEffect(() => {
-    const handleScroll = () => {
-      const menu = document.querySelector(".menu-sticky");
-      if (!menu) return;
+    const bodySection = document.querySelector(".body-content");
+    if (!bodySection) return;
 
-      const menuRect = menu.getBoundingClientRect();
-      setShowBody(menuRect.top <= 0);
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Hide nav when only ~30% of the body is still visible
+        setShowBody(entry.intersectionRatio > 0.3);
+      },
+      {
+        threshold: Array.from({ length: 11 }, (_, i) => i * 0.1), // more granular tracking
+      }
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    observer.observe(bodySection);
+
+    return () => observer.disconnect();
   }, []);
 
+  // ✅ Nav item animation
   const navItem = (id, label) => {
     const isActive = activeSection === id;
 
@@ -126,16 +134,15 @@ const Body = () => {
             .getElementById(id)
             ?.scrollIntoView({ behavior: "smooth", block: "start" })
         }
-        className="relative cursor-pointer pl-2 pr-[12px] h-[42px] text-[28px] flex items-center transition-all duration-300"
+        className="body-nav relative  cursor-pointer pl-2 pr-[12px] h-[42px] text-[28px] flex items-center transition-all duration-300"
         animate={{
           color: isActive ? "#b19cd9" : "#d1d5db",
           x: isActive ? 4 : 0,
         }}
         transition={{ duration: 0.4, ease: "easeInOut" }}
       >
-        {/* Animated left border line */}
         <motion.span
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#b19cd9] rounded-full"
+          className=" absolute left-0 top-1/2 -translate-y-1/2 bg-[#b19cd9] rounded-full"
           initial={{ height: 0, opacity: 0 }}
           animate={{
             height: isActive ? "100%" : 0,
@@ -151,28 +158,85 @@ const Body = () => {
 
   return (
     <>
+      <AnimatePresence>
+        {showTeamPopup && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-[8px] flex justify-center items-center z-[200]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <motion.div
+              className="relative w-[1120px] min-h-[500px] p-10 flex flex-col gap-10 rounded-[40px] border border-white/20 bg-white/10 backdrop-blur-[20px] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              {/* Close Button */}
+              <button
+                className="absolute top-4 right-6 text-white text-[28px] hover:text-[#b19cd9] transition-all"
+                onClick={() => setShowTeamPopup(false)}
+              >
+                ✕
+              </button>
+
+              {/* Title */}
+              <p className="popup-teamCard-title text-white text-[39px] text-center font-semibold">
+                Meet Our Team
+              </p>
+
+              {/* Team Cards */}
+              <div className="flex flex-wrap justify-center gap-10">
+                {[1, 2, 3, 4].map((_, i) => (
+                  <div
+                    key={i}
+                    className="relative my-4 flex w-[489px] h-[205px] rounded-t-[66px] rounded-br-[66px] bg-[#9C90BD]/90 overflow-visible border border-white/20 shadow-[0_8px_25px_rgba(156,144,189,0.4)] backdrop-blur-[6px] hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)] transition-all duration-500 "
+                  >
+                    <img
+                      src={profileImg}
+                      alt="Profile"
+                      className="absolute bottom-0 left-0 h-[259px] object-cover"
+                    />
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[212px] h-[144px] flex flex-col justify-center items-start pl-3">
+                      <p className="text-white font-bold text-[22px] leading-tight">
+                        Akjdfhjhj
+                      </p>
+                      <p className="text-white font-bold text-[22px] leading-tight">
+                        Klkjjjjk
+                      </p>
+                      <p className="text-[#E4E3E3] text-[14px] mt-1">
+                        CEO & Founder
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div
-        className={`body-content relative pr-[116px] pl-[132px] pt-[80px] pb-[40px] min-h-screen gap-[20px] flex transition-all duration-700 ease-out w-full ${
-          showBody ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        // ✅ Remove translate transforms
+        className={`body-content  relative pr-[116px] pl-[132px] pt-[80px] pb-[40px] min-h-screen gap-[20px] flex transition-all duration-700 ease-out w-full`}
         style={{ transform: "none" }}
       >
-        {/* ✅ Fixed Sidebar Navigation (kept inside parent) */}
+        {/* ✅ Animated Sidebar Nav */}
         <AnimatePresence>
           {showBody && (
             <motion.nav
-              className="text-white w-[242px] flex flex-col gap-[10px]"
+              className="text-white   w-[272px] flex flex-col gap-[10px]"
               style={{
                 position: "fixed",
                 left: "132px",
                 top: "180px",
                 zIndex: 50,
               }}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             >
               {navItem("about", "Our Aim")}
               {navItem("services", "Our Services")}
@@ -183,7 +247,6 @@ const Body = () => {
 
         {/* Main Content */}
         <div className="flex flex-col gap-[10rem] pl-[420px] pt-[54px]">
-          {/* About Section */}
           <section
             id="about"
             ref={aboutRef}
@@ -208,7 +271,6 @@ const Body = () => {
             </button>
           </section>
 
-          {/* Services Section */}
           <section
             id="services"
             ref={servicesRef}
@@ -222,7 +284,6 @@ const Body = () => {
             </div>
           </section>
 
-          {/* Team Section */}
           <section
             id="team"
             ref={teamRef}
@@ -251,7 +312,10 @@ const Body = () => {
                 <p className="begin-card-desc text-[#C8C1C1] text-[24px]">
                   Driving enterprise & consumer innovation
                 </p>
-                <button className="begin-card-button border-2 border-[#B1A2DF] h-[52px] mt-[25px] w-[149px] text-white py-2 rounded-[8px]">
+                <button
+                  className="begin-card-button border-2 border-[#B1A2DF] h-[52px] mt-[25px] w-[149px] text-white py-2 rounded-[8px]"
+                  onClick={() => setShowTeamPopup(true)}
+                >
                   Our Team
                 </button>
               </div>

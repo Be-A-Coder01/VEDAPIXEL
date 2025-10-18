@@ -14,7 +14,7 @@ const Menu = () => {
         </div>
         <div className="nav-links   w-[834px] h-[72px] text-white  place-items-center justify-end  flex gap-10 ">
           <p className="px-[4px] py-[8px] text-[24px] body-nav">Home</p>
-          <p className="px-[4px] py-[8px] text-[24px] body-nav">Projects</p>
+          <p className="px-[4px] py-[8px] text-[24px] body-nav">About Us</p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

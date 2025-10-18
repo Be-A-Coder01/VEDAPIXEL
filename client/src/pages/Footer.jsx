@@ -43,7 +43,7 @@ const Footer = () => {
       >
         <motion.div className="flex py-10 px-2" variants={container}>
           {/* Left Section - Company Info */}
-          <motion.div className="footer-company-info w-fit" variants={item}>
+          <motion.div className=" footer-company-info w-[40vw]" variants={item}>
             <img src={logo} alt="" className="w-[79px] h-[80px]" />
             <p className="footer-company-name text-white text-[37px] leading-12">
               VedaPixel
@@ -51,7 +51,7 @@ const Footer = () => {
             <p className="footer-company-desc text-[8px] leading-0.5 text-white">
               Innovation in every Pixel
             </p>
-            <div className="flex flex-col gap-[5px] mt-14">
+            <div className="flex flex-col gap-[5px] mt-8">
               <div className="footer-email text-[#F8F9FA] text-[16px]">
                 &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. All Rights
                 Reserved.

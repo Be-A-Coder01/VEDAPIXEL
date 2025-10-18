@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Garota Sans';
+  src: url('../fonts/garota_sans/GarotaSans-Bold-FFP.ttf') format('truetype');
+  font-weight: 700;
+  font-style: bold;
+}
+
 .contact-box-title {
   font-family: "Poppins";
   font-weight: 400;
@@ -16,4 +23,10 @@
   /* gradient border */
   color: white;
   transition: all 0.3s ease;
+}
+
+.contact-title {
+  font-family: 'Garota Sans';
+  font-weight: 700;
+  font-style: bold;
 }
