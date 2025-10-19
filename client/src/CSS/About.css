@@ -1,79 +1,54 @@
-@font-face {
-  font-family: 'Garota Sans';
-  src: url('../fonts/garota_sans/GarotaSans-Regular-FFP.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+/* Animation remains same, just ensure consistent motion */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.about-part-title {
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+  will-change: transform;
+}
+
+/* Text font control for all devices */
+.infinite-scroll-node {
   font-family: 'Garota Sans', sans-serif;
   font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.about-part1-desc {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
+/* Small-screen fix: tighter layout */
+@media (max-width: 640px) {
+  .infinite-scroll-node {
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+  }
 }
 
-/* ---- Glass card styling ---- */
-.glass-card {
-  width: 330px;
-  height: 310px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px 24px 33px 20px;
-  border-radius: 7px;
-  background: linear-gradient(139.47deg, rgba(57, 64, 73, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%);
-  backdrop-filter: blur(10px) saturate(180%);
-  -webkit-backdrop-filter: blur(10px) saturate(180%);
-  border: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-}
-
-/* ---- Layout ---- */
-#layout {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Background image */
-#layout::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/aboutbg.png") center/cover no-repeat;
-  z-index: 0;
-}
-
-/* ---- GRID OVERLAY ---- */
-.grid-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* 1️⃣ Horizontal & Vertical Lines */
-.grid-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-  background-size: 120px 120px;
-  /* spacing between lines */
-  z-index: 1;
-}
-
-/* 2️⃣ Dots at Intersections */
-.grid-overlay::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(#ffffff 2px, transparent 2px);
-  background-size: 120px 120px;
-  z-index: 2;
-  opacity: 0.9;
+/* Large-screen fix: spacing balance */
+@media (min-width: 1600px) {
+  .infinite-scroll-node {
+    font-size: 1.5rem;
+    width: 280px;
+  }
 }

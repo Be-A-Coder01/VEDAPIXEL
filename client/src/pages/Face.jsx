@@ -206,7 +206,7 @@ const Face = ({ scrollProgress }) => {
 
   return (
     <motion.div
-      className="h-screen lg:w-[screen] flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
+      className="h-screen border-2 border-red-500 lg:w-[screen] flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
       style={{ opacity }}
     >
       {/* Grid Lines & Dots */}
@@ -224,30 +224,55 @@ const Face = ({ scrollProgress }) => {
       <div className="z-10 flex w-full justify-between items-center">
         {/* --- 3D Cube --- */}
         <motion.div
-          className="md:h-[25vh] lg:h-[60vh] aspect-square"
+          className="flex justify-center items-center 
+             w-[clamp(180px,25vw,400px)] 
+             h-[clamp(180px,25vw,400px)] 
+             sm:w-[clamp(200px,30vw,450px)] 
+             md:w-[clamp(250px,35vw,500px)] 
+             lg:w-[clamp(300px,40vw,600px)] 
+             xl:w-[clamp(350px,25vw,650px)]
+             mx-auto"
           variants={cubeVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* <PixelCubeScene /> */}
-          <img src={faceLogo} alt="" />
+          <img
+            src={faceLogo}
+            alt="Pixel Cube"
+            className="object-contain w-full h-full drop-shadow-[0_0_20px_rgba(187,171,235,0.4)]"
+          />
         </motion.div>
 
         {/* --- Text --- */}
-        <div className="text-white">
+        <div className="text-white text-center md:text-left flex flex-col items-center md:items-start">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: textDelay }}
-            className="faceCSS-head md:text-[70px] lg:text-[150px] font-bold md:leading-20 lg:leading-35"
+            className="faceCSS-head 
+      font-bold 
+      text-[clamp(2.2rem,16vw,9rem)] 
+      leading-[clamp(2.4rem,10vw,10.5rem)] 
+      tracking-tight 
+      drop-shadow-[0_0_16px_rgba(187,171,235,0.35)] 
+      whitespace-nowrap"
           >
             VedaPixel
           </motion.p>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: textDelay + 0.2 }}
-            className="faceCSS-tagline md:text-[15px] lg:text-[25px] md:px-5 lg:px-8"
+            className="faceCSS-tagline 
+      text-[clamp(0.95rem,1.6vw,1.8rem)] 
+      px-[clamp(0.8rem,2.5vw,3rem)] 
+      mt-[clamp(0.4rem,1.2vw,1.4rem)] 
+      text-[#E4E3E3]/90 
+      font-normal 
+      tracking-[clamp(0.02em,0.3vw,0.08em)] 
+      leading-[clamp(1.2rem,2.4vw,2rem)] 
+      max-w-[clamp(280px,60vw,1000px)]"
           >
             Innovation in every Pixel
           </motion.p>

@@ -248,33 +248,62 @@ const Body = () => {
           <section
             id="team"
             ref={teamRef}
-            className=" relative mb-[30px]     lg:w-[55vw]   "
+            className="relative mb-[30px] w-[90vw] sm:w-[85vw] md:w-[75vw] lg:w-[55vw] mx-auto px-4"
           >
-            <p className="begin-title absolute top-0 left-0 z-20 md:text-[60px] lg:text-[4rem] bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
+            <p
+              className="begin-title absolute top-0 left-0 z-20 
+      text-[clamp(1.8rem,4vw,4rem)] 
+      font-extrabold 
+      bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] 
+      bg-clip-text text-transparent leading-[1]"
+            >
               Hello!
             </p>
 
             <div
-              className="relative border border-white  md:w-[500px]  lg:w-[54vw]   md:p-[3rem] lg:p-[2.3rem] md:ml-[4px] lg:ml-[8px] rounded-tr-[80px] rounded-b-[80px]  mt-[30px] lg:mt-[30px]"
-              // style={{
-              //   background:
-              //     "linear-gradient(139.47deg, rgba(47, 54, 64) -45.69%, rgba(16, 24, 32) 54.7%)",
-              //   backdropFilter: "blur(10px) saturate(180%)",
-              //   WebkitBackdropFilter: "blur(10px) saturate(180%)",
-              //   border: "2px solid rgba(255, 255, 255, 0.15)",
-              //   boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-              // }}
+              className="relative border border-white 
+      p-[clamp(1.5rem,3vw,2.3rem)] 
+      mt-[clamp(20px,3vw,30px)] 
+      rounded-tr-[60px] rounded-b-[60px]
+      sm:rounded-tr-[70px] sm:rounded-b-[70px]
+      md:rounded-tr-[80px] md:rounded-b-[80px]
+      shadow-xl transition-all duration-300"
+              style={{
+                background:
+                  "linear-gradient(139.47deg, rgba(47, 54, 64, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%)",
+                backdropFilter: "blur(12px) saturate(180%)",
+                WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                border: "2px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+              }}
             >
-              <div className=" md:h-[190px] lg:h-full  ">
-                <p className="begin-card-title md:text-[30px] lg:text-[3rem] text-white md:leading-10 lg:leading-13">
+              <div className="flex flex-col justify-center items-start h-full space-y-3">
+                <p
+                  className="begin-card-title 
+        text-[clamp(1.3rem,2.5vw,3rem)] 
+        text-white font-semibold leading-tight"
+                >
                   we are experienced innovators building scalable digital
                   platforms
                 </p>
-                <p className="begin-card-desc text-[#C8C1C1] md:text-[18px] lg:text-[1.5rem]">
+
+                <p
+                  className="begin-card-desc 
+        text-[#C8C1C1] 
+        text-[clamp(0.9rem,1.8vw,1.5rem)]"
+                >
                   Driving enterprise & consumer innovation
                 </p>
+
                 <button
-                  className="begin-card-button border-2 border-[#B1A2DF] md:h-[45px] md:w-[100px] lg:h-[7vh] mt-[19px] lg:mt-[25px] lg:w-[10vw] text-white py-2 rounded-[8px]"
+                  className="begin-card-button 
+        border-2 border-[#B1A2DF] 
+        text-white 
+        py-2 rounded-[8px]
+        mt-[clamp(15px,2vw,25px)]
+        h-[clamp(40px,6vh,55px)]
+        w-[clamp(110px,10vw,160px)]
+        transition-all duration-300 hover:scale-105 hover:bg-[#B1A2DF]/20"
                   onClick={() => setShowTeamPopup(true)}
                 >
                   Our Team
