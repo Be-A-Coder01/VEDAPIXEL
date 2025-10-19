@@ -243,9 +243,9 @@ const Body = () => {
           <section
             id="team"
             ref={teamRef}
-            className="relative mb-[30px] w-[90vw] sm:w-[85vw] md:w-[75vw] lg:w-[55vw] mx-auto px-4"
+            className="relative mb-[30px] w-[94vw] sm:w-[90vw] md:w-[75vw] lg:w-[55vw] mx-auto px-4"
           >
-            <p className="begin-title absolute top-0 left-0 z-20 text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
+            <p className="begin-title border-2 border-red-500 absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
               Hello!
             </p>
 
@@ -271,7 +271,7 @@ const Body = () => {
                 </p>
 
                 <button
-                  className="begin-card-button border-2 border-[#B1A2DF] text-white py-2 rounded-[8px] mt-[clamp(15px,2vw,25px)] h-[clamp(40px,6vh,55px)] w-[clamp(110px,10vw,160px)] transition-all duration-300 hover:scale-105 hover:bg-[#B1A2DF]/20"
+                  className="begin-card-button border-2 border-[#B1A2DF] text-white text-[12px] md:text-[16px] py-2 rounded-[8px] mt-[clamp(15px,2vw,25px)] w-[25vw] md:h-[clamp(50px,6vh,55px)] md:w-[clamp(110px,10vw,160px)] transition-all duration-300 hover:scale-105 hover:bg-[#B1A2DF]/20"
                   onClick={() => setShowTeamPopup(true)}
                 >
                   Our Team
