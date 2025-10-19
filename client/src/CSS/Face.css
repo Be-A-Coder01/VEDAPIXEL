@@ -13,6 +13,38 @@
   letter-spacing: 0.8em;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .faceCSS-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    letter-spacing: 6.5px;
+    /* Better readability */
+  }
+}
+
+/* 🔆 Make only the selected white grid lines more visible on tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+  /* Only the selected (white) grid lines */
+  .absolute.bg-white {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    /* Full visibility */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    /* Subtle glow */
+  }
+
+  /* Make the white dots match brightness */
+  .absolute.bg-white.rounded-full {
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+  }
+}
+
+
+
+
 /* .bg-face::before {
   content: '';
   position: absolute;

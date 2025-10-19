@@ -5,73 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import InfiniteScrollNodes from "./InfiniteScrollNodes";
 import profileImg from "../assets/profileImg.png";
 
-const Node = ({ children, isHighlighted, className = "", style }) => {
-  const baseClasses =
-    "p-3 sm:p-4 text-white text-xs sm:text-sm font-medium uppercase tracking-wider rounded-lg cursor-pointer transition-all duration-200 ease-in-out border border-gray-700 whitespace-nowrap";
-
-  const defaultClasses = `${baseClasses} bg-gray-900 hover:scale-[1.03] shadow-lg shadow-blue-500/10 hover:shadow-xl hover:shadow-blue-500/40`;
-
-  const highlightedClasses = `${baseClasses} font-bold 
-    bg-gradient-to-r from-indigo-600 to-purple-600 border-none relative z-10`;
-
-  const glowStyle = {
-    boxShadow: isHighlighted
-      ? "0 0 25px rgba(130, 94, 228, 0.9), 0 0 50px rgba(130, 94, 228, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.4)"
-      : "",
-    ...style,
-  };
-
-  return (
-    <div
-      className={`${
-        isHighlighted ? highlightedClasses : defaultClasses
-      } ${className}`}
-      style={glowStyle}
-    >
-      {children}
-    </div>
-  );
-};
-
-const FuturisticGrid = ({ direction = "right", speed = 35 }) => {
-  const nodesData = [
-    "Mobile Applications",
-    "Web Developments",
-    "iOS Development",
-    "Web Design",
-    "UX Research",
-    "User Experience",
-    "Custom Software",
-    "Cloud Applications",
-  ];
-  const repeatedNodes = [...nodesData, ...nodesData];
-
-  return (
-    <div className="relative overflow-hidden w-[70vw]">
-      <motion.div
-        className={`flex gap-5 ${
-          direction === "right" ? "flex-row" : "flex-row-reverse"
-        }`}
-        animate={{
-          x: direction === "right" ? ["0%", "-50%"] : ["-50%", "0%"],
-        }}
-        transition={{
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: speed,
-            ease: "linear",
-          },
-        }}
-      >
-        {repeatedNodes.map((label, i) => (
-          <Node key={i}>{label}</Node>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
 const Body = () => {
   const [showBody, setShowBody] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
@@ -123,6 +56,23 @@ const Body = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Responsive positioning for sidebar nav
+  const [navPosition, setNavPosition] = useState({
+    left: window.innerWidth >= 1024 ? "132px" : "32px",
+    top: window.innerWidth >= 1024 ? "180px" : "280px",
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setNavPosition({
+        left: window.innerWidth >= 1024 ? "10vw" : "32px",
+        top: window.innerWidth >= 1024 ? "180px" : "280px",
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // ✅ Nav item animation
   const navItem = (id, label) => {
     const isActive = activeSection === id;
@@ -134,7 +84,7 @@ const Body = () => {
             .getElementById(id)
             ?.scrollIntoView({ behavior: "smooth", block: "start" })
         }
-        className="body-nav relative  cursor-pointer pl-2 pr-[12px] h-[42px] text-[28px] flex items-center transition-all duration-300"
+        className="body-nav  relative  cursor-pointer pl-3 lg:pl-2   md:text-[18px] lg:text-[28px] flex items-center transition-all duration-300"
         animate={{
           color: isActive ? "#b19cd9" : "#d1d5db",
           x: isActive ? 4 : 0,
@@ -168,7 +118,7 @@ const Body = () => {
             transition={{ duration: 0.4 }}
           >
             <motion.div
-              className="relative w-[1120px] min-h-[500px] p-10 flex flex-col gap-10 rounded-[40px] border border-white/20 bg-white/10 backdrop-blur-[20px] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
+              className="relative md:w-[700px] md:h-fit lg:w-[80vw] lg:h-[85vh]  flex flex-col gap-10 rounded-[40px] border border-white/20 bg-white/10 backdrop-blur-[20px] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -176,37 +126,37 @@ const Body = () => {
             >
               {/* Close Button */}
               <button
-                className="absolute top-4 right-6 text-white text-[28px] hover:text-[#b19cd9] transition-all"
+                className="absolute top-4 right-6 text-white md:text-[18px] lg:text-[28px] hover:text-[#b19cd9] transition-all"
                 onClick={() => setShowTeamPopup(false)}
               >
                 ✕
               </button>
 
               {/* Title */}
-              <p className="popup-teamCard-title text-white text-[39px] text-center font-semibold">
+              <p className="popup-teamCard-title text-white md:text-[2.4rem] lg:text-[39px] pl-10 py-4 font-semibold">
                 Meet Our Team
               </p>
 
               {/* Team Cards */}
-              <div className="flex flex-wrap justify-center gap-10">
+              <div className="flex  flex-wrap  justify-center gap-10 lg:gap-10">
                 {[1, 2, 3, 4].map((_, i) => (
                   <div
                     key={i}
-                    className="relative my-4 flex w-[489px] h-[205px] rounded-t-[66px] rounded-br-[66px] bg-[#9C90BD]/90 overflow-visible border border-white/20 shadow-[0_8px_25px_rgba(156,144,189,0.4)] backdrop-blur-[6px] hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)] transition-all duration-500 "
+                    className="relative mb-10 lg:my-5 flex md:w-[300px] md:h-[100px] lg:w-[35vw] lg:h-[24vh] rounded-t-[50px] lg:rounded-t-[66px] rounded-br-[50px] lg:rounded-br-[66px] bg-[#9C90BD]/90 overflow-visible border border-white/20 shadow-[0_8px_25px_rgba(156,144,189,0.4)] backdrop-blur-[6px] hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)] transition-all duration-500 "
                   >
                     <img
                       src={profileImg}
                       alt="Profile"
-                      className="absolute bottom-0 left-0 h-[259px] object-cover"
+                      className="absolute bottom-0 left-0 md:h-[140px] lg:h-[35vh] object-cover"
                     />
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[212px] h-[144px] flex flex-col justify-center items-start pl-3">
-                      <p className="text-white font-bold text-[22px] leading-tight">
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[17vw]   h-[20vh] flex flex-col justify-center items-start md:pl-5 lg:pl-3">
+                      <p className="text-white font-bold md:text-[16px] lg:text-[22px] leading-tight">
                         Akjdfhjhj
                       </p>
-                      <p className="text-white font-bold text-[22px] leading-tight">
+                      <p className="text-white font-bold  md:text-[16px] lg:text-[22px] leading-tight">
                         Klkjjjjk
                       </p>
-                      <p className="text-[#E4E3E3] text-[14px] mt-1">
+                      <p className="text-[#E4E3E3] md:text-[12px] lg:text-[14px] mt-1">
                         CEO & Founder
                       </p>
                     </div>
@@ -219,18 +169,18 @@ const Body = () => {
       </AnimatePresence>
 
       <div
-        className={`body-content  relative pr-[116px] pl-[132px] pt-[80px] pb-[40px] min-h-screen gap-[20px] flex transition-all duration-700 ease-out w-full`}
+        className={`body-content  relative  min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full  pt-[6vw]`}
         style={{ transform: "none" }}
       >
         {/* ✅ Animated Sidebar Nav */}
         <AnimatePresence>
           {showBody && (
             <motion.nav
-              className="text-white   w-[272px] flex flex-col gap-[10px]"
+              className="text-white    md:w-fit lg:w-fit  flex flex-col md:gap-[6px] lg:gap-[10px]"
               style={{
                 position: "fixed",
-                left: "132px",
-                top: "180px",
+                left: navPosition.left,
+                top: navPosition.top,
                 zIndex: 50,
               }}
               initial={{ opacity: 0, y: 30 }}
@@ -246,13 +196,13 @@ const Body = () => {
         </AnimatePresence>
 
         {/* Main Content */}
-        <div className="flex flex-col gap-[10rem] pl-[420px] pt-[54px]">
+        <div className="flex border-2 border-green-600 flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw] ">
           <section
             id="about"
             ref={aboutRef}
-            className="h-[358px] w-[832px] flex flex-col gap-[8px]"
+            className="flex flex-col md:gap-[12px] lg:gap-[8px] mt-[7vw]"
           >
-            <p className="about-card-title text-white text-[48px] leading-[52px]">
+            <p className="about-card-title text-white md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
               We bridge innovation and execution with
               <br />
               user-centric, future-ready systems that
@@ -261,40 +211,37 @@ const Body = () => {
                 streamline operations
               </span>
             </p>
-            <p className="about-card-desc text-[#C8C1C1] text-[24px]">
+            <p className="about-card-desc text-[#C8C1C1] md:text-[16px] w-full  lg:text-[1.5rem]">
               We offer future-ready solutions to streamline your business, drive
               growth, and put your processes in place. Explore our range of
               solutions below.
             </p>
-            <button className="body-nav h-[52px] w-[149px] text-[24px] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300">
+            <button className="body-nav md:h-[50px] md:w-[140px] lg:h-[8vh] lg:w-[10vw] md:text-[20px] lg:text-[1.5rem] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300 mt-[2vw]">
               Know More
             </button>
           </section>
 
-          <section
-            id="services"
-            ref={servicesRef}
-            className="h-[424px] w-[832px]"
-          >
-            <div className="flex flex-col gap-4">
+          <section id="services" ref={servicesRef} className="">
+            <div className="flex flex-col  lg:gap-4">
               <InfiniteScrollNodes direction="left" baseSpeed={90} />
               <InfiniteScrollNodes direction="right" baseSpeed={90} />
               <InfiniteScrollNodes direction="left" baseSpeed={90} />
               <InfiniteScrollNodes direction="right" baseSpeed={90} />
+              <InfiniteScrollNodes direction="left" baseSpeed={90} />
             </div>
           </section>
 
           <section
             id="team"
             ref={teamRef}
-            className="relative min-h-[80vh] w-[763px] h-[347px]"
+            className=" relative   md:w-[510px]  lg:w-[55vw]   "
           >
-            <p className="begin-title absolute top-0 left-0 z-20 text-[64px] bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
+            <p className="begin-title absolute top-0 left-0 z-20 md:text-[60px] lg:text-[4rem] bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
               Hello!
             </p>
 
             <div
-              className="relative w-[755px] h-[311px] p-[36px] ml-[8px] rounded-tr-[80px] rounded-b-[80px] mt-[30px]"
+              className="relative  md:w-[500px] md:h-[250px] lg:w-[54vw]  lg:h-[41vh] md:p-[3rem] lg:p-[2.3rem] md:ml-[4px] lg:ml-[8px] rounded-tr-[80px] rounded-b-[80px] mt-[30px] lg:mt-[30px]"
               style={{
                 background:
                   "linear-gradient(139.47deg, rgba(47, 54, 64) -45.69%, rgba(16, 24, 32) 54.7%)",
@@ -304,16 +251,16 @@ const Body = () => {
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
               }}
             >
-              <div className="h-[159px]">
-                <p className="begin-card-title text-[48px] text-white leading-13">
+              <div className=" md:h-[190px] lg:h-full  ">
+                <p className="begin-card-title md:text-[30px] lg:text-[3rem] text-white md:leading-10 lg:leading-13">
                   we are experienced innovators building scalable digital
                   platforms
                 </p>
-                <p className="begin-card-desc text-[#C8C1C1] text-[24px]">
+                <p className="begin-card-desc text-[#C8C1C1] md:text-[18px] lg:text-[1.5rem]">
                   Driving enterprise & consumer innovation
                 </p>
                 <button
-                  className="begin-card-button border-2 border-[#B1A2DF] h-[52px] mt-[25px] w-[149px] text-white py-2 rounded-[8px]"
+                  className="begin-card-button border-2 border-[#B1A2DF] md:h-[45px] md:w-[100px] lg:h-[7vh] mt-[19px] lg:mt-[25px] lg:w-[10vw] text-white py-2 rounded-[8px]"
                   onClick={() => setShowTeamPopup(true)}
                 >
                   Our Team

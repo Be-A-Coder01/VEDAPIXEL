@@ -35,38 +35,38 @@ const Footer = () => {
   return (
     <>
       <motion.div
-        className="w-[1220px] h-[396px] ml-[150px] p-10 mt-32 "
+        className=" md:w-full  lg:w-[99vw]  pl-10 py-10 lg:px-20 mt-32 "
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.4 }} // triggers each time visible
       >
-        <motion.div className="flex py-10 px-2" variants={container}>
+        <motion.div className="flex py-10 lg:px-2  " variants={container}>
           {/* Left Section - Company Info */}
-          <motion.div className=" footer-company-info w-[40vw]" variants={item}>
-            <img src={logo} alt="" className="w-[79px] h-[80px]" />
-            <p className="footer-company-name text-white text-[37px] leading-12">
+          <motion.div className=" footer-company-info w-2/6 " variants={item}>
+            <img src={logo} alt="" className="lg:w-[5vw] l" />
+            <p className="footer-company-name text-[20px] text-white lg:text-[2.3rem] leading-10 lg:leading-12">
               VedaPixel
             </p>
-            <p className="footer-company-desc text-[8px] leading-0.5 text-white">
+            <p className="footer-company-desc text-[8px] lg:text-[0.5rem] leading-0.5 lg:leading-0.5 text-white">
               Innovation in every Pixel
             </p>
-            <div className="flex flex-col gap-[5px] mt-8">
-              <div className="footer-email text-[#F8F9FA] text-[16px]">
+            <div className="flex flex-col gap-[4px] lg:gap-[5px] mt-7">
+              <div className="footer-email text-[#F8F9FA] text-[10px] lg:text-[0.8rem]">
                 &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. All Rights
                 Reserved.
               </div>
               <div className="flex gap-[10px] place-items-center">
                 <div className="flex gap-2 text-white">
-                  <img src={email} className="h-[20px]" />
-                  <span className="footer-email text-[#E4E3E3] text-[16px]">
+                  <img src={email} className="h-[3vh]" />
+                  <span className="footer-email text-[#E4E3E3] text-[12px] lg:text-[1rem]">
                     info@vedapixel.com
                   </span>
                 </div>
                 <span className="text-white">|</span>
                 <div className="flex gap-2 text-white place-items-center">
-                  <img src={phone} className="h-[20px]" />
-                  <span className="footer-email text-[#E4E3E3] text-[16px]">
+                  <img src={phone} className="h-[3vh]" />
+                  <span className="footer-email text-[#E4E3E3] text-[12px] lg:text-[1rem]">
                     +91 9036354261
                   </span>
                 </div>
@@ -75,10 +75,13 @@ const Footer = () => {
           </motion.div>
 
           {/* Middle + Right Sections */}
-          <motion.div className="flex gap-[180px] pl-20" variants={container}>
+          <motion.div
+            className="flex md:gap-[55px]  lg:gap-[180px] w-4/6 px-20"
+            variants={container}
+          >
             {/* Footer Navigation */}
             <motion.div
-              className="footer-nav w-[143px] flex flex-col gap-[12px] h-fit"
+              className="footer-nav text-[14px]  lg:text-[16px] w-1/3 flex flex-col gap-[12px] h-fit"
               variants={item}
             >
               <p className="footer-nav-links" id="footer-navlinks1">
@@ -100,23 +103,23 @@ const Footer = () => {
 
             {/* Contact / Social Section */}
             <motion.div
-              className="h-fit flex flex-col gap-[20px]"
+              className="h-fit w-2/3 flex flex-col gap-[20px] "
               variants={item}
             >
-              <div>
+              <div className="">
                 <p className="footer-email text-[#C8C1C1] text-[16px] mb-2">
                   Let's Get in touch
                 </p>
-                <div className="flex place-items-center">
+                <div className="flex place-items-center ">
                   <input
                     type="text"
                     placeholder="Your Email Id"
-                    className="footer-email text-[#818181] w-[214px] h-[42px] text-[16px] rounded-[10px] border-[0.84px] border-[#F2F2F7] px-[8px]"
+                    className="footer-email text-[#818181] md:w-[160px] md:h-[32px] lg:w-[20vw] lg:h-[42px] text-[12px] lg:text-[16px] rounded-[10px] border-[0.84px] border-[#F2F2F7] px-[8px]"
                   />
                   <motion.img
                     src={icon}
                     alt=""
-                    className="h-[31px] w-[31px] rotate-45 ml-2"
+                    className="md:w-[29px]  lg:w-[2vw] rotate-45 ml-2"
                     whileHover={{ scale: 1.2, rotate: 0 }}
                     transition={{ duration: 0.3 }}
                   />
@@ -130,13 +133,13 @@ const Footer = () => {
                 <motion.img
                   src={linkedin}
                   alt=""
-                  className="h-[25px] w-[25px] cursor-pointer"
+                  className="w-[2vw] cursor-pointer"
                   whileHover={{ scale: 1.2, y: -3 }}
                 />
                 <motion.img
                   src={Instagram}
                   alt=""
-                  className="h-[25px] w-[25px] cursor-pointer"
+                  className=" w-[2vw] cursor-pointer"
                   whileHover={{ scale: 1.2, y: -3 }}
                 />
               </div>

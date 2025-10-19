@@ -1,36 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/Face.css";
 import faceLogo from "../assets/faceLogo.png"; // Ensure this path is correct
 import { motion, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import PixelCubeScene from "./PixelCubeScene"; // Make sure this file exists
+import PixelCubeScene from "./PixelCubeScene"; // Optional 3D cube
 
 const Face = ({ scrollProgress }) => {
-  const opacity = useTransform(
-    scrollProgress,
-    // Input Range (When to start and stop the fade, based on document scroll percentage):
-    // Start fading at 5% scroll, finish fading at 20% scroll.
-    [0.05, 0.2],
-    // Output Range (The opacity we want):
-    [1, 0] // Go from fully visible (1) to fully transparent (0)
-  );
+  // 🟣 Detect device size to adjust fade timing
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsTablet(window.innerWidth <= 1024 && window.innerWidth >= 768);
+    };
+    handleResize(); // Check on mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // 🟢 Adjust fade range based on screen size
+  const fadeRange = isTablet ? [0.03, 0.1] : [0.05, 0.2];
+
+  // 🔥 Smooth fade-out on scroll (now works for both laptop + tablet)
+  const opacity = useTransform(scrollProgress, fadeRange, [1, 0]);
+
   const textDelay = 1.5;
 
-  // --- Framer Motion Grid & Sunlight Container Variants ---
+  // --- Framer Motion Variants ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        // Stagger children for lines/dots
         staggerChildren: 0.03,
         when: "beforeChildren",
-        // Sunlight/Glow fade-in transition (applies to container opacity)
-        opacity: {
-          delay: 0.2,
-          duration: 2.0,
-          ease: "easeInOut",
-        },
+        opacity: { delay: 0.2, duration: 2.0, ease: "easeInOut" },
       },
     },
   };
@@ -59,7 +62,7 @@ const Face = ({ scrollProgress }) => {
     },
   };
 
-  // --- Grid Configuration ---
+  // --- Grid Config ---
   const topRightGrid = {
     startX: "50%",
     startY: "0%",
@@ -78,18 +81,17 @@ const Face = ({ scrollProgress }) => {
     numVerticalLines: 20,
   };
 
-  // --- Grid Rendering Function ---
+  // --- Render Grid Function ---
   const renderGridSection = (config, sectionId) => {
     const lines = [];
 
-    // Horizontal Lines
+    // Horizontal lines
     for (let i = 0; i < config.numHorizontalLines; i++) {
       if (
         (sectionId === "top-right" && i === 3) ||
         (sectionId === "bottom-right" && i === 0)
-      ) {
+      )
         continue;
-      }
 
       const top = `calc(${config.startY} + ${
         (i / (config.numHorizontalLines - 1)) * parseFloat(config.height)
@@ -121,7 +123,7 @@ const Face = ({ scrollProgress }) => {
       );
     }
 
-    // Vertical Lines
+    // Vertical lines
     for (let i = 0; i < config.numVerticalLines; i++) {
       const left = `calc(${config.startX} + ${
         (i / (config.numVerticalLines - 1)) * parseFloat(config.width)
@@ -204,10 +206,10 @@ const Face = ({ scrollProgress }) => {
 
   return (
     <motion.div
-      className="h-screen w-screen flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
+      className="h-screen lg:w-[screen] flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
       style={{ opacity }}
     >
-      {/* Grid Lines & Dots (Z-0) - This motion.div controls the sunlight transition */}
+      {/* Grid Lines & Dots */}
       <motion.div
         className="absolute inset-0 z-0"
         variants={containerVariants}
@@ -218,11 +220,11 @@ const Face = ({ scrollProgress }) => {
         {renderGridSection(bottomRightGrid, "bottom-right")}
       </motion.div>
 
-      {/* Content (Z-10) */}
+      {/* Content Section */}
       <div className="z-10 flex w-full justify-between items-center">
-        {/* --- 3D CUBE SECTION --- */}
+        {/* --- 3D Cube --- */}
         <motion.div
-          className="h-[60vh] aspect-square"
+          className="md:h-[25vh] lg:h-[60vh] aspect-square"
           variants={cubeVariants}
           initial="hidden"
           animate="visible"
@@ -231,13 +233,13 @@ const Face = ({ scrollProgress }) => {
           <img src={faceLogo} alt="" />
         </motion.div>
 
-        {/* --- TEXT SECTION --- */}
+        {/* --- Text --- */}
         <div className="text-white">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: textDelay }}
-            className="faceCSS-head text-[150px] font-bold leading-35"
+            className="faceCSS-head md:text-[70px] lg:text-[150px] font-bold md:leading-20 lg:leading-35"
           >
             VedaPixel
           </motion.p>
@@ -245,7 +247,7 @@ const Face = ({ scrollProgress }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: textDelay + 0.2 }}
-            className="faceCSS-tagline text-[25px] px-8"
+            className="faceCSS-tagline md:text-[15px] lg:text-[25px] md:px-5 lg:px-8"
           >
             Innovation in every Pixel
           </motion.p>

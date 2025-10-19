@@ -40,27 +40,37 @@ const Menu = () => {
 
   return (
     <>
-      <div className="menu-sticky pt-[40px] pr-[116px] z-10 flex justify-between pl-[132px] sticky top-0">
+      <div className="menu-sticky pt-[40px]  z-10 flex justify-between mx-32 sticky top-0">
         <div className="flex place-items-end w-[200px] h-[64.21px]">
-          <img src={logo} className="h-[64px] w-[64px]" alt="VedaPixel Logo" />
-          <p className="company-name text-white text-[24.5px]">VedaPixel</p>
+          <img
+            src={logo}
+            className="md:h-[55px] md:w-[55px] lg:h-[64px] lg:w-[64px]"
+            alt="VedaPixel Logo"
+          />
+          <p className="company-name text-white md:text-[20px] lg:text-[24.5px]">
+            VedaPixel
+          </p>
         </div>
 
-        <div className="nav-links w-[834px] h-[72px] text-white place-items-center justify-end flex gap-10">
+        <div className="nav-links  lg:w-[834px] h-[72px] text-white place-items-center justify-end flex gap-10">
           <Link to="/">
-            <p className="px-[4px] py-[8px] text-[24px] body-nav">Home</p>
+            <p className="md:px-[3px] lg:px-[4px] py-[8px] md:text-[20px] lg:text-[24px] body-nav">
+              Home
+            </p>
           </Link>
 
           <Link to="/about">
-            <p className="px-[4px] py-[8px] text-[24px] body-nav">About Us</p>
+            <p className="md:px-[3px] lg:px-[4px] py-[8px] md:text-[20px] lg:text-[24px] body-nav">
+              About Us
+            </p>
           </Link>
 
           {/* 🟣 Contact Us — animated only when menu reaches top */}
           <Link to="/contactus">
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={controls}
-              className="contact-button body-nav text-[24px] h-[52px] w-[149px] border-2 px-[8px] py-[8px] rounded-md cursor-pointer inline-block"
+              // initial={{ opacity: 0, y: 20 }}
+              // animate={controls}
+              className="contact-button body-nav md:text-[18px]  lg:text-[24px] md:h-[45px] md:-w-[142px] lg:h-[52px] lg:w-[149px] border-2 px-[8px] py-[8px] rounded-md cursor-pointer inline-block"
             >
               Contact Us
             </motion.p>
