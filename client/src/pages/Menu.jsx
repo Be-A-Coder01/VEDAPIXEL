@@ -36,7 +36,7 @@ const Menu = () => {
   return (
     <>
       <div
-        className="menu-sticky border-2 border-white sticky top-0 z-10 
+        className="menu-sticky  sticky top-0 z-10 
         flex justify-between items-center 
         px-[clamp(1rem,6vw,8rem)] py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
