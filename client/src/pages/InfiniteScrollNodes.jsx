@@ -33,7 +33,7 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 90 }) => {
         {loopItems.map((text, index) => (
           <div
             key={index}
-            className="infinite-scroll-node md:w-[220px] md:h-[40px] lg:h-[68px] lg:w-[287px] md:text-[18px] lg:text-[24px] flex items-center justify-center text-white rounded-md border border-white font-medium select-none hover:bg-gradient-to-r hover:from-[#BBABEB] hover:to-[#6A6185]"
+            className="infinite-scroll-node md:w-[220px] w-[40vw] md:h-[40px] lg:h-[68px] lg:w-[287px] md:text-[18px] lg:text-[24px] flex items-center justify-center text-white rounded-md border border-white font-medium select-none hover:bg-gradient-to-r hover:from-[#BBABEB] hover:to-[#6A6185]"
           >
             {text}
           </div>
