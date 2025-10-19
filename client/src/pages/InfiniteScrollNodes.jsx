@@ -7,7 +7,7 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 90 }) => {
   const items = [
     "WEB DESIGN",
     "IOS DEVELOPMENT",
-    "WEB DEVELOPMENTS",
+    "WEB DEVELOPMENT",
     "UX RESEARCH",
     "USER EXPERIENCE",
     "CUSTOM SOFTWARE",

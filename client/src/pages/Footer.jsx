@@ -35,7 +35,7 @@ const Footer = () => {
   return (
     <>
       <motion.div
-        className="w-[1220px] h-[396px] ml-[150px] p-10 mt-32 mb-5"
+        className="w-[1220px] h-[396px] ml-[150px] p-10 mt-32 "
         variants={container}
         initial="hidden"
         whileInView="show"

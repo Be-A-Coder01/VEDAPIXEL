@@ -119,7 +119,7 @@ const ContactPage = () => {
     <>
       <div
         ref={pageRef}
-        className="contact-page-content relative h-fit w-screen pr-[116px] pl-[132px] pb-[40px] flex"
+        className="contact-page-content relative h-fit  w-screen pr-[116px] pl-[132px] pb-[40px] flex "
       >
         {/* Sticky nav (no background) */}
         <AnimatePresence>
@@ -266,7 +266,7 @@ const ContactPage = () => {
                     />
                     <input
                       type="file"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="custom-file-input border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Upload Your Resume *"
                     />
                   </div>

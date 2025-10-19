@@ -30,3 +30,37 @@
   font-weight: 700;
   font-style: bold;
 }
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Apply custom placeholder text using the ::before pseudo-element */
+/* This works in many modern browsers to replace the default text */
+.custom-file-input::before {
+  content: 'Upload Your Resume *';
+  /* The desired placeholder text */
+  color: #818181;
+  display: inline-block;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  line-height: 24px;
+  /* Adjust based on input height */
+}
+
+/* Adjust the input to visually align the pseudo-element */
+.custom-file-input {
+  color: transparent;
+  /* Hide actual selected filename text */
+}
+
+/* Show the filename text back if a file is selected (optional but useful) */
+.custom-file-input.file-chosen {
+  /* color: #F8F9FA; */
+  /* Or any visible color */
+}

@@ -6,18 +6,24 @@ import Body from "./Body";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import ContactPage from "./ContactPage";
+import MainSection from "./MainSection";
+import AboutPage from "./AboutPage";
+import { Routes, Route } from "react-router-dom"; // ✅ Correct import
 
 const LandingPage = () => {
   return (
     <>
-      <div className=" ">
+      <div>
         <Menu />
-        <div className=" w-full pt-[32px] h-fit border border-[#101820]">
-          {/* <Body />
-          <Contact />
-          <Footer /> */}
-          <ContactPage></ContactPage>
+        <div className="w-full pt-[32px] h-fit ">
+          {/* ✅ Use proper Routes and Route syntax */}
+          <Routes>
+            <Route path="/" element={<MainSection />} />
+            <Route path="/contactus" element={<ContactPage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
         </div>
+        <Footer />
       </div>
     </>
   );

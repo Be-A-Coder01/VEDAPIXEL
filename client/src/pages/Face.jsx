@@ -204,7 +204,7 @@ const Face = ({ scrollProgress }) => {
 
   return (
     <motion.div
-      className="h-screen w-screen flex place-items-center px-20 relative overflow-hidden bg-[#1a1c22]"
+      className="h-screen w-screen flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
       style={{ opacity }}
     >
       {/* Grid Lines & Dots (Z-0) - This motion.div controls the sunlight transition */}
