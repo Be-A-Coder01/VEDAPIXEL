@@ -248,22 +248,22 @@ const Body = () => {
           <section
             id="team"
             ref={teamRef}
-            className=" relative mb-[30px]   md:w-[510px]  lg:w-[55vw]   "
+            className=" relative mb-[30px]     lg:w-[55vw]   "
           >
             <p className="begin-title absolute top-0 left-0 z-20 md:text-[60px] lg:text-[4rem] bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
               Hello!
             </p>
 
             <div
-              className="relative  md:w-[500px] md:h-[250px] lg:w-[54vw]  lg:h-[41vh] md:p-[3rem] lg:p-[2.3rem] md:ml-[4px] lg:ml-[8px] rounded-tr-[80px] rounded-b-[80px] mt-[30px] lg:mt-[30px]"
-              style={{
-                background:
-                  "linear-gradient(139.47deg, rgba(47, 54, 64) -45.69%, rgba(16, 24, 32) 54.7%)",
-                backdropFilter: "blur(10px) saturate(180%)",
-                WebkitBackdropFilter: "blur(10px) saturate(180%)",
-                border: "2px solid rgba(255, 255, 255, 0.15)",
-                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-              }}
+              className="relative border border-white  md:w-[500px]  lg:w-[54vw]   md:p-[3rem] lg:p-[2.3rem] md:ml-[4px] lg:ml-[8px] rounded-tr-[80px] rounded-b-[80px]  mt-[30px] lg:mt-[30px]"
+              // style={{
+              //   background:
+              //     "linear-gradient(139.47deg, rgba(47, 54, 64) -45.69%, rgba(16, 24, 32) 54.7%)",
+              //   backdropFilter: "blur(10px) saturate(180%)",
+              //   WebkitBackdropFilter: "blur(10px) saturate(180%)",
+              //   border: "2px solid rgba(255, 255, 255, 0.15)",
+              //   boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+              // }}
             >
               <div className=" md:h-[190px] lg:h-full  ">
                 <p className="begin-card-title md:text-[30px] lg:text-[3rem] text-white md:leading-10 lg:leading-13">
