@@ -212,8 +212,7 @@ const Body = () => {
             <p className="about-card-title text-white text-[24px] leading-[30px] md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
               We bridge innovation and execution with
               <br className="hidden md:block" />
-              <span></span> user-centric, future-ready systems that{" "}
-              <span></span>
+              user-centric, future-ready systems that
               <br className="hidden md:block" />
               <span className="text-[#b19cd9] font-semibold">
                 streamline operations
