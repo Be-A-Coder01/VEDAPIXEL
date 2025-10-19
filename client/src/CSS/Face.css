@@ -9,18 +9,56 @@
 
 .faceCSS-tagline {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 100;
-  letter-spacing: 0.8em;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+  /* Default spacing for desktop */
+  transition: letter-spacing 0.3s ease, font-size 0.3s ease;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+/* ✅ Mobile (Small screens up to 767px) */
+@media screen and (max-width: 767px) {
   .faceCSS-tagline {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 100;
-    letter-spacing: 6.5px;
-    /* Better readability */
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.27em;
+    /* tighter for readability */
+    line-height: 4.3rem;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
   }
 }
+
+@media screen and (min-width:400px) and (max-width: 480px) {
+  .faceCSS-tagline {
+    font-size: 0.64rem !important;
+    letter-spacing: 0.2em !important;
+    text-align: center !important;
+    line-height: 1.50rem;
+  }
+}
+
+/* ✅ Tablets (768px - 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .faceCSS-tagline {
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 0.4em;
+    /* balanced look */
+    line-height: 1.5rem;
+  }
+}
+
+/* ✅ Desktop (1024px and above) */
+@media screen and (min-width: 1024px) {
+  .faceCSS-tagline {
+    font-size: 1.4rem;
+    letter-spacing: 0.6em;
+    line-height: 2rem;
+  }
+}
+
 
 /* 🔆 Make only the selected white grid lines more visible on tablet */
 @media screen and (min-width: 768px) and (max-width: 1023px) {

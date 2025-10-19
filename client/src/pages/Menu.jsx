@@ -5,26 +5,21 @@ import { motion, useAnimation } from "framer-motion";
 import "../CSS/Menu.css";
 
 const Menu = () => {
-  const textDelay = 1.5;
   const controls = useAnimation();
 
-  // 🟢 Scroll listener to detect when sticky menu hits top (top=0)
   useEffect(() => {
     const handleScroll = () => {
       const menu = document.querySelector(".menu-sticky");
       if (!menu) return;
 
       const rect = menu.getBoundingClientRect();
-
       if (rect.top <= 0) {
-        // Menu has reached the top → trigger fade-in
         controls.start({
           opacity: 1,
           y: 0,
           transition: { duration: 0.8, ease: "easeOut" },
         });
       } else {
-        // Before reaching top → keep hidden/dim
         controls.start({
           opacity: 0,
           y: 20,
@@ -34,45 +29,74 @@ const Menu = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // run on mount in case page starts scrolled
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [controls]);
 
   return (
     <>
-      <div className="menu-sticky pt-[40px]  z-10 flex justify-between mx-32 sticky top-0">
-        <div className="flex place-items-end w-[200px] h-[64.21px]">
+      <div
+        className="menu-sticky border-2 border-white sticky top-0 z-10 
+        flex justify-between items-center 
+        px-[clamp(1rem,6vw,8rem)] py-[clamp(0.8rem,1.5vw,2rem)]
+        w-full backdrop-blur-[6px]"
+      >
+        {/* --- Logo + Company Name --- */}
+        <div className="flex place-items-end  ">
           <img
             src={logo}
-            className="md:h-[55px] md:w-[55px] lg:h-[64px] lg:w-[64px]"
             alt="VedaPixel Logo"
+            className="w-[10vw] md:w-[clamp(40px,5vw,65px)] md:h-[clamp(40px,5vw,65px)] object-contain"
           />
-          <p className="company-name text-white md:text-[20px] lg:text-[24.5px]">
+          <p
+            className="company-name text-white 
+              text-[clamp(16px,2vw,26px)] 
+              tracking-tight"
+          >
             VedaPixel
           </p>
         </div>
 
-        <div className="nav-links  lg:w-[834px] h-[72px] text-white place-items-center justify-end flex gap-10">
+        {/* --- Navigation Links --- */}
+        <div
+          className="nav-links 
+            flex flex-wrap place-items-end  justify-end 
+            gap-[clamp(10px,3vw,3rem)] 
+            text-white"
+        >
           <Link to="/">
-            <p className="md:px-[3px] lg:px-[4px] py-[8px] md:text-[20px] lg:text-[24px] body-nav">
+            <p
+              className="body-nav md:px-[clamp(4px,0.6vw,8px)] py-[6px] text-[12px]
+              md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
+            >
               Home
             </p>
           </Link>
 
           <Link to="/about">
-            <p className="md:px-[3px] lg:px-[4px] py-[8px] md:text-[20px] lg:text-[24px] body-nav">
+            <p
+              className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] py-[6px] 
+              md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
+            >
               About Us
             </p>
           </Link>
 
-          {/* 🟣 Contact Us — animated only when menu reaches top */}
           <Link to="/contactus">
             <motion.p
-              // initial={{ opacity: 0, y: 20 }}
-              // animate={controls}
-              className="contact-button body-nav md:text-[18px]  lg:text-[24px] md:h-[45px] md:-w-[142px] lg:h-[52px] lg:w-[149px] border-2 px-[8px] py-[8px] rounded-md cursor-pointer inline-block"
+              className="contact-button 
+      text-[clamp(10px,2.5vw,14px)] 
+      px-[clamp(6px,2vw,10px)] 
+      py-[clamp(4px,1.5vw,6px)]
+      sm:text-[clamp(11px,2vw,15px)] sm:px-[clamp(8px,2vw,12px)] sm:py-[clamp(5px,1.5vw,7px)]
+      md:text-[clamp(13px,1.3vw,20px)] md:px-[clamp(10px,2vw,18px)] md:py-[clamp(6px,1vw,10px)]
+      lg:text-[clamp(14px,1.2vw,22px)] lg:px-[clamp(12px,2vw,20px)] lg:py-[clamp(6px,1vw,10px)]
+      rounded-md cursor-pointer 
+      font-semibold tracking-wide 
+      text-[#1a1c22]
+      flex items-center justify-center"
             >
-              Contact Us
+              Contact&nbsp;Us
             </motion.p>
           </Link>
         </div>

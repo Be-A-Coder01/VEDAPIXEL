@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Face.css";
-import faceLogo from "../assets/faceLogo.png"; // Ensure this path is correct
+import faceLogo from "../assets/faceLogo.png";
 import { motion, useTransform } from "framer-motion";
 import PixelCubeScene from "./PixelCubeScene"; // Optional 3D cube
 
 const Face = ({ scrollProgress }) => {
-  // 🟣 Detect device size to adjust fade timing
   const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsTablet(window.innerWidth <= 1024 && window.innerWidth >= 768);
     };
-    handleResize(); // Check on mount
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 🟢 Adjust fade range based on screen size
   const fadeRange = isTablet ? [0.03, 0.1] : [0.05, 0.2];
-
-  // 🔥 Smooth fade-out on scroll (now works for both laptop + tablet)
   const opacity = useTransform(scrollProgress, fadeRange, [1, 0]);
-
   const textDelay = 1.5;
 
-  // --- Framer Motion Variants ---
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -53,16 +47,11 @@ const Face = ({ scrollProgress }) => {
       opacity: 1,
       scale: 1,
       rotateY: 0,
-      transition: {
-        duration: 1.5,
-        type: "spring",
-        bounce: 0.4,
-        delay: 0.2,
-      },
+      transition: { duration: 1.5, type: "spring", bounce: 0.4, delay: 0.2 },
     },
   };
 
-  // --- Grid Config ---
+  // Grid Configurations (unchanged)
   const topRightGrid = {
     startX: "50%",
     startY: "0%",
@@ -81,7 +70,6 @@ const Face = ({ scrollProgress }) => {
     numVerticalLines: 20,
   };
 
-  // --- Render Grid Function ---
   const renderGridSection = (config, sectionId) => {
     const lines = [];
 
@@ -164,16 +152,14 @@ const Face = ({ scrollProgress }) => {
             { h: 2, v: 5 },
             { h: 1, v: 8 },
           ]
-        : sectionId === "bottom-right"
-        ? [
+        : [
             { h: 1, v: 1 },
             { h: 2, v: 1 },
             { h: 2, v: 2 },
             { h: 1, v: 5 },
             { h: 2, v: 5 },
             { h: 2, v: 7 },
-          ]
-        : [];
+          ];
 
     dotPositions.forEach(({ h, v }) => {
       const top = `calc(${config.startY} + ${
@@ -206,10 +192,10 @@ const Face = ({ scrollProgress }) => {
 
   return (
     <motion.div
-      className="h-screen border-2 border-red-500 lg:w-[screen] flex place-items-center px-20 relative overflow-hidden bg-[#101820]"
+      className="h-screen w-screen flex items-center justify-between px-[clamp(1rem,5vw,6rem)] relative overflow-hidden bg-[#101820]"
       style={{ opacity }}
     >
-      {/* Grid Lines & Dots */}
+      {/* Grid Lines */}
       <motion.div
         className="absolute inset-0 z-0"
         variants={containerVariants}
@@ -220,63 +206,62 @@ const Face = ({ scrollProgress }) => {
         {renderGridSection(bottomRightGrid, "bottom-right")}
       </motion.div>
 
-      {/* Content Section */}
-      <div className="z-10 flex w-full justify-between items-center">
-        {/* --- 3D Cube --- */}
-        <motion.div
-          className="flex justify-center items-center 
-             w-[clamp(180px,25vw,400px)] 
-             h-[clamp(180px,25vw,400px)] 
-             sm:w-[clamp(200px,30vw,450px)] 
-             md:w-[clamp(250px,35vw,500px)] 
-             lg:w-[clamp(300px,40vw,600px)] 
-             xl:w-[clamp(350px,25vw,650px)]
-             mx-auto"
-          variants={cubeVariants}
-          initial="hidden"
-          animate="visible"
+      {/* --- Left: Cube Image (unchanged look) --- */}
+      <motion.div
+        className="flex justify-center items-center 
+       w-[clamp(150px,28vw,380px)] 
+       h-[clamp(150px,28vw,380px)] 
+       sm:w-[clamp(180px,30vw,420px)] 
+       md:w-[clamp(220px,32vw,460px)] 
+       lg:w-[clamp(280px,33vw,520px)] 
+       xl:w-[clamp(320px,30vw,600px)] 
+       2xl:w-[clamp(340px,26vw,650px)]
+       mx-auto"
+        variants={cubeVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <img
+          src={faceLogo}
+          alt="Pixel Cube"
+          className="object-contain w-full h-full drop-shadow-[0_0_20px_rgba(187,171,235,0.4)]"
+        />
+      </motion.div>
+
+      {/* --- Right: Text (same style, responsive only) --- */}
+      <div className="z-10 text-white text-center md:text-left flex flex-col items-center md:items-start">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: textDelay }}
+          className="faceCSS-head 
+        font-bold 
+        text-[clamp(2rem,11vw,8rem)] 
+        leading-[clamp(2.4rem,10vw,9rem)] 
+        tracking-tight 
+        drop-shadow-[0_0_16px_rgba(187,171,235,0.35)] 
+        whitespace-nowrap"
         >
-          <img
-            src={faceLogo}
-            alt="Pixel Cube"
-            className="object-contain w-full h-full drop-shadow-[0_0_20px_rgba(187,171,235,0.4)]"
-          />
-        </motion.div>
+          VedaPixel
+        </motion.p>
 
-        {/* --- Text --- */}
-        <div className="text-white text-center md:text-left flex flex-col items-center md:items-start">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: textDelay }}
-            className="faceCSS-head 
-      font-bold 
-      text-[clamp(2.2rem,16vw,9rem)] 
-      leading-[clamp(2.4rem,10vw,10.5rem)] 
-      tracking-tight 
-      drop-shadow-[0_0_16px_rgba(187,171,235,0.35)] 
-      whitespace-nowrap"
-          >
-            VedaPixel
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: textDelay + 0.2 }}
-            className="faceCSS-tagline 
-      text-[clamp(0.95rem,1.6vw,1.8rem)] 
-      px-[clamp(0.8rem,2.5vw,3rem)] 
-      mt-[clamp(0.4rem,1.2vw,1.4rem)] 
-      text-[#E4E3E3]/90 
-      font-normal 
-      tracking-[clamp(0.02em,0.3vw,0.08em)] 
-      leading-[clamp(1.2rem,2.4vw,2rem)] 
-      max-w-[clamp(280px,60vw,1000px)]"
-          >
-            Innovation in every Pixel
-          </motion.p>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: textDelay + 0.2 }}
+          className="faceCSS-tagline 
+        text-[clamp(0.8rem,1.9vw,1.6rem)] 
+        px-[clamp(0.5rem,2vw,3rem)] 
+        mt-[clamp(0.4rem,1.2vw,1.4rem)] 
+        text-[#E4E3E3]/90 
+        font-light 
+        tracking-[clamp(0.05em,0.4vw,0.3em)] 
+        leading-[clamp(1.2rem,2.6vw,2.4rem)] 
+        max-w-[clamp(280px,50vw,1000px)] 
+        text-center md:text-left mx-auto md:mx-0"
+        >
+          Innovation in every Pixel
+        </motion.p>
       </div>
     </motion.div>
   );

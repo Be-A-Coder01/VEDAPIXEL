@@ -5,43 +5,96 @@
 }
 
 .nav-links {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 100;
-  /* letter-spacing: 0.8em; */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 
-/* In ../CSS/Face.css */
-
-/* ... (Your other custom CSS, like .faceCSS-head, .faceCSS-tagline, and the background glow) ... */
-
-/* Styles for the Contact Us button */
+/* 🟣 Contact Button — same design, responsive size */
 .contact-button {
-  /* Subtle gradient from light greenish-yellow to light purplish-blue */
-  background: linear-gradient(to right,
-      #BBABEB,
-      /* Light greenish-yellow (start) */
-      #6A6185
-      /* Light purplish-blue (end) */
-    );
+  background: linear-gradient(to right, #bbabeb, #6a6185);
   border: none;
-  /* Remove the border if using a gradient background */
   color: #1a1c22;
-  /* Set text color to dark to contrast with light background */
   font-weight: 600;
-  /* Make text a bit bolder */
   font-family: "Poppins", sans-serif;
-  /* Use Poppins for consistency with heading */
-  transition: transform 0.2s ease-in-out;
-  /* Add a slight hover transition */
+  transition: all 0.25s ease-in-out;
 }
 
-/* Optional: Add a subtle hover effect */
 .contact-button:hover {
-  transform: translateY(-2px) scale(1.02);
-  /* Lifts and slightly scales the button */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /* Add a soft shadow */
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 15px rgba(187, 171, 235, 0.4);
 }
 
-/* Ensure border-radius is handled by Tailwind or explicitly set if Tailwind isn't picking it up */
-/* .contact-button { border-radius: 0.375rem; } // For rounded-md */
+/* ✅ Small devices (400px–600px): Keep flex, just scale down */
+@media (max-width: 600px) {
+  .menu-sticky {
+    mx: 1rem !important;
+    padding-top: 20px;
+  }
+
+  .company-name {
+    font-size: 0.9rem !important;
+  }
+
+  .nav-links {
+    gap: 12px !important;
+  }
+
+  .contact-button {
+    font-size: 0.75rem !important;
+    width: 90px !important;
+    height: 38px !important;
+  }
+}
+
+/* ✅ Tablets (601px–1024px): balanced look */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .menu-sticky {
+    mx: 2rem !important;
+  }
+
+  .company-name {
+    font-size: 1.2rem !important;
+  }
+
+  .contact-button {
+    font-size: 0.95rem !important;
+    width: 120px !important;
+    height: 45px !important;
+  }
+}
+
+/* ✅ Large screens (1025px–2560px): breathing space */
+@media (min-width: 1025px) {
+  .nav-links {
+    gap: 2.5rem;
+  }
+
+  .company-name {
+    font-size: 1.5rem;
+  }
+
+  .contact-button {
+    font-size: 1.1rem;
+  }
+}
+
+/* ✅ Ultra-wide (2560px–4K): proportional expansion */
+@media (min-width: 2560px) {
+  .menu-sticky {
+    margin-inline: 10vw;
+  }
+
+  .company-name {
+    font-size: 2.2rem;
+  }
+
+  .nav-links {
+    gap: 4rem;
+  }
+
+  .contact-button {
+    font-size: 1.5rem;
+    width: 200px;
+    height: 65px;
+  }
+}
