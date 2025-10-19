@@ -119,13 +119,13 @@ const ContactPage = () => {
     <>
       <div
         ref={pageRef}
-        className="contact-page-content relative h-fit  w-screen pr-[116px] pl-[132px] pb-[40px] flex "
+        className="contact-page-content relative h-fit  w-[99vw]   pb-[40px] flex "
       >
         {/* Sticky nav (no background) */}
         <AnimatePresence>
           {showNav && (
             <motion.nav
-              className="text-white w-[242px] flex flex-col gap-[10px]"
+              className="text-white  w-[15vw] flex flex-col gap-[10px]"
               style={{
                 position: "fixed",
                 left: "132px",
@@ -144,11 +144,11 @@ const ContactPage = () => {
         </AnimatePresence>
 
         {/* Main content area (normal document flow) */}
-        <div className="flex flex-col pl-[420px] pt-[54px] w-full">
+        <div className="flex flex-col  pt-[54px] w-full">
           {/* Banner (keeps in flow) */}
           <div
             ref={bannerRef}
-            className="self-center w-full flex justify-center"
+            className="self-center pl-[12vw] w-fit flex justify-center"
           >
             <AnimatePresence>
               {bannerVisible && (
@@ -157,7 +157,7 @@ const ContactPage = () => {
                   src={banner}
                   alt="Banner"
                   id="banner"
-                  className="w-[831px] h-[200px] mb-10"
+                  className="w-[50vw] h-[30vh] mb-10"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -40 }}
@@ -167,11 +167,11 @@ const ContactPage = () => {
             </AnimatePresence>
           </div>
 
-          <div className="flex flex-col gap-20">
+          <div className="flex flex-col gap-20  pl-[30vw]">
             {/* Collaborate Section - stays in flow */}
-            <section id="collaborate" ref={collaborateRef} className="flex">
+            <section id="collaborate" ref={collaborateRef} className="flex ">
               <motion.div
-                className="w-[772px] p-[36px] rounded-[20px] h-full border border-white flex flex-col gap-[16px]"
+                className="w-[50vw]  p-[32px] rounded-[20px] h-full border border-white flex flex-col gap-[16px]"
                 style={{
                   background:
                     "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
@@ -186,41 +186,41 @@ const ContactPage = () => {
                 }}
                 transition={{ duration: 0.45, ease: "easeInOut" }}
               >
-                <p className="contact-box-title text-[#C8C1C1] text-[24px]">
+                <p className="contact-box-title text-[#C8C1C1] text-[1.5rem]">
                   Find Your Way Forward, we're here to support.
                 </p>
 
-                <form className="h-[215px] w-[700px] flex flex-col gap-[26px]">
-                  <div className="flex flex-wrap gap-[26px]">
+                <form className="w-full flex flex-col gap-[26px]">
+                  <div className=" w-full   flex justify-between flex-wrap gap-[26px]">
                     <input
                       type="text"
                       placeholder="Name *"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                     />
                     <input
                       type="text"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Company Name *"
                     />
                     <input
                       type="email"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Email Id*"
                     />
                     <input
                       type="number"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Contact No. *"
                     />
                   </div>
 
                   <textarea
-                    className="w-[700px] rounded-[10px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
+                    className="w-full rounded-[10px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
                     placeholder="Project Idea *"
                   ></textarea>
                 </form>
 
-                <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border-2 rounded-[8px] contact-box-title w-[372px] text-white h-[52px] hover:bg-[#B1A2DF]/10 transition">
+                <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border-2 rounded-[8px] contact-box-title w-[28vw] text-white h-[52px] hover:bg-[#B1A2DF]/10 transition">
                   Submit
                 </button>
               </motion.div>
@@ -229,7 +229,7 @@ const ContactPage = () => {
             {/* Career Section - stays in flow */}
             <section id="career" ref={careerRef} className="flex mb-36">
               <motion.div
-                className="w-[772px]  p-[36px] rounded-[20px] h-full border border-white flex flex-col gap-[16px]"
+                className="w-[50vw]  p-[32px] rounded-[20px] h-full border border-white flex flex-col gap-[16px]"
                 style={{
                   background:
                     "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
@@ -243,41 +243,41 @@ const ContactPage = () => {
                 }}
                 transition={{ duration: 0.45, ease: "easeInOut" }}
               >
-                <p className="contact-box-title text-[#C8C1C1] text-[24px]">
+                <p className="contact-box-title text-[#C8C1C1] text-[1.5rem]">
                   Tell us about yourself
                 </p>
 
-                <form className="h-[215px] w-[700px] flex flex-col gap-[26px]">
-                  <div className="flex flex-wrap gap-[26px]">
+                <form className=" w-full flex flex-col gap-[26px]">
+                  <div className=" w-full flex justify-between flex-wrap gap-[26px]">
                     <input
                       type="text"
                       placeholder="Name *"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                     />
                     <input
                       type="email"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Email Id *"
                     />
                     <input
                       type="number"
-                      className="border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Contact no. *"
                     />
                     <input
                       type="file"
-                      className="custom-file-input border border-[#989BA1] text-[#818181] w-[329px] h-[42px] bg-transparent p-[8px] rounded-[10px]"
+                      className="border border-[#989BA1] text-[#818181] w-[21em] bg-transparent p-[8px] rounded-[10px]"
                       placeholder="Upload Your Resume *"
                     />
                   </div>
 
                   <textarea
-                    className="w-[700px] rounded-[10px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
+                    className="w-full rounded-[10px] bg-transparent border-[#989BA1] border h-[99px] p-[8px] text-[#818181]"
                     placeholder="Any Message *"
                   ></textarea>
                 </form>
 
-                <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border-2 rounded-[8px] contact-box-title w-[372px] text-white h-[52px] hover:bg-[#B1A2DF]/10 transition">
+                <button className="begin-card-button border-[#B1A2DF] mx-auto mt-[20px] border-2 rounded-[8px] contact-box-title w-[28vw] text-white h-[52px] hover:bg-[#B1A2DF]/10 transition">
                   Submit
                 </button>
               </motion.div>

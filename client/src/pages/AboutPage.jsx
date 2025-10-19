@@ -208,11 +208,11 @@ const AboutPage = () => {
 
   return (
     <>
-      <div className="flex mt-16 flex-col gap-40 relative overflow-hidden">
+      <div className="flex  mt-16 flex-col gap-40 relative overflow-hidden">
         {/* --- Top Text Section --- */}
-        <div className="w-[1134px] h-[290px] p-[10px] mx-auto">
+        <div className=" w-[85%] h-[40vh] p-[10px] mx-auto">
           <motion.p
-            className="about-part-title text-[48px] text-white"
+            className="about-part-title text-[3rem] text-white"
             variants={headingVariant}
             initial="hidden"
             whileInView="visible"
@@ -222,7 +222,7 @@ const AboutPage = () => {
           </motion.p>
 
           <motion.p
-            className="about-part1-desc text-[24px] text-[#C8C1C1]"
+            className="about-part1-desc text-[1.5rem] text-[#C8C1C1]"
             variants={paragraphVariant}
             initial="hidden"
             whileInView="visible"
@@ -236,7 +236,7 @@ const AboutPage = () => {
           </motion.p>
 
           <motion.p
-            className="about-part-title text-[48px] text-[#BBABEB] text-end"
+            className="about-part-title text-[3rem] text-[#BBABEB] text-end"
             variants={glowTextVariant}
             initial="hidden"
             whileInView="visible"
@@ -252,7 +252,7 @@ const AboutPage = () => {
         {/* --- Dimmed Layout Section --- */}
         <motion.div
           id="layout"
-          className="w-[1000px] h-[1005px] mx-auto flex flex-col"
+          className=" w-[66%] h-[135vh] mx-auto flex flex-col"
           variants={layoutVariant}
           initial="hidden"
           whileInView="visible"
@@ -269,9 +269,9 @@ const AboutPage = () => {
           </motion.div>
 
           {/* Info Cards */}
-          <div className="w-full flex justify-end">
+          <div className="w-full  flex justify-end">
             <div
-              className="w-[330px] h-[310px] border flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
+              className="w-1/3 h-[40vh]  flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
               style={{
                 background:
                   "linear-gradient(139.47deg, rgba(57,64,73) -45.69%, rgba(16,24,32) 54.7%)",
@@ -281,10 +281,10 @@ const AboutPage = () => {
                 boxShadow: "0 8px 32px 0 rgba(0,0,0,0.37)",
               }}
             >
-              <p className="about-part-title text-[28px] text-[#F8F9FA]">
+              <p className="about-part-title text-[1.75rem] text-[#F8F9FA]">
                 Our Mission
               </p>
-              <p className="about-part-title text-[24px] text-[#C8C1C1]">
+              <p className="about-part-title text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel uses tech to bring clarity, speed, and reliability to
                 outdated sectors, building ecosystems where innovation can
                 thrive.
@@ -294,7 +294,7 @@ const AboutPage = () => {
 
           <div className="w-full flex justify-center">
             <div
-              className="w-[330px] h-[310px] border flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
+              className="w-1/3 h-[40vh] border flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
               style={{
                 background:
                   "linear-gradient(139.47deg, rgba(57,64,73) -45.69%, rgba(16,24,32) 54.7%)",
@@ -304,10 +304,10 @@ const AboutPage = () => {
                 boxShadow: "0 8px 32px 0 rgba(0,0,0,0.37)",
               }}
             >
-              <p className="about-part-title text-[28px] text-[#F8F9FA]">
+              <p className="about-part-title text-[1.75rem] text-[#F8F9FA]">
                 Our Vision
               </p>
-              <p className="about-part-title text-[24px] text-[#C8C1C1]">
+              <p className="about-part-title text-[1.5rem] text-[#C8C1C1]">
                 We redefine how businesses use tech by creating integrated
                 platforms that simplify workflows and unlock new growth.
               </p>
@@ -316,7 +316,7 @@ const AboutPage = () => {
 
           <div className="w-full flex justify-start">
             <div
-              className="w-[330px] h-[310px] border flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
+              className="w-1/3 h-[40vh] border flex flex-col gap-[12px] border-white pt-[20px] pr-[24px] pb-[33px] pl-[20px] rounded-[7px]"
               style={{
                 background:
                   "linear-gradient(139.47deg, rgba(57,64,73) -45.69%, rgba(16,24,32) 54.7%)",
@@ -326,10 +326,10 @@ const AboutPage = () => {
                 boxShadow: "0 8px 32px 0 rgba(0,0,0,0.37)",
               }}
             >
-              <p className="about-part-title text-[28px] text-[#F8F9FA]">
+              <p className="about-part-title text-[1.75rem] text-[#F8F9FA]">
                 Our Story
               </p>
-              <p className="about-part-title text-[24px] text-[#C8C1C1]">
+              <p className="about-part-title text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel Tech Solutions Pvt. Ltd. builds intelligent, scalable
                 digital platforms that solve real-world business challenges.
               </p>

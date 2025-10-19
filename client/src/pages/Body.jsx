@@ -138,8 +138,25 @@ const Body = () => {
               </p>
 
               {/* Team Cards */}
-              <div className="flex  flex-wrap  justify-center gap-10 lg:gap-10">
-                {[1, 2, 3, 4].map((_, i) => (
+              <div className="flex flex-wrap justify-center gap-10 lg:gap-10">
+                {[
+                  {
+                    name: "Sunil MB",
+                    role: "Co-Founder - MD / CEO",
+                  },
+                  {
+                    name: "Nithin MB",
+                    role: "Co-Founder - MD",
+                  },
+                  {
+                    name: "Nisarga M",
+                    role: "Head of Operations",
+                  },
+                  {
+                    name: "Abhishek",
+                    role: "HR",
+                  },
+                ].map((member, i) => (
                   <div
                     key={i}
                     className="relative mb-10 lg:my-5 flex md:w-[300px] md:h-[100px] lg:w-[35vw] lg:h-[24vh] rounded-t-[50px] lg:rounded-t-[66px] rounded-br-[50px] lg:rounded-br-[66px] bg-[#9C90BD]/90 overflow-visible border border-white/20 shadow-[0_8px_25px_rgba(156,144,189,0.4)] backdrop-blur-[6px] hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)] transition-all duration-500 "
@@ -149,15 +166,12 @@ const Body = () => {
                       alt="Profile"
                       className="absolute bottom-0 left-0 md:h-[140px] lg:h-[35vh] object-cover"
                     />
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[17vw]   h-[20vh] flex flex-col justify-center items-start md:pl-5 lg:pl-3">
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[17vw] h-[20vh] flex flex-col justify-center items-start md:pl-5 lg:pl-3">
                       <p className="text-white font-bold md:text-[16px] lg:text-[22px] leading-tight">
-                        Akjdfhjhj
-                      </p>
-                      <p className="text-white font-bold  md:text-[16px] lg:text-[22px] leading-tight">
-                        Klkjjjjk
+                        {member.name}
                       </p>
                       <p className="text-[#E4E3E3] md:text-[12px] lg:text-[14px] mt-1">
-                        CEO & Founder
+                        {member.role}
                       </p>
                     </div>
                   </div>
@@ -169,7 +183,7 @@ const Body = () => {
       </AnimatePresence>
 
       <div
-        className={`body-content  relative  min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full  pt-[6vw]`}
+        className={`body-content  relative   min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full  pt-[6vw]`}
         style={{ transform: "none" }}
       >
         {/* ✅ Animated Sidebar Nav */}
@@ -196,7 +210,7 @@ const Body = () => {
         </AnimatePresence>
 
         {/* Main Content */}
-        <div className="flex border-2 border-green-600 flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw] ">
+        <div className="flex px-[2vw] flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw] ">
           <section
             id="about"
             ref={aboutRef}
@@ -216,7 +230,7 @@ const Body = () => {
               growth, and put your processes in place. Explore our range of
               solutions below.
             </p>
-            <button className="body-nav md:h-[50px] md:w-[140px] lg:h-[8vh] lg:w-[10vw] md:text-[20px] lg:text-[1.5rem] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300 mt-[2vw]">
+            <button className="body-nav md:h-[50px] md:w-[140px] lg:h-[8vh] lg:w-[20%] md:text-[20px] lg:text-[1.5rem] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300 mt-[2vw]">
               Know More
             </button>
           </section>
@@ -234,7 +248,7 @@ const Body = () => {
           <section
             id="team"
             ref={teamRef}
-            className=" relative   md:w-[510px]  lg:w-[55vw]   "
+            className=" relative mb-[30px]   md:w-[510px]  lg:w-[55vw]   "
           >
             <p className="begin-title absolute top-0 left-0 z-20 md:text-[60px] lg:text-[4rem] bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
               Hello!

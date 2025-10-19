@@ -35,15 +35,15 @@ const Footer = () => {
   return (
     <>
       <motion.div
-        className=" md:w-full  lg:w-[99vw]  pl-10 py-10 lg:px-20 mt-32 "
+        className=" md:w-full   lg:w-[99vw]  pl-10 py-10 lg:px-[9rem] mt-32 "
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: false, amount: 0.4 }} // triggers each time visible
       >
-        <motion.div className="flex py-10 lg:px-2  " variants={container}>
+        <motion.div className="flex  py-10 lg:px-2  " variants={container}>
           {/* Left Section - Company Info */}
-          <motion.div className=" footer-company-info w-2/6 " variants={item}>
+          <motion.div className="  footer-company-info w-2/6 " variants={item}>
             <img src={logo} alt="" className="lg:w-[5vw] l" />
             <p className="footer-company-name text-[20px] text-white lg:text-[2.3rem] leading-10 lg:leading-12">
               VedaPixel
@@ -76,12 +76,12 @@ const Footer = () => {
 
           {/* Middle + Right Sections */}
           <motion.div
-            className="flex md:gap-[55px]  lg:gap-[180px] w-4/6 px-20"
+            className="flex  justify-between  w-4/6 "
             variants={container}
           >
             {/* Footer Navigation */}
             <motion.div
-              className="footer-nav text-[14px]  lg:text-[16px] w-1/3 flex flex-col gap-[12px] h-fit"
+              className="footer-nav text-[14px]   lg:text-[16px] w-1/3  flex flex-col gap-[12px] h-fit pl-[10%]"
               variants={item}
             >
               <p className="footer-nav-links" id="footer-navlinks1">
@@ -103,7 +103,7 @@ const Footer = () => {
 
             {/* Contact / Social Section */}
             <motion.div
-              className="h-fit w-2/3 flex flex-col gap-[20px] "
+              className="h-fit  w-2/3  flex flex-col pl-[25%]  gap-[20px] "
               variants={item}
             >
               <div className="">
