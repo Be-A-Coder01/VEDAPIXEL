@@ -148,31 +148,39 @@ const Body = () => {
       <AnimatePresence>
         {showTeamPopup && (
           <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-[8px] flex justify-center items-center z-[200]"
+            className="fixed inset-0 bg-black/50 backdrop-blur-[8px] flex justify-center items-center z-[200] px-4 sm:px-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
             <motion.div
-              className="relative md:w-[700px] md:h-fit lg:w-[80vw] lg:h-[85vh]  flex flex-col gap-10 rounded-[40px] border border-white/20 bg-white/10 backdrop-blur-[20px] shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]"
+              className="relative w-full max-w-[95vw] md:w-[700px] lg:w-[80vw] lg:h-[85vh]
+                   flex flex-col gap-6 sm:gap-8 md:gap-10
+                   rounded-[30px] sm:rounded-[40px]
+                   border border-white/20 bg-white/10 backdrop-blur-[20px]
+                   shadow-[0_8px_32px_0_rgba(31,38,135,0.37)]
+                    p-4 sm:p-6 md:p-8"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
             >
+              {/* Close Button */}
               <button
-                className="absolute top-4 right-6 text-white md:text-[18px] lg:text-[28px] hover:text-[#b19cd9] transition-all"
+                className="absolute top-4 right-6 text-white text-[20px] sm:text-[22px] md:text-[24px] lg:text-[28px] hover:text-[#b19cd9] transition-all"
                 onClick={() => setShowTeamPopup(false)}
               >
                 ✕
               </button>
 
-              <p className="popup-teamCard-title text-white md:text-[2.4rem] lg:text-[39px] pl-10 py-4 font-semibold">
+              {/* Title */}
+              <p className="popup-teamCard-title text-white text-center md:text-left text-[1.8rem] sm:text-[2rem] md:text-[2.4rem] lg:text-[39px] pl-0 md:pl-10 pb-14 font-semibold">
                 Meet Our Team
               </p>
 
-              <div className="flex flex-wrap justify-center gap-10 lg:gap-10">
+              {/* Team Cards */}
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-14 sm:gap-8 lg:gap-24 px-2 sm:px-4 pb-10">
                 {[
                   { name: "Sunil MB", role: "Co-Founder - MD / CEO" },
                   { name: "Nithin MB", role: "Co-Founder - MD" },
@@ -181,18 +189,37 @@ const Body = () => {
                 ].map((member, i) => (
                   <div
                     key={i}
-                    className="relative mb-10 lg:my-5 flex md:w-[300px] md:h-[100px] lg:w-[35vw] lg:h-[24vh] rounded-t-[50px] lg:rounded-t-[66px] rounded-br-[50px] lg:rounded-br-[66px] bg-[#9C90BD]/90 overflow-visible border border-white/20 shadow-[0_8px_25px_rgba(156,144,189,0.4)] backdrop-blur-[6px] hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)] transition-all duration-500"
+                    className="
+                relative flex justify-start
+                w-full sm:w-[45%] md:w-[46%] lg:w-[32vw]
+                h-[100px] sm:h-[130px] md:h-[150px] lg:h-[22vh]
+                rounded-t-[40px] sm:rounded-t-[50px] lg:rounded-t-[66px]
+                rounded-br-[40px] sm:rounded-br-[50px] lg:rounded-br-[66px]
+                bg-[#9C90BD]/90 overflow-visible border border-white/20 
+                shadow-[0_8px_25px_rgba(156,144,189,0.4)] 
+                backdrop-blur-[6px]
+                hover:shadow-[0_12px_30px_rgba(156,144,189,0.7)]
+                transition-all duration-500"
                   >
+                    {/* Profile Image (head pops slightly from top) */}
                     <img
                       src={profileImg}
                       alt="Profile"
-                      className="absolute bottom-0 left-0 md:h-[140px] lg:h-[35vh] object-cover"
+                      className="absolute bottom-0 left-0 object-cover
+                           h-[130px] sm:h-[140px] md:h-[160px] lg:h-[32vh]
+                           -translate-y-[8px] sm:-translate-y-[10px] md:-translate-y-[14px] lg:-translate-y-[18px]"
                     />
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[17vw] h-[20vh] flex flex-col justify-center items-start md:pl-5 lg:pl-3">
-                      <p className="text-white font-bold md:text-[16px] lg:text-[22px] leading-tight">
+
+                    {/* Info */}
+                    <div
+                      className="absolute right-0 top-1/2 -translate-y-1/2
+                            w-[60%] sm:w-[55%] md:w-[50%] lg:w-[45%]
+                            flex flex-col justify-center items-start pl-3 sm:pl-4 md:pl-5"
+                    >
+                      <p className="text-white font-bold text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[22px] leading-tight">
                         {member.name}
                       </p>
-                      <p className="text-[#E4E3E3] md:text-[12px] lg:text-[14px] mt-1">
+                      <p className="text-[#E4E3E3] text-[0.8rem] sm:text-[0.85rem] md:text-[0.9rem] lg:text-[14px] mt-1">
                         {member.role}
                       </p>
                     </div>
