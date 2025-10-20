@@ -55,6 +55,7 @@ const Footer = () => {
               alt="VedaPixel Logo"
               className="w-[60px] sm:w-[80px] lg:w-[5vw]"
             />
+            {/* this too  */}
             <div>
               <p className="footer-company-name text-white text-[clamp(1.4rem,4vw,2.3rem)] font-semibold leading-tight lg:leading-10">
                 VedaPixel
