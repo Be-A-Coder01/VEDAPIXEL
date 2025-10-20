@@ -87,7 +87,7 @@ const Menu = () => {
             gap-[clamp(10px,3vw,3rem)] 
             text-white"
           >
-            <Link to="/">
+            <Link to="/" onClick={() => setNavPopup(!navPopup)}>
               <p
                 className="body-nav md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] text-[12px]
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
@@ -96,7 +96,7 @@ const Menu = () => {
               </p>
             </Link>
 
-            <Link to="/about">
+            <Link to="/about" onClick={() => setNavPopup(!navPopup)}>
               <p
                 className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
@@ -105,7 +105,7 @@ const Menu = () => {
               </p>
             </Link>
 
-            <Link to="/contactus">
+            <Link to="/contactus" onClick={() => setNavPopup(!navPopup)}>
               <motion.p
                 className="contact-button 
                   text-[clamp(10px,2.5vw,14px)] 
