@@ -206,7 +206,7 @@ const Body = () => {
 
       {/* ✅ Main Body */}
       <div
-        className={`body-content relative min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full pt-[6vw]`}
+        className={`body-content mx-[2%] relative min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full pt-[6vw]`}
       >
         {/* ✅ Sidebar Nav (hidden on mobile) */}
         <AnimatePresence>
@@ -403,7 +403,7 @@ const Body = () => {
               </motion.p>
             )}
             <div className="relative mb-[30px] w-[94vw] px-4 sm:w-[90vw] md:w-[75vw] lg:w-[55vw] mx-auto ">
-              <p className="begin-title  absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1] -mt-4">
+              <p className="begin-title  absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1] ">
                 Hello!
               </p>
 
