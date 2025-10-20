@@ -35,7 +35,7 @@ const Footer = () => {
   return (
     <>
       <motion.footer
-        className="w-full px-6 sm:px-10 lg:px-[9rem] py-10 mt-20 sm:mt-32 bg-transparent"
+        className="w-full px-6 sm:px-10 lg:px-[13rem] py-10 mt-20 sm:mt-32 bg-transparent"
         variants={container}
         initial="hidden"
         whileInView="show"
@@ -47,7 +47,7 @@ const Footer = () => {
         >
           {/* ✅ Left Section - Company Info */}
           <motion.div
-            className="footer-company-info w-full lg:w-2/6 flex flex-col items-start gap-4"
+            className="footer-company-info w-full lg:w-3/6 flex flex-col items-start gap-4"
             variants={item}
           >
             <img
@@ -57,10 +57,10 @@ const Footer = () => {
             />
 
             <div>
-              <p className="footer-company-name text-white text-[clamp(1.4rem,4vw,2.3rem)] font-semibold leading-tight">
+              <p className="footer-company-name text-white text-[clamp(1.4rem,4vw,2.3rem)] font-semibold leading-tight lg:leading-10">
                 VedaPixel
               </p>
-              <p className="footer-company-desc text-white/80 text-[clamp(0.7rem,2vw,1rem)]">
+              <p className="footer-company-desc text-white/80 text-[clamp(0.7rem,2vw,1rem)] lg:text-[50%]">
                 Innovation in every Pixel
               </p>
             </div>
