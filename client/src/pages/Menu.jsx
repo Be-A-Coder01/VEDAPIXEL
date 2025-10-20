@@ -38,7 +38,7 @@ const Menu = () => {
       <div
         className="menu-sticky  place-items-center sticky top-0 z-10 
         flex justify-between items-center 
-        px-[2%] md:px-[10%] py-[clamp(0.8rem,1.5vw,2rem)]
+        px-[2%] md:px-[2px] py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
       >
         {/* --- Logo + Company Name --- */}
@@ -66,7 +66,7 @@ const Menu = () => {
         >
           <Link to="/">
             <p
-              className="body-nav md:px-[clamp(4px,0.6vw,8px)] py-[6px] text-[12px]
+              className="body-nav md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] text-[12px]
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
             >
               Home
@@ -75,7 +75,7 @@ const Menu = () => {
 
           <Link to="/about">
             <p
-              className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] py-[6px] 
+              className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
             >
               About Us
