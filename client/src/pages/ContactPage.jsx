@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../CSS/Body.css";
 import "../CSS/Contact.css";
-
 import banner from "../assets/contact-banner.png";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,16 +16,15 @@ const ContactPage = () => {
   const collaborateRef = useRef(null);
   const careerRef = useRef(null);
 
-  // NEW: refs + visibility state for mobile titles
+  // Refs for mobile headings
   const collabTitleRef = useRef(null);
   const careerTitleRef = useRef(null);
   const [collabTitleVisible, setCollabTitleVisible] = useState(false);
   const [careerTitleVisible, setCareerTitleVisible] = useState(false);
 
-  // Banner visibility (for fade out)
   const [bannerVisible, setBannerVisible] = useState(true);
 
-  // keep isMobile updated on resize / orientation change
+  // ✅ Keep isMobile updated
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
@@ -37,10 +35,7 @@ const ContactPage = () => {
     };
   }, []);
 
-  // Show nav only when collaborate section is visible AND not mobile.
-  // Show nav only when collaborate section passes into view (top < 200px) and hide smoothly when above.
-  // 🧭 Show nav when collaborate section starts (top <= 200)
-  // and keep it visible until the top of career section crosses 200.
+  // ✅ Smooth nav visibility logic
   useEffect(() => {
     if (!collaborateRef.current || !careerRef.current) return;
 
@@ -53,7 +48,6 @@ const ContactPage = () => {
       const collabRect = collaborateRef.current.getBoundingClientRect();
       const careerRect = careerRef.current.getBoundingClientRect();
 
-      // nav visible between these bounds:
       const shouldShow =
         collabRect.top <= 200 && careerRect.top > 100 && collabRect.bottom > 0;
 
@@ -62,12 +56,11 @@ const ContactPage = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // initial run
-
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile, showNav]);
 
-  // Determine which section is most visible (debounced for stability)
+  // ✅ Active section observer
   useEffect(() => {
     const elements = [
       { id: "banner", ref: bannerRef },
@@ -111,7 +104,7 @@ const ContactPage = () => {
     };
   }, [isMobile]);
 
-  // Banner hide/show observer
+  // ✅ Banner fade-out observer
   useEffect(() => {
     if (!bannerRef.current) return;
     const obs = new IntersectionObserver(
@@ -122,9 +115,8 @@ const ContactPage = () => {
     return () => obs.disconnect();
   }, []);
 
-  // NEW: Observe mobile section titles when isMobile === true
+  // ✅ Mobile heading visibility observer
   useEffect(() => {
-    // reset visibility states when not mobile
     if (!isMobile) {
       setCollabTitleVisible(false);
       setCareerTitleVisible(false);
@@ -139,12 +131,10 @@ const ContactPage = () => {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // treat as visible if > 20% of the title area is in view
-          if (entry.target === collabTitleRef.current) {
+          if (entry.target === collabTitleRef.current)
             setCollabTitleVisible(entry.intersectionRatio > 0.2);
-          } else if (entry.target === careerTitleRef.current) {
+          if (entry.target === careerTitleRef.current)
             setCareerTitleVisible(entry.intersectionRatio > 0.2);
-          }
         });
       },
       { threshold: [0, 0.15, 0.25, 0.5] }
@@ -157,7 +147,7 @@ const ContactPage = () => {
     return () => obs.disconnect();
   }, [isMobile]);
 
-  // nav item renderer
+  // ✅ Nav item
   const navItem = (id, label) => {
     const isActive = activeSection === id;
     return (
@@ -196,7 +186,7 @@ const ContactPage = () => {
         ref={pageRef}
         className="contact-page-content relative h-fit w-[99vw] pb-[40px] flex"
       >
-        {/* Sticky nav: show only on non-mobile AND when showNav is true */}
+        {/* ===== NAV (non-mobile only) ===== */}
         <AnimatePresence>
           {showNav && !isMobile && (
             <motion.nav
@@ -218,7 +208,7 @@ const ContactPage = () => {
           )}
         </AnimatePresence>
 
-        {/* Main content area */}
+        {/* ===== MAIN CONTENT ===== */}
         <div className="flex flex-col pt-[54px] w-full">
           {/* Banner */}
           <div
@@ -232,11 +222,9 @@ const ContactPage = () => {
                   src={banner}
                   alt="Banner"
                   id="banner"
-                  className="
-                    w-[85vw] sm:w-[70vw] md:w-[55vw] lg:w-[45vw] xl:w-[40vw]
-                    h-[22vh] sm:h-[25vh] md:h-[28vh] lg:h-[32vh] xl:h-[36vh]
-                    mb-10 object-contain
-                  "
+                  className="w-[85vw] sm:w-[70vw] md:w-[55vw] lg:w-[45vw] xl:w-[40vw]
+                             h-[22vh] sm:h-[25vh] md:h-[28vh] lg:h-[32vh] xl:h-[36vh]
+                             mb-10 object-contain"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -40 }}
@@ -248,19 +236,18 @@ const ContactPage = () => {
 
           {/* Sections */}
           <div className="flex flex-col gap-20 pl-0 sm:pl-[25vw] lg:pl-[30vw] items-center sm:items-start">
-            {/* Collaborate Section */}
+            {/* === COLLABORATE SECTION === */}
             <section
               id="collaborate"
               ref={collaborateRef}
               className="flex flex-col w-full items-center"
             >
-              {/* Mobile title: rendered only on mobile and driven by collabTitleVisible */}
               {isMobile && (
                 <motion.p
                   ref={collabTitleRef}
                   className="relative my-[18px] text-center text-[clamp(1.2rem,4vw,1.8rem)] font-semibold
-                           bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
-                           bg-clip-text text-transparent inline-block"
+                             bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
+                             bg-clip-text text-transparent inline-block"
                   initial={{ opacity: 0, y: 18 }}
                   animate={
                     collabTitleVisible
@@ -275,90 +262,114 @@ const ContactPage = () => {
                     style={{
                       background:
                         "linear-gradient(90deg,#C7B9F6 0%, #A699D9 50%, #6A6185 100%)",
-                      transformOrigin: "center",
                     }}
                   />
                 </motion.p>
               )}
 
-              <motion.div
-                className="w-[90vw] sm:w-[80%] md:w-[70%] lg:w-[50vw]
-                  border-2 border-white
-                  p-[clamp(20px,3vw,40px)]
-                  rounded-xl
-                  flex flex-col 
-                  gap-[clamp(14px,2vw,22px)]
-                  h-auto"
-                style={{
-                  background:
-                    "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
-                  backdropFilter: "blur(10px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(10px) saturate(180%)",
-                  border: "2px solid rgba(255, 255, 255, 0.15)",
-                }}
-                animate={{
-                  opacity: activeSection === "collaborate" ? 1 : 0.45,
-                  scale: activeSection === "collaborate" ? 1 : 0.985,
-                  y: activeSection === "collaborate" ? 0 : -4,
-                }}
-                transition={{
-                  duration: 0.65,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <p className="contact-box-title text-[#C8C1C1] text-[clamp(0.9rem,2vw,1.5rem)] text-center lg:text-left">
-                  Find Your Way Forward, we're here to support.
-                </p>
+              {/* Prevent layout shift */}
+              <div className="relative flex justify-center items-start w-full">
+                <motion.div
+                  className="w-[90vw] sm:w-[80%] md:w-[70%] lg:w-[50vw]
+                             border-2 border-white
+                             p-[clamp(20px,3vw,40px)]
+                             rounded-xl
+                             flex flex-col 
+                             gap-[clamp(14px,2vw,22px)]
+                             h-auto"
+                  style={{
+                    background:
+                      "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
+                    backdropFilter: "blur(10px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(10px) saturate(180%)",
+                    border: "2px solid rgba(255, 255, 255, 0.15)",
+                    willChange: "opacity, box-shadow, filter",
+                    transformOrigin: "center center",
+                  }}
+                  animate={{
+                    opacity: activeSection === "collaborate" ? 1 : 0.5,
+                    boxShadow:
+                      activeSection === "collaborate"
+                        ? "0px 0px 25px rgba(177, 162, 223, 0.3)"
+                        : "0px 0px 0px rgba(0,0,0,0)",
+                    filter:
+                      activeSection === "collaborate"
+                        ? "brightness(1)"
+                        : "brightness(0.85)",
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <p className="contact-box-title text-[#C8C1C1] text-[clamp(0.9rem,2vw,1.5rem)] text-center lg:text-left">
+                    Find Your Way Forward, we're here to support.
+                  </p>
 
-                <form className="w-full flex flex-col gap-[clamp(18px,3vw,28px)] h-auto">
-                  <div className="flex flex-wrap justify-between gap-[clamp(15px,2vw,26px)]">
-                    <input
-                      type="text"
-                      placeholder="Name *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(30px,6vh,55px)]"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Company Name *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email Id *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Contact No. *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                  </div>
+                  <form className="w-full flex flex-col gap-[clamp(18px,3vw,28px)] h-auto">
+                    <div className="flex flex-wrap justify-between gap-[clamp(15px,2vw,26px)]">
+                      <input
+                        type="text"
+                        placeholder="Name *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(30px,6vh,55px)]"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Company Name *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                      <input
+                        type="email"
+                        placeholder="Email Id *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Contact No. *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                    </div>
 
-                  <textarea
-                    className="w-full rounded-[clamp(6px,1vw,10px)] bg-transparent border border-[#989BA1] p-[clamp(8px,1vw,12px)] text-[#818181] h-[clamp(100px,5vh,160px)] resize-none"
-                    placeholder="Project Idea *"
-                  ></textarea>
-                </form>
+                    <textarea
+                      className="w-full rounded-[clamp(6px,1vw,10px)] bg-transparent 
+                                 border border-[#989BA1] p-[clamp(8px,1vw,12px)] 
+                                 text-[#818181] h-[clamp(100px,5vh,160px)] resize-none"
+                      placeholder="Project Idea *"
+                    ></textarea>
+                  </form>
 
-                <button className="border border-[#B1A2DF] rounded-[8px] text-white font-medium w-[clamp(200px,60vw,300px)] h-[clamp(40px,5vh,60px)] md:w-[clamp(500px,60vw,300px)] mx-auto mt-[clamp(10px,2vw,20px)] hover:bg-[#B1A2DF]/10 transition text-[clamp(0.9rem,1.5vw,1.3rem)]">
-                  Submit
-                </button>
-              </motion.div>
+                  <button
+                    className="border border-[#B1A2DF] rounded-[8px] text-white font-medium 
+                                     w-[clamp(200px,60vw,300px)] h-[clamp(40px,5vh,60px)] 
+                                     md:w-[clamp(500px,60vw,300px)] mx-auto mt-[clamp(10px,2vw,20px)] 
+                                     hover:bg-[#B1A2DF]/10 transition text-[clamp(0.9rem,1.5vw,1.3rem)]"
+                  >
+                    Submit
+                  </button>
+                </motion.div>
+              </div>
             </section>
 
-            {/* Career Section */}
+            {/* === CAREER SECTION === */}
             <section
               id="career"
               ref={careerRef}
               className="flex flex-col w-full items-center"
             >
-              {/* Mobile title */}
               {isMobile && (
                 <motion.p
                   ref={careerTitleRef}
                   className="relative my-[18px] text-center text-[clamp(1.2rem,4vw,1.8rem)] font-semibold
-                           bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
-                           bg-clip-text text-transparent inline-block"
+                             bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
+                             bg-clip-text text-transparent inline-block"
                   initial={{ opacity: 0, y: 18 }}
                   animate={
                     careerTitleVisible
@@ -373,75 +384,99 @@ const ContactPage = () => {
                     style={{
                       background:
                         "linear-gradient(90deg,#C7B9F6 0%, #A699D9 50%, #6A6185 100%)",
-                      transformOrigin: "center",
                     }}
                   />
                 </motion.p>
               )}
 
-              <motion.div
-                className="w-[90vw] sm:w-[80%] md:w-[70%] lg:w-[50vw]
-    border-2 border-white
-    p-[clamp(20px,3vw,40px)]
-    rounded-xl
-    flex flex-col 
-    gap-[clamp(14px,2vw,22px)]
-    h-auto mb-36"
-                style={{
-                  background:
-                    "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
-                  backdropFilter: "blur(10px) saturate(180%)",
-                  WebkitBackdropFilter: "blur(10px) saturate(180%)",
-                  border: "2px solid rgba(255, 255, 255, 0.15)",
-                }}
-                animate={{
-                  opacity: activeSection === "career" ? 1 : 0.45,
-                  scale: activeSection === "career" ? 1 : 0.985,
-                  y: activeSection === "career" ? 0 : 4,
-                }}
-                transition={{
-                  duration: 0.65,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <p className="contact-box-title text-[#C8C1C1] text-[clamp(0.9rem,2vw,1.5rem)] text-center lg:text-left">
-                  Tell us about yourself
-                </p>
+              <div className="relative flex justify-center items-start w-full">
+                <motion.div
+                  className="w-[90vw] sm:w-[80%] md:w-[70%] lg:w-[50vw]
+                             border-2 border-white
+                             p-[clamp(20px,3vw,40px)]
+                             rounded-xl
+                             flex flex-col 
+                             gap-[clamp(14px,2vw,22px)]
+                             h-auto mb-36"
+                  style={{
+                    background:
+                      "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
+                    backdropFilter: "blur(10px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(10px) saturate(180%)",
+                    border: "2px solid rgba(255, 255, 255, 0.15)",
+                    willChange: "opacity, box-shadow, filter",
+                    transformOrigin: "center center",
+                  }}
+                  animate={{
+                    opacity: activeSection === "career" ? 1 : 0.5,
+                    boxShadow:
+                      activeSection === "career"
+                        ? "0px 0px 25px rgba(177, 162, 223, 0.3)"
+                        : "0px 0px 0px rgba(0,0,0,0)",
+                    filter:
+                      activeSection === "career"
+                        ? "brightness(1)"
+                        : "brightness(0.85)",
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <p className="contact-box-title text-[#C8C1C1] text-[clamp(0.9rem,2vw,1.5rem)] text-center lg:text-left">
+                    Tell us about yourself
+                  </p>
 
-                <form className="w-full flex flex-col gap-[clamp(18px,3vw,28px)] h-auto">
-                  <div className="flex flex-wrap justify-between gap-[clamp(15px,2vw,26px)]">
-                    <input
-                      type="text"
-                      placeholder="Name *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(30px,6vh,55px)]"
-                    />
-                    <input
-                      type="email"
-                      placeholder="Email Id *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Contact no. *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                    <input
-                      type="file"
-                      placeholder="Resume *"
-                      className="border border-[#989BA1] text-[#818181] bg-transparent p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)] w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
-                    />
-                  </div>
+                  <form className="w-full flex flex-col gap-[clamp(18px,3vw,28px)] h-auto">
+                    <div className="flex flex-wrap justify-between gap-[clamp(15px,2vw,26px)]">
+                      <input
+                        type="text"
+                        placeholder="Name *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(30px,6vh,55px)]"
+                      />
+                      <input
+                        type="email"
+                        placeholder="Email Id *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                      <input
+                        type="number"
+                        placeholder="Contact no. *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                      <input
+                        type="file"
+                        placeholder="Resume *"
+                        className="border border-[#989BA1] text-[#818181] bg-transparent 
+                                   p-[clamp(6px,1vw,10px)] rounded-[clamp(4px,1vw,10px)]
+                                   w-[46%] md:w-[42%] lg:w-[21vw] md:h-[clamp(35px,6vh,55px)]"
+                      />
+                    </div>
 
-                  <textarea
-                    className="w-full rounded-[clamp(6px,1vw,10px)] bg-transparent border border-[#989BA1] p-[clamp(8px,1vw,12px)] text-[#818181] h-[clamp(100px,5vh,160px)] resize-none"
-                    placeholder="Any message *"
-                  ></textarea>
-                </form>
+                    <textarea
+                      className="w-full rounded-[clamp(6px,1vw,10px)] bg-transparent 
+                                 border border-[#989BA1] p-[clamp(8px,1vw,12px)] 
+                                 text-[#818181] h-[clamp(100px,5vh,160px)] resize-none"
+                      placeholder="Any message *"
+                    ></textarea>
+                  </form>
 
-                <button className="border border-[#B1A2DF] rounded-[8px] text-white font-medium w-[clamp(200px,60vw,300px)] h-[clamp(40px,5vh,60px)] md:w-[clamp(500px,60vw,300px)] mx-auto mt-[clamp(10px,2vw,20px)] hover:bg-[#B1A2DF]/10 transition text-[clamp(0.9rem,1.5vw,1.3rem)]">
-                  Submit
-                </button>
-              </motion.div>
+                  <button
+                    className="border border-[#B1A2DF] rounded-[8px] text-white font-medium 
+                                     w-[clamp(200px,60vw,300px)] h-[clamp(40px,5vh,60px)] 
+                                     md:w-[clamp(500px,60vw,300px)] mx-auto mt-[clamp(10px,2vw,20px)] 
+                                     hover:bg-[#B1A2DF]/10 transition text-[clamp(0.9rem,1.5vw,1.3rem)]"
+                  >
+                    Submit
+                  </button>
+                </motion.div>
+              </div>
             </section>
           </div>
         </div>
