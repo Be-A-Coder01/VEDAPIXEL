@@ -80,6 +80,35 @@ const Body = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const useScrollVisibility = (offsetTop = 100, offsetBottom = 150) => {
+    const ref = useRef(null);
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+      const el = ref.current;
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const rect = entry.boundingClientRect;
+            const isVisible =
+              entry.isIntersecting &&
+              rect.top > offsetTop &&
+              rect.top < window.innerHeight - offsetBottom;
+            setVisible(isVisible);
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      observer.observe(el);
+      return () => observer.disconnect();
+    }, [offsetTop, offsetBottom]);
+
+    return [ref, visible];
+  };
+
   // ✅ Nav item animation
   const navItem = (id, label) => {
     const isActive = activeSection === id;
@@ -183,7 +212,7 @@ const Body = () => {
         <AnimatePresence>
           {!isMobile && showBody && (
             <motion.nav
-              className="text-white md:w-fit lg:w-fit flex flex-col md:gap-[6px] lg:gap-[10px]"
+              className="text-white  md:w-fit lg:w-fit flex flex-col md:gap-[6px] lg:gap-[10px]"
               style={{
                 position: "fixed",
                 left: navPosition.left,
@@ -209,6 +238,48 @@ const Body = () => {
             ref={aboutRef}
             className="flex flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
           >
+            {isMobile && (
+              <motion.p
+                ref={(el) => {
+                  if (!el) return;
+                  const observer = new IntersectionObserver(
+                    (entries) => {
+                      entries.forEach((entry) => {
+                        const isVisible =
+                          entry.isIntersecting &&
+                          entry.boundingClientRect.top > 100 && // ensure it's not too high
+                          entry.boundingClientRect.top <
+                            window.innerHeight - 150; // not too low
+                        el.style.opacity = isVisible ? "1" : "0";
+                        el.style.transform = isVisible
+                          ? "translateY(0px)"
+                          : "translateY(30px)";
+                      });
+                    },
+                    { threshold: 0.3 }
+                  );
+                  observer.observe(el);
+                  return () => observer.disconnect();
+                }}
+                className="relative my-[30px] text-center text-[clamp(1.3rem,4vw,2rem)] font-semibold
+               bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
+               bg-clip-text text-transparent inline-block transition-all duration-500 ease-out"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                Our Aim
+                <motion.span
+                  className="absolute left-1/2 -translate-x-1/2 bottom-[-5px] h-[2px] w-[25%]
+                 bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185] rounded-full"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                />
+              </motion.p>
+            )}
+
             <p className="about-card-title text-white text-[24px] leading-[30px] md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
               We bridge innovation and execution with
               <br className="hidden md:block" />
@@ -230,7 +301,52 @@ const Body = () => {
             </button>
           </section>
 
-          <section id="services" ref={servicesRef}>
+          <section
+            id="services"
+            className="flex flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
+            ref={servicesRef}
+          >
+            {isMobile && (
+              <motion.p
+                ref={(el) => {
+                  if (!el) return;
+                  const observer = new IntersectionObserver(
+                    (entries) => {
+                      entries.forEach((entry) => {
+                        const isVisible =
+                          entry.isIntersecting &&
+                          entry.boundingClientRect.top > 100 && // ensure it's not too high
+                          entry.boundingClientRect.top <
+                            window.innerHeight - 150; // not too low
+                        el.style.opacity = isVisible ? "1" : "0";
+                        el.style.transform = isVisible
+                          ? "translateY(0px)"
+                          : "translateY(30px)";
+                      });
+                    },
+                    { threshold: 0.3 }
+                  );
+                  observer.observe(el);
+                  return () => observer.disconnect();
+                }}
+                className="relative my-[30px] text-center  text-[clamp(1.3rem,4vw,2rem)] font-semibold
+               bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
+               bg-clip-text text-transparent inline-block transition-all duration-500 ease-out"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                Our Services
+                <motion.span
+                  className="absolute left-1/2 -translate-x-1/2 bottom-[-5px] h-[2px] w-[35%]
+                 bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185] rounded-full"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                />
+              </motion.p>
+            )}
             <div className="flex flex-col lg:gap-4">
               <InfiniteScrollNodes direction="left" baseSpeed={90} />
               <InfiniteScrollNodes direction="right" baseSpeed={90} />
@@ -242,40 +358,83 @@ const Body = () => {
 
           <section
             id="team"
+            className="flex flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
             ref={teamRef}
-            className="relative mb-[30px] w-[94vw] sm:w-[90vw] md:w-[75vw] lg:w-[55vw] mx-auto px-4"
           >
-            <p className="begin-title  absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
-              Hello!
-            </p>
+            {isMobile && (
+              <motion.p
+                ref={(el) => {
+                  if (!el) return;
+                  const observer = new IntersectionObserver(
+                    (entries) => {
+                      entries.forEach((entry) => {
+                        const isVisible =
+                          entry.isIntersecting &&
+                          entry.boundingClientRect.top > 100 && // ensure it's not too high
+                          entry.boundingClientRect.top <
+                            window.innerHeight - 150; // not too low
+                        el.style.opacity = isVisible ? "1" : "0";
+                        el.style.transform = isVisible
+                          ? "translateY(0px)"
+                          : "translateY(30px)";
+                      });
+                    },
+                    { threshold: 0.3 }
+                  );
+                  observer.observe(el);
+                  return () => observer.disconnect();
+                }}
+                className="relative my-[30px] text-center text-[clamp(1.3rem,4vw,2rem)] font-semibold
+               bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
+               bg-clip-text text-transparent inline-block transition-all duration-500 ease-out"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                Our Team
+                <motion.span
+                  className="absolute left-1/2 -translate-x-1/2 bottom-[-5px] h-[2px] w-[25%]
+                 bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185] rounded-full"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  whileInView={{ scaleX: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                  viewport={{ once: false, amount: 0.4 }}
+                />
+              </motion.p>
+            )}
+            <div className="relative mb-[30px] w-[94vw] px-4 sm:w-[90vw] md:w-[75vw] lg:w-[55vw] mx-auto ">
+              <p className="begin-title  absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1] -mt-4">
+                Hello!
+              </p>
 
-            <div
-              className="relative border border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
-              style={{
-                background:
-                  "linear-gradient(139.47deg, rgba(47, 54, 64, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%)",
-                backdropFilter: "blur(12px) saturate(180%)",
-                WebkitBackdropFilter: "blur(12px) saturate(180%)",
-                border: "2px solid rgba(255, 255, 255, 0.15)",
-                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-              }}
-            >
-              <div className="flex flex-col justify-center items-start h-full space-y-3">
-                <p className="begin-card-title text-[clamp(1.3rem,2.5vw,3rem)] text-white font-semibold leading-tight">
-                  we are experienced innovators building scalable digital
-                  platforms
-                </p>
+              <div
+                className="relative border border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
+                style={{
+                  background:
+                    "linear-gradient(139.47deg, rgba(47, 54, 64, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%)",
+                  backdropFilter: "blur(12px) saturate(180%)",
+                  WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                  border: "2px solid rgba(255, 255, 255, 0.15)",
+                  boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+                }}
+              >
+                <div className="flex flex-col justify-center items-start h-full space-y-3">
+                  <p className="begin-card-title text-[clamp(1.3rem,2.5vw,3rem)] text-white font-semibold leading-tight">
+                    we are experienced innovators building scalable digital
+                    platforms
+                  </p>
 
-                <p className="begin-card-desc text-[#C8C1C1] text-[clamp(0.9rem,1.8vw,1.5rem)]">
-                  Driving enterprise & consumer innovation
-                </p>
+                  <p className="begin-card-desc text-[#C8C1C1] text-[clamp(0.9rem,1.8vw,1.5rem)]">
+                    Driving enterprise & consumer innovation
+                  </p>
 
-                <button
-                  className="begin-card-button border-2 border-[#B1A2DF] text-white text-[12px] md:text-[16px] py-2 rounded-[8px] mt-[clamp(15px,2vw,25px)] w-[25vw] md:h-[clamp(50px,6vh,55px)] md:w-[clamp(110px,10vw,160px)] transition-all duration-300 hover:scale-105 hover:bg-[#B1A2DF]/20"
-                  onClick={() => setShowTeamPopup(true)}
-                >
-                  Our Team
-                </button>
+                  <button
+                    className="begin-card-button border-2 border-[#B1A2DF] text-white text-[12px] md:text-[16px] py-2 rounded-[8px] mt-[clamp(15px,2vw,25px)] w-[25vw] md:h-[clamp(50px,6vh,55px)] md:w-[clamp(110px,10vw,160px)] transition-all duration-300 hover:scale-105 hover:bg-[#B1A2DF]/20"
+                    onClick={() => setShowTeamPopup(true)}
+                  >
+                    Our Team
+                  </button>
+                </div>
               </div>
             </div>
           </section>
