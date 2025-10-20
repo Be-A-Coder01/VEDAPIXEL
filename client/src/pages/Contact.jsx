@@ -26,14 +26,14 @@ const Contact = () => {
             gap-[clamp(14px,2vw,22px)]
             h-auto
           "
-          // style={{
-          //   background:
-          //     "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
-          //   backdropFilter: "blur(10px) saturate(180%)",
-          //   WebkitBackdropFilter: "blur(10px) saturate(180%)",
-          //   border: "2px solid rgba(255, 255, 255, 0.15)",
-          //   boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-          // }}
+          style={{
+            background:
+              "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
+            backdropFilter: "blur(10px) saturate(180%)",
+            WebkitBackdropFilter: "blur(10px) saturate(180%)",
+            border: "2px solid rgba(255, 255, 255, 0.15)",
+            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          }}
         >
           <p
             className="
