@@ -39,13 +39,13 @@ const Menu = () => {
   return (
     <>
       <div
-        className="menu-sticky  place-items-center sticky top-0 z-10 
+        className="menu-sticky py-10  place-items-center sticky top-0 z-10 
         flex justify-between items-center 
-        px-[5%] md:px-[8%]  py-[clamp(0.8rem,1.5vw,2rem)]
+        px-[7%] md:px-[8%]  md:py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
       >
         {/* --- Logo + Company Name --- */}
-        <div className="flex   place-items-end">
+        <div className="flex border-2 mt-5 md:mt-0   place-items-end">
           <img
             src={logo}
             alt="VedaPixel Logo"
@@ -62,7 +62,7 @@ const Menu = () => {
 
         {/* --- Navigation Links --- */}
         {isMobile ? (
-          <i class="fa-solid fa-bars text-xl text-white"></i>
+          <i class="fa-solid fa-bars text-2xl mt-5 text-white"></i>
         ) : (
           <div
             className="nav-links 
