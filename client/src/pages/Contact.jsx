@@ -60,7 +60,7 @@ const Contact = () => {
               className="
                 flex flex-wrap 
                 justify-between  
-                gap-[clamp(15px,2vw,26px)]
+                gap-y-[clamp(15px,2vw,26px)]
               "
             >
               <input

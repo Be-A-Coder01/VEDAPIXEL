@@ -34,39 +34,62 @@ const Footer = () => {
 
   return (
     <>
-      <motion.div
-        className=" md:w-full   lg:w-[99vw]  pl-10 py-10 lg:px-[9rem] mt-32 "
+      <motion.footer
+        className="w-full px-6 sm:px-10 lg:px-[9rem] py-10 mt-20 sm:mt-32 bg-transparent"
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.4 }} // triggers each time visible
+        viewport={{ once: false, amount: 0.4 }}
       >
-        <motion.div className="flex  py-10 lg:px-2  " variants={container}>
-          {/* Left Section - Company Info */}
-          <motion.div className="  footer-company-info w-2/6 " variants={item}>
-            <img src={logo} alt="" className="lg:w-[5vw] l" />
-            <p className="footer-company-name text-[20px] text-white lg:text-[2.3rem] leading-10 lg:leading-12">
-              VedaPixel
-            </p>
-            <p className="footer-company-desc text-[8px] lg:text-[0.5rem] leading-0.5 lg:leading-0.5 text-white">
-              Innovation in every Pixel
-            </p>
-            <div className="flex flex-col gap-[4px] lg:gap-[5px] mt-7">
-              <div className="footer-email text-[#F8F9FA] text-[10px] lg:text-[0.8rem]">
+        <motion.div
+          className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0"
+          variants={container}
+        >
+          {/* ✅ Left Section - Company Info */}
+          <motion.div
+            className="footer-company-info w-full lg:w-2/6 flex flex-col items-start gap-4"
+            variants={item}
+          >
+            <img
+              src={logo}
+              alt="VedaPixel Logo"
+              className="w-[60px] sm:w-[80px] lg:w-[5vw]"
+            />
+
+            <div>
+              <p className="footer-company-name text-white text-[clamp(1.4rem,4vw,2.3rem)] font-semibold leading-tight">
+                VedaPixel
+              </p>
+              <p className="footer-company-desc text-white/80 text-[clamp(0.7rem,2vw,1rem)]">
+                Innovation in every Pixel
+              </p>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-3">
+              <p className="text-[#F8F9FA] text-[clamp(0.6rem,2vw,0.9rem)]">
                 &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. All Rights
                 Reserved.
-              </div>
-              <div className="flex gap-[10px] place-items-center">
-                <div className="flex gap-2 text-white">
-                  <img src={email} className="h-[3vh]" />
-                  <span className="footer-email text-[#E4E3E3] text-[12px] lg:text-[1rem]">
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={email}
+                    alt="email"
+                    className="h-[16px] sm:h-[20px]"
+                  />
+                  <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
                     info@vedapixel.com
                   </span>
                 </div>
-                <span className="text-white">|</span>
-                <div className="flex gap-2 text-white place-items-center">
-                  <img src={phone} className="h-[3vh]" />
-                  <span className="footer-email text-[#E4E3E3] text-[12px] lg:text-[1rem]">
+                <div className="hidden sm:block text-white">|</div>
+                <div className="flex items-center gap-2">
+                  <img
+                    src={phone}
+                    alt="phone"
+                    className="h-[16px] sm:h-[20px]"
+                  />
+                  <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
                     +91 9036354261
                   </span>
                 </div>
@@ -74,79 +97,85 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* Middle + Right Sections */}
+          {/* ✅ Middle + Right Sections */}
           <motion.div
-            className="flex  justify-between  w-4/6 "
+            className="flex flex-col sm:flex-row justify-between w-full lg:w-4/6 gap-10 sm:gap-0"
             variants={container}
           >
             {/* Footer Navigation */}
             <motion.div
-              className="footer-nav text-[14px]   lg:text-[16px] w-1/3  flex flex-col gap-[12px] h-fit pl-[10%]"
+              className="footer-nav w-full sm:w-1/2 lg:w-1/3 flex flex-col items-start gap-3"
               variants={item}
             >
-              <p className="footer-nav-links" id="footer-navlinks1">
+              <p className="footer-nav-links text-white text-[clamp(0.9rem,2vw,1.1rem)] font-semibold mb-1">
                 Our Company
               </p>
-              <p className="footer-nav-links" id="footer-navlinks2">
+              <p className="footer-nav-links text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)] hover:text-[#b19cd9] transition">
                 Privacy Policy
               </p>
-              <p className="footer-nav-links" id="footer-navlinks3">
+              <p className="footer-nav-links text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)] hover:text-[#b19cd9] transition">
                 FAQs
               </p>
-              <p className="footer-nav-links" id="footer-navlinks4">
+              <p className="footer-nav-links text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)] hover:text-[#b19cd9] transition">
                 Our Team
               </p>
-              <p className="footer-nav-links" id="footer-navlinks5">
+              <p className="footer-nav-links text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)] hover:text-[#b19cd9] transition">
                 Career
               </p>
             </motion.div>
 
             {/* Contact / Social Section */}
             <motion.div
-              className="h-fit  w-2/3  flex flex-col pl-[25%]  gap-[20px] "
+              className="h-fit w-full sm:w-1/2 lg:w-2/3 flex flex-col gap-5"
               variants={item}
             >
-              <div className="">
-                <p className="footer-email text-[#C8C1C1] text-[16px] mb-2">
-                  Let's Get in touch
+              {/* Contact */}
+              <div>
+                <p className="text-[#C8C1C1] text-[clamp(1rem,2vw,1.2rem)] mb-2 font-medium">
+                  Let's Get in Touch
                 </p>
-                <div className="flex place-items-center ">
+                <div className="flex flex-wrap items-center gap-3">
                   <input
                     type="text"
                     placeholder="Your Email Id"
-                    className="footer-email text-[#818181] md:w-[160px] md:h-[32px] lg:w-[20vw] lg:h-[42px] text-[12px] lg:text-[16px] rounded-[10px] border-[0.84px] border-[#F2F2F7] px-[8px]"
+                    className="text-[#818181] w-[70vw] sm:w-[250px] md:w-[200px] lg:w-[18vw]
+                               h-[36px] sm:h-[38px] lg:h-[42px] text-[clamp(0.8rem,2vw,1rem)]
+                               rounded-[10px] border border-[#F2F2F7] px-3 focus:outline-none"
                   />
                   <motion.img
                     src={icon}
-                    alt=""
-                    className="md:w-[29px]  lg:w-[2vw] rotate-45 ml-2"
+                    alt="send"
+                    className="w-[30px] sm:w-[35px] lg:w-[2vw] rotate-45 cursor-pointer"
                     whileHover={{ scale: 1.2, rotate: 0 }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
               </div>
 
-              <div className="flex gap-4 place-items-baseline">
-                <p className="footer-email text-[#C8C1C1] text-[16px]">
+              {/* Social Links */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                <p className="text-[#C8C1C1] text-[clamp(1rem,2vw,1.2rem)]">
                   Follow us on
                 </p>
-                <motion.img
-                  src={linkedin}
-                  alt=""
-                  className="w-[2vw] cursor-pointer"
-                  whileHover={{ scale: 1.2, y: -3 }}
-                />
-                <motion.img
-                  src={Instagram}
-                  alt=""
-                  className=" w-[2vw] cursor-pointer"
-                  whileHover={{ scale: 1.2, y: -3 }}
-                />
+                <div className="flex gap-4">
+                  <motion.img
+                    src={linkedin}
+                    alt="LinkedIn"
+                    className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
+                    whileHover={{ scale: 1.2, y: -3 }}
+                  />
+                  <motion.img
+                    src={Instagram}
+                    alt="Instagram"
+                    className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
+                    whileHover={{ scale: 1.2, y: -3 }}
+                  />
+                </div>
               </div>
             </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
+      </motion.footer>
     </>
   );
 };

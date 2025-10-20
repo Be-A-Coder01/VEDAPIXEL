@@ -22,7 +22,7 @@ const LandingPage = () => {
             <Route path="/about" element={<AboutPage />} /> */}
           </Routes>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
