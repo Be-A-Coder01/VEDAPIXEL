@@ -232,11 +232,11 @@ const Body = () => {
         </AnimatePresence>
 
         {/* ✅ Main Content */}
-        <div className="flex  px-[2vw] flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
+        <div className="flex  px-[2vw] flex-col md:gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
           <section
             id="about"
             ref={aboutRef}
-            className="flex flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
+            className="flex  flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
           >
             {isMobile && (
               <motion.p
