@@ -13,6 +13,7 @@ const Menu = () => {
     typeof window !== "undefined" ? window.innerWidth < 768 : false
   );
 
+  // 🔹 Animate on scroll (header fade)
   useEffect(() => {
     const handleScroll = () => {
       const menu = document.querySelector(".menu-sticky");
@@ -39,7 +40,7 @@ const Menu = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [controls]);
 
-  // ✅ Optional: auto-close navPopup when resizing above mobile width
+  // 🔹 Handle window resize (auto-close popup if desktop)
   useEffect(() => {
     const handleResize = () => {
       const isNowMobile = window.innerWidth < 768;
@@ -53,7 +54,7 @@ const Menu = () => {
   return (
     <>
       <div
-        className="menu-sticky py-10 place-items-center sticky top-0 z-10 
+        className="menu-sticky py-10 place-items-center sticky top-0 z-20 
         flex justify-between items-center 
         px-[7%] md:px-[8%] md:py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
@@ -74,7 +75,7 @@ const Menu = () => {
           </p>
         </div>
 
-        {/* --- Navigation Links --- */}
+        {/* --- Navigation Links (Desktop) --- */}
         {isMobile ? (
           <i
             className="fa-solid fa-bars text-2xl mt-5 text-white cursor-pointer"
@@ -130,52 +131,97 @@ const Menu = () => {
           {navPopup && (
             <motion.div
               key="menu-popup"
-              initial={{ opacity: 0, scale: 0.9, y: -10 }}
+              initial={{ opacity: 0, x: 100 }}
               animate={{
                 opacity: 1,
-                scale: 1,
-                y: 0,
-                transition: { duration: 0.45, ease: "easeOut" },
+                x: 0,
+                transition: { duration: 0.5, ease: "easeOut" },
               }}
               exit={{
                 opacity: 0,
-                scale: 0.95,
-                y: -10,
-                transition: { duration: 0.35, ease: "easeInOut" },
+                x: 100,
+                transition: { duration: 0.4, ease: "easeInOut" },
               }}
-              className="menuBar absolute right-4 w-[65%] top-24 h-[45vh] 
+              className="menuBar fixed top-0 right-0 w-[70%] h-[100vh]
                          flex flex-col text-[20px] 
-                         px-6 py-5 text-white gap-5 rounded-xl
-                         border border-white/20 shadow-lg
-                         backdrop-blur-[20px] bg-[rgba(30,30,40,0.45)]
-                         bg-gradient-to-br from-[rgba(40,40,60,0.55)] to-[rgba(20,20,30,0.25)]
-                         overflow-hidden"
+                         px-8 py-10 text-white gap-6
+                         border-l border-white/15 shadow-2xl
+                         backdrop-blur-[25px] bg-[rgba(20,20,30,0.45)]
+                         bg-gradient-to-b from-[rgba(50,50,80,0.35)] via-[rgba(30,30,50,0.25)] to-[rgba(10,10,20,0.2)]
+                         rounded-l-2xl z-50"
             >
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                Home
-              </p>
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                About us
-              </p>
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                Contact us
-              </p>
-
-              <div className="flex items-center gap-2 mt-3">
-                <img src={email} alt="email" className="h-[16px] sm:h-[20px]" />
-                <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
-                  info@vedapixel.com
-                </span>
+              <div className="flex justify-between items-center mb-6">
+                <p className="text-[1.4rem] font-semibold tracking-wide">
+                  Menu
+                </p>
+                <i
+                  className="fa-solid fa-xmark text-xl cursor-pointer hover:text-[#C7B9F6] transition"
+                  onClick={() => setNavPopup(false)}
+                ></i>
               </div>
-              <div className="flex items-center gap-2">
-                <img src={phone} alt="phone" className="h-[16px] sm:h-[20px]" />
-                <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
-                  +91 9036354261
-                </span>
+
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { staggerChildren: 0.1 },
+                  },
+                }}
+                className="flex flex-col gap-5"
+              >
+                <motion.p
+                  whileHover={{ color: "#C7B9F6", x: 5 }}
+                  className="cursor-pointer transition"
+                  onClick={() => setNavPopup(false)}
+                >
+                  Home
+                </motion.p>
+                <motion.p
+                  whileHover={{ color: "#C7B9F6", x: 5 }}
+                  className="cursor-pointer transition"
+                  onClick={() => setNavPopup(false)}
+                >
+                  About Us
+                </motion.p>
+                <motion.p
+                  whileHover={{ color: "#C7B9F6", x: 5 }}
+                  className="cursor-pointer transition"
+                  onClick={() => setNavPopup(false)}
+                >
+                  Contact Us
+                </motion.p>
+              </motion.div>
+
+              <div className="border-t border-white/10 mt-6 pt-6 flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={email}
+                    alt="email"
+                    className="h-[18px] sm:h-[20px]"
+                  />
+                  <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
+                    info@vedapixel.com
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={phone}
+                    alt="phone"
+                    className="h-[18px] sm:h-[20px]"
+                  />
+                  <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
+                    +91 9036354261
+                  </span>
+                </div>
               </div>
 
               <p className="text-[#F8F9FA]/80 text-[12px] mt-auto">
-                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. <br />
+                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd.
+                <br />
                 All Rights Reserved.
               </p>
             </motion.div>
