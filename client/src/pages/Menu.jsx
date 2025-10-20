@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/vedaPixelLogo.png";
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
@@ -6,6 +6,9 @@ import "../CSS/Menu.css";
 
 const Menu = () => {
   const controls = useAnimation();
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +41,7 @@ const Menu = () => {
       <div
         className="menu-sticky  place-items-center sticky top-0 z-10 
         flex justify-between items-center 
-        px-[2%] md:px-[2px] py-[clamp(0.8rem,1.5vw,2rem)]
+        px-[5%] md:px-[8%]  py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
       >
         {/* --- Logo + Company Name --- */}
@@ -58,33 +61,36 @@ const Menu = () => {
         </div>
 
         {/* --- Navigation Links --- */}
-        <div
-          className="nav-links 
+        {isMobile ? (
+          <i class="fa-solid fa-bars text-xl text-white"></i>
+        ) : (
+          <div
+            className="nav-links 
             flex flex-wrap place-items-end  justify-end 
             gap-[clamp(10px,3vw,3rem)] 
             text-white"
-        >
-          <Link to="/">
-            <p
-              className="body-nav md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] text-[12px]
+          >
+            <Link to="/">
+              <p
+                className="body-nav md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] text-[12px]
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
-            >
-              Home
-            </p>
-          </Link>
+              >
+                Home
+              </p>
+            </Link>
 
-          <Link to="/about">
-            <p
-              className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
+            <Link to="/about">
+              <p
+                className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
-            >
-              About Us
-            </p>
-          </Link>
+              >
+                About Us
+              </p>
+            </Link>
 
-          <Link to="/contactus">
-            <motion.p
-              className="contact-button 
+            <Link to="/contactus">
+              <motion.p
+                className="contact-button 
       text-[clamp(10px,2.5vw,14px)] 
       px-[clamp(6px,2vw,10px)] 
       py-[clamp(4px,1.5vw,6px)]
@@ -95,11 +101,12 @@ const Menu = () => {
       font-semibold tracking-wide 
       text-[#1a1c22]
       flex items-center justify-center"
-            >
-              Contact&nbsp;Us
-            </motion.p>
-          </Link>
-        </div>
+              >
+                Contact&nbsp;Us
+              </motion.p>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );
