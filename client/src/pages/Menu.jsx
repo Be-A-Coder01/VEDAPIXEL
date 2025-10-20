@@ -76,10 +76,19 @@ const Menu = () => {
 
         {/* --- Navigation Links --- */}
         {isMobile ? (
-          <i
-            className="fa-solid fa-bars text-2xl mt-5 text-white cursor-pointer"
-            onClick={() => setNavPopup(!navPopup)}
-          ></i>
+          <div>
+            {navPopup ? (
+              <i
+                class="fa-solid fa-xmark text-2xl mt-5 text-white cursor-pointer"
+                onClick={() => setNavPopup(!navPopup)}
+              ></i>
+            ) : (
+              <i
+                className="fa-solid fa-bars text-2xl mt-5 text-white cursor-pointer"
+                onClick={() => setNavPopup(!navPopup)}
+              ></i>
+            )}
+          </div>
         ) : (
           <div
             className="nav-links 
