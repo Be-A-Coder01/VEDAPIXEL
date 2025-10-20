@@ -77,9 +77,9 @@ const Footer = () => {
                     alt="email"
                     className="h-[16px] sm:h-[20px]"
                   />
-                  {/* <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
+                  <span className="text-[#E4E3E3] text-[clamp(0.8rem,2vw,1rem)]">
                     info@vedapixel.com
-                  </span> */}
+                  </span>
                 </div>
                 <div className="hidden sm:block text-white">|</div>
                 <div className="flex items-center gap-2">
