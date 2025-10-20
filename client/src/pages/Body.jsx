@@ -203,11 +203,11 @@ const Body = () => {
         </AnimatePresence>
 
         {/* ✅ Main Content */}
-        <div className="flex border-2 border-white px-[2vw] flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
+        <div className="flex  px-[2vw] flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
           <section
             id="about"
             ref={aboutRef}
-            className="flex flex-col border-2 border-red-500 gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
+            className="flex flex-col  gap-[12px] md:gap-[12px] lg:gap-[8px] mt-[7vw]"
           >
             <p className="about-card-title text-white text-[24px] leading-[30px] md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
               We bridge innovation and execution with
@@ -245,7 +245,7 @@ const Body = () => {
             ref={teamRef}
             className="relative mb-[30px] w-[94vw] sm:w-[90vw] md:w-[75vw] lg:w-[55vw] mx-auto px-4"
           >
-            <p className="begin-title border-2 border-red-500 absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
+            <p className="begin-title  absolute top-0 left-0 z-20 text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] via-[#A699D9] to-[#6A6185] bg-clip-text text-transparent leading-[1]">
               Hello!
             </p>
 
