@@ -87,7 +87,7 @@ const Menu = () => {
             gap-[clamp(10px,3vw,3rem)] 
             text-white"
           >
-            <Link to="/" onClick={() => setNavPopup(!navPopup)}>
+            <Link to="/">
               <p
                 className="body-nav md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] text-[12px]
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
@@ -96,7 +96,7 @@ const Menu = () => {
               </p>
             </Link>
 
-            <Link to="/about" onClick={() => setNavPopup(!navPopup)}>
+            <Link to="/about">
               <p
                 className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
               md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
@@ -105,7 +105,7 @@ const Menu = () => {
               </p>
             </Link>
 
-            <Link to="/contactus" onClick={() => setNavPopup(!navPopup)}>
+            <Link to="/contactus">
               <motion.p
                 className="contact-button 
                   text-[clamp(10px,2.5vw,14px)] 
@@ -151,17 +151,17 @@ const Menu = () => {
                          bg-gradient-to-br from-[rgba(40,40,60,0.55)] to-[rgba(20,20,30,0.25)]
                          overflow-hidden"
             >
-              <Link to="/">
+              <Link to="/" onClick={() => setNavPopup(!navPopup)}>
                 <p className="hover:text-[#C7B9F6] cursor-pointer transition">
                   Home
                 </p>
               </Link>
-              <Link to="/about">
+              <Link to="/about" onClick={() => setNavPopup(!navPopup)}>
                 <p className="hover:text-[#C7B9F6] cursor-pointer transition">
                   About us
                 </p>
               </Link>
-              <Link to="/contactus">
+              <Link to="/contactus" onClick={() => setNavPopup(!navPopup)}>
                 <p className="hover:text-[#C7B9F6] cursor-pointer transition">
                   Contact us
                 </p>
