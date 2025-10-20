@@ -15,11 +15,11 @@ const LandingPage = () => {
     <>
       <div>
         <Menu />
-        <div className="w-[99vw] pt-[32px] h-fit ">
+        <div className="w-[100vw] pt-[32px] h-fit ">
           <Routes>
             <Route path="/" element={<MainSection />} />
-            {/* <Route path="/contactus" element={<ContactPage />} />
-            <Route path="/about" element={<AboutPage />} /> */}
+            <Route path="/contactus" element={<ContactPage />} />
+            {/* <Route path="/about" element={<AboutPage />} /> */}
           </Routes>
         </div>
         <Footer />

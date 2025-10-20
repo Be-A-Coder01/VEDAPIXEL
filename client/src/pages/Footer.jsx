@@ -42,7 +42,7 @@ const Footer = () => {
         viewport={{ once: false, amount: 0.4 }}
       >
         <motion.div
-          className="flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0"
+          className="flex  flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0"
           variants={container}
         >
           {/* ✅ Left Section - Company Info */}
@@ -99,12 +99,12 @@ const Footer = () => {
 
           {/* ✅ Middle + Right Sections */}
           <motion.div
-            className="flex flex-col sm:flex-row justify-between w-full lg:w-4/6 gap-10 sm:gap-0"
+            className="flex  flex-col md:flex-row justify-between w-full lg:w-4/6 gap-10 sm:gap-0"
             variants={container}
           >
             {/* Footer Navigation */}
             <motion.div
-              className="footer-nav w-full sm:w-1/2 lg:w-1/3 flex flex-col items-start gap-3"
+              className="footer-nav w-full sm:w-1/2 lg:w-1/3 md:pl-[10%] flex flex-col items-start gap-3"
               variants={item}
             >
               <p className="footer-nav-links text-white text-[clamp(0.9rem,2vw,1.1rem)] font-semibold mb-1">
@@ -126,7 +126,7 @@ const Footer = () => {
 
             {/* Contact / Social Section */}
             <motion.div
-              className="h-fit w-full sm:w-1/2 lg:w-2/3 flex flex-col gap-5"
+              className="h-fit w-full sm:w-1/2 lg:w-fit flex flex-col gap-5"
               variants={item}
             >
               {/* Contact */}

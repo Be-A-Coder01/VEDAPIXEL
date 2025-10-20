@@ -9,10 +9,9 @@ const Contact = () => {
         className="
           w-full 
           flex flex-col-reverse md:flex-row 
-          justify-center items-center 
+          justify-center items-center md:items-start
           mt-[10vh] lg:mt-[20vh]
-          pb-5
-          gap-[5vw] 
+          gap-[5vw] md:gap-0
           px-[4vw]
         "
       >
@@ -27,14 +26,14 @@ const Contact = () => {
             gap-[clamp(14px,2vw,22px)]
             h-auto
           "
-          style={{
-            background:
-              "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
-            backdropFilter: "blur(10px) saturate(180%)",
-            WebkitBackdropFilter: "blur(10px) saturate(180%)",
-            border: "2px solid rgba(255, 255, 255, 0.15)",
-            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-          }}
+          // style={{
+          //   background:
+          //     "linear-gradient(139.47deg, rgba(50, 58, 68) -45.69%, rgba(16, 24, 32) 54.7%)",
+          //   backdropFilter: "blur(10px) saturate(180%)",
+          //   WebkitBackdropFilter: "blur(10px) saturate(180%)",
+          //   border: "2px solid rgba(255, 255, 255, 0.15)",
+          //   boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+          // }}
         >
           <p
             className="
@@ -60,7 +59,7 @@ const Contact = () => {
               className="
                 flex flex-wrap 
                 justify-between  
-                gap-y-[clamp(15px,2vw,26px)]
+                gap-[clamp(15px,2vw,26px)]
               "
             >
               <input
@@ -73,7 +72,7 @@ const Contact = () => {
                   p-[clamp(6px,1vw,10px)]
                   rounded-[clamp(4px,1vw,10px)]
                   w-[46%]  md:w-[42%] lg:w-[21vw]
-                  h-[clamp(30px,4vh,55px)]
+                  md:h-[clamp(30px,6vh,55px)]
                 "
               />
               <input
@@ -86,7 +85,7 @@ const Contact = () => {
                   p-[clamp(6px,1vw,10px)]
                   rounded-[clamp(4px,1vw,10px)]
                   w-[46%] sm:w-[44%] md:w-[42%] lg:w-[21vw]
-                  h-[clamp(35px,4vh,55px)]
+                  md:h-[clamp(35px,6vh,55px)]
                 "
               />
               <input
@@ -99,7 +98,7 @@ const Contact = () => {
                   p-[clamp(6px,1vw,10px)]
                   rounded-[clamp(4px,1vw,10px)]
                   w-[46%] sm:w-[44%] md:w-[42%] lg:w-[21vw]
-                  h-[clamp(35px,4vh,55px)]
+                  md:h-[clamp(35px,6vh,55px)]
                 "
               />
               <input
@@ -112,7 +111,7 @@ const Contact = () => {
                   p-[clamp(6px,1vw,10px)]
                   rounded-[clamp(4px,1vw,10px)]
                   w-[46%] sm:w-[44%] md:w-[42%] lg:w-[21vw]
-                  h-[clamp(35px,4vh,55px)]
+                  md:h-[clamp(35px,6vh,55px)]
                 "
               />
             </div>
@@ -142,8 +141,8 @@ const Contact = () => {
               font-medium
               w-[clamp(200px,60vw,300px)]
               h-[clamp(40px,5vh,60px)]
+              md:w-[clamp(500px,60vw,300px)]              
               mx-auto
-              lg:mx-0
               mt-[clamp(10px,2vw,20px)]
               hover:bg-[#B1A2DF]/10 
               transition
@@ -169,7 +168,7 @@ const Contact = () => {
               font-semibold 
               bg-gradient-to-r from-[#BBABEB] to-[#6A6185] 
               bg-clip-text text-transparent 
-              px-[2vw]
+              px-[2vw] md:px-0
             "
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}

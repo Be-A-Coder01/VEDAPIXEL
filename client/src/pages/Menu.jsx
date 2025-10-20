@@ -38,7 +38,7 @@ const Menu = () => {
       <div
         className="menu-sticky  place-items-center sticky top-0 z-10 
         flex justify-between items-center 
-        px-[2%] py-[clamp(0.8rem,1.5vw,2rem)]
+        px-[2%] md:px-[10%] py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
       >
         {/* --- Logo + Company Name --- */}

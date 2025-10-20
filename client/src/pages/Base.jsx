@@ -11,7 +11,7 @@ const Base = () => {
 
   return (
     <>
-      <div className="bg-[#101820] lg:w-[99vw]   h-fit ">
+      <div className="bg-[#101820] lg:w-[100vw]   h-fit ">
         {/* 1. HERO SECTION: Must be sticky and pass the scroll progress */}
         <div className="sticky top-0 z-10">
           <Face scrollProgress={scrollYProgress} /> {/* Passed prop */}
