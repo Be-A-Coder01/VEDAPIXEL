@@ -151,15 +151,21 @@ const Menu = () => {
                          bg-gradient-to-br from-[rgba(40,40,60,0.55)] to-[rgba(20,20,30,0.25)]
                          overflow-hidden"
             >
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                Home
-              </p>
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                About us
-              </p>
-              <p className="hover:text-[#C7B9F6] cursor-pointer transition">
-                Contact us
-              </p>
+              <Link to="/">
+                <p className="hover:text-[#C7B9F6] cursor-pointer transition">
+                  Home
+                </p>
+              </Link>
+              <Link to="/about">
+                <p className="hover:text-[#C7B9F6] cursor-pointer transition">
+                  About us
+                </p>
+              </Link>
+              <Link to="/contactus">
+                <p className="hover:text-[#C7B9F6] cursor-pointer transition">
+                  Contact us
+                </p>
+              </Link>
 
               <div className="flex items-center gap-2 mt-3">
                 <img src={email} alt="email" className="h-[16px] sm:h-[20px]" />
