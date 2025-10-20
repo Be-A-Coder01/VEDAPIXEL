@@ -45,17 +45,16 @@ const Footer = () => {
           className="flex  flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0"
           variants={container}
         >
-          {/* ✅ Left Section - Company Info */}
           <motion.div
             className="footer-company-info w-full lg:w-3/6 flex flex-col items-start gap-4"
             variants={item}
           >
+            {/* go throw this at last */}
             <img
               src={logo}
               alt="VedaPixel Logo"
               className="w-[60px] sm:w-[80px] lg:w-[5vw]"
             />
-
             <div>
               <p className="footer-company-name text-white text-[clamp(1.4rem,4vw,2.3rem)] font-semibold leading-tight lg:leading-10">
                 VedaPixel
@@ -64,7 +63,6 @@ const Footer = () => {
                 Innovation in every Pixel
               </p>
             </div>
-
             <div className="mt-4 flex flex-col gap-3">
               <p className="text-[#F8F9FA] text-[clamp(0.6rem,2vw,0.9rem)]">
                 &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. All Rights
