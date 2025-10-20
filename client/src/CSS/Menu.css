@@ -41,8 +41,6 @@
 
   .contact-button {
     font-size: 0.75rem !important;
-    width: 90px !important;
-    height: 38px !important;
   }
 }
 
@@ -58,8 +56,6 @@
 
   .contact-button {
     font-size: 0.95rem !important;
-    width: 120px !important;
-    height: 45px !important;
   }
 }
 
@@ -94,7 +90,6 @@
 
   .contact-button {
     font-size: 1.5rem;
-    width: 200px;
-    height: 65px;
+
   }
 }

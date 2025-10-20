@@ -36,13 +36,13 @@ const Menu = () => {
   return (
     <>
       <div
-        className="menu-sticky  sticky top-0 z-10 
+        className="menu-sticky  place-items-center sticky top-0 z-10 
         flex justify-between items-center 
-        px-[clamp(1rem,6vw,8rem)] py-[clamp(0.8rem,1.5vw,2rem)]
+        px-[2%] py-[clamp(0.8rem,1.5vw,2rem)]
         w-full backdrop-blur-[6px]"
       >
         {/* --- Logo + Company Name --- */}
-        <div className="flex place-items-end  ">
+        <div className="flex   place-items-end">
           <img
             src={logo}
             alt="VedaPixel Logo"
