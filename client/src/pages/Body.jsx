@@ -163,7 +163,7 @@ const Body = () => {
     const interval = setInterval(() => {
       index = (index + 1) % words.length;
       setCurrentWord(words[index]);
-    }, 1400); // ⏱ Change every 2.5 seconds
+    }, 1400);
 
     return () => clearInterval(interval);
   }, []);
@@ -317,7 +317,7 @@ const Body = () => {
                     initial={{ y: "100%", opacity: 0 }}
                     animate={{ y: "-0%", opacity: 1 }}
                     exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    transition={{ duration: 0.3, ease: "easeIn" }}
                     className="inline-block"
                     style={{
                       whiteSpace: "nowrap",
@@ -413,11 +413,11 @@ const Body = () => {
             )}
 
             <div className="relative mb-[30px] w-[94vw] mx-auto">
-              <p className="text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] to-[#6A6185] bg-clip-text text-transparent leading-[1] absolute top-0 left-0 z-20">
+              <p className="begin-title text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)]  bg-gradient-to-b from-[#C7B9F6] to-[#6A6185] bg-clip-text text-transparent leading-[1] absolute top-0 left-0 z-20">
                 Hello!
               </p>
               <div
-                className="relative border border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
+                className="relative border md:w-[50vw] border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
                 style={{
                   background:
                     "linear-gradient(139.47deg, rgba(47, 54, 64, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%)",
