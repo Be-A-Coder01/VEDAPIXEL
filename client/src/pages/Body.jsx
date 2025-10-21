@@ -373,11 +373,11 @@ const Body = () => {
               </motion.p>
             )}
             <div className="flex flex-col  lg:gap-4">
-              <InfiniteScrollNodes direction="left" baseSpeed={45} />
-              <InfiniteScrollNodes direction="right" baseSpeed={45} />
-              <InfiniteScrollNodes direction="left" baseSpeed={45} />
-              <InfiniteScrollNodes direction="right" baseSpeed={45} />
-              <InfiniteScrollNodes direction="left" baseSpeed={45} />
+              <InfiniteScrollNodes direction="left" baseSpeed={50} />
+              <InfiniteScrollNodes direction="right" baseSpeed={50} />
+              <InfiniteScrollNodes direction="left" baseSpeed={50} />
+              <InfiniteScrollNodes direction="right" baseSpeed={50} />
+              <InfiniteScrollNodes direction="left" baseSpeed={50} />
             </div>
           </section>
 
