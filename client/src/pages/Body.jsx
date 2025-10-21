@@ -233,7 +233,7 @@ const Body = () => {
 
       {/* ✅ Main Body */}
       <div
-        className={`body-content px-[2%] relative min-h-screen lg:gap-[20px] flex transition-all duration-700 ease-out w-full pt-[6vw]`}
+        className={`body-content px-[2%] relative min-h-screen lg:gap-[20px] md:pb-44 flex transition-all duration-700 ease-out w-full pt-[6vw]`}
       >
         {/* ✅ Sidebar Nav (hidden on mobile) */}
         <AnimatePresence>

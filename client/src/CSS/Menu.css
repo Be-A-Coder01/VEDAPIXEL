@@ -31,7 +31,7 @@
 }
 
 /* ✅ Small devices (400px–600px): Keep flex, just scale down */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .menu-sticky {
     mx: 1rem !important;
     padding-top: 20px;
@@ -48,10 +48,10 @@
   .contact-button {
     font-size: 0.75rem !important;
   }
-}
+} */
 
 /* ✅ Tablets (601px–1024px): balanced look */
-@media (min-width: 601px) and (max-width: 1024px) {
+/* @media (min-width: 601px) and (max-width: 1024px) {
   .menu-sticky {
     mx: 2rem !important;
   }
@@ -63,10 +63,10 @@
   .contact-button {
     font-size: 0.95rem !important;
   }
-}
+} */
 
 /* ✅ Large screens (1025px–2560px): breathing space */
-@media (min-width: 1025px) {
+/* @media (min-width: 1025px) {
   .nav-links {
     gap: 2.5rem;
   }
@@ -78,10 +78,10 @@
   .contact-button {
     font-size: 1.1rem;
   }
-}
+} */
 
 /* ✅ Ultra-wide (2560px–4K): proportional expansion */
-@media (min-width: 2560px) {
+/* @media (min-width: 2560px) {
   .menu-sticky {
     margin-inline: 10vw;
   }
@@ -98,4 +98,4 @@
     font-size: 1.5rem;
 
   }
-}
+} */

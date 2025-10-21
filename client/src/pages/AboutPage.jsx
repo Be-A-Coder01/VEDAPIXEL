@@ -1,8 +1,13 @@
 import React from "react";
 import "../CSS/About.css";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 750, behavior: "instant" });
+  }, []);
+
   // --- Grid setup ---
   const topLeftGrid = {
     startX: "0%",
