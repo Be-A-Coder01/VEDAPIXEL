@@ -27,7 +27,7 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 90 }) => {
         style={{
           animationDuration: `${speed}s`,
         }}
-        onMouseEnter={() => setSpeed(100)}
+        onMouseEnter={() => setSpeed(200)}
         onMouseLeave={() => setSpeed(baseSpeed)}
       >
         {loopItems.map((text, index) => (
