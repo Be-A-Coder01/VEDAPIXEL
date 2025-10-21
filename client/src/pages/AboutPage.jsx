@@ -9,47 +9,47 @@ const AboutPage = () => {
   // }, []);
 
   // --- Grid setup ---
-  const topLeftGrid = {
-    startX: "0%",
-    startY: "0%",
-    width: "50%",
-    height: "35%",
-    numHorizontalLines: 4,
-    numVerticalLines: 20,
-  };
+  // const topLeftGrid = {
+  //   startX: "0%",
+  //   startY: "0%",
+  //   width: "50%",
+  //   height: "35%",
+  //   numHorizontalLines: 4,
+  //   numVerticalLines: 20,
+  // };
 
-  const bottomRightGrid = {
-    startX: "50%",
-    startY: "60%",
-    width: "50%",
-    height: "50%",
-    numHorizontalLines: 4,
-    numVerticalLines: 20,
-  };
+  // const bottomRightGrid = {
+  //   startX: "50%",
+  //   startY: "60%",
+  //   width: "50%",
+  //   height: "50%",
+  //   numHorizontalLines: 4,
+  //   numVerticalLines: 20,
+  // };
 
-  const textDelay = 1.5;
+  // const textDelay = 1.5;
 
   // --- Variants ---
-  const lineVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 0.5,
-      scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+  // const lineVariants = {
+  //   hidden: { opacity: 0, scale: 0.8 },
+  //   visible: {
+  //     opacity: 0.5,
+  //     scale: 1,
+  //     transition: { duration: 0.5, ease: "easeOut" },
+  //   },
+  // };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.03,
-        when: "beforeChildren",
-        opacity: { delay: 0.2, duration: 2.0, ease: "easeInOut" },
-      },
-    },
-  };
+  // const containerVariants = {
+  //   hidden: { opacity: 0 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       staggerChildren: 0.03,
+  //       when: "beforeChildren",
+  //       opacity: { delay: 0.2, duration: 2.0, ease: "easeInOut" },
+  //     },
+  //   },
+  // };
 
   const headingVariant = {
     hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -90,7 +90,10 @@ const AboutPage = () => {
 
   return (
     <>
-      <div className="flex mt-16 flex-col gap-40 relative overflow-hidden">
+      <div
+        id="about"
+        className="flex mt-16 flex-col gap-40 relative overflow-hidden"
+      >
         {/* --- Top Text Section --- */}
         <div className="w-[85%] h-[auto] md:h-[40vh] p-[10px] mx-auto">
           <motion.p

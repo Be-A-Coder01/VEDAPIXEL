@@ -10,6 +10,7 @@ const Body = () => {
   const [activeSection, setActiveSection] = useState("about");
   const [showTeamPopup, setShowTeamPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [currentWord, setCurrentWord] = useState("streamline operations");
 
   const aboutRef = useRef(null);
   const servicesRef = useRef(null);
@@ -151,6 +152,22 @@ const Body = () => {
     );
   };
 
+  useEffect(() => {
+    const words = [
+      "streamline operations",
+      "drive sustainable growth",
+      "boost accessibility",
+    ];
+
+    let index = 0;
+    const interval = setInterval(() => {
+      index = (index + 1) % words.length;
+      setCurrentWord(words[index]);
+    }, 1400); // ⏱ Change every 2.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* ✅ Team Popup */}
@@ -284,9 +301,31 @@ const Body = () => {
             )}
             <p className="text-white text-[20px] md:text-[28px] lg:text-[3rem] leading-[1.3]">
               We bridge innovation and execution with user-centric, future-ready
-              systems that{" "}
-              <span className="text-[#b19cd9] font-semibold">
-                streamline operations
+              systems that <br />
+              <span
+                id="tag"
+                className="relative  inline-block align-baseline text-[#b19cd9]  overflow-hidden"
+                style={{
+                  display: "inline-flex",
+                  verticalAlign: "baseline",
+                  height: "1.3em",
+                }}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentWord}
+                    initial={{ y: "100%", opacity: 0 }}
+                    animate={{ y: "-0%", opacity: 1 }}
+                    exit={{ y: "-100%", opacity: 0 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    className="inline-block"
+                    style={{
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {currentWord}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             </p>
             <p className="about-card-desc text-[#C8C1C1] text-[12px] md:text-[16px]  lg:text-[1.5rem]">

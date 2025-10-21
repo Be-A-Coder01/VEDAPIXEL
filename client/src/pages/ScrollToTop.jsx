@@ -1,4 +1,4 @@
-// components/ScrollToTop.jsx
+// pages/ScrollToTop.jsx
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -6,10 +6,11 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // ✅ Skip scroll reset for home ("/") to avoid interfering with Face
-    if (pathname !== "/") {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-    }
+    // ✅ Scroll smoothly to top on route change
+    window.scrollTo({
+      top: 1,
+      behavior: "instant",
+    });
   }, [pathname]);
 
   return null;
