@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../CSS/Body.css";
 
-const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 85 }) => {
+const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 25 }) => {
   const [speed, setSpeed] = useState(baseSpeed);
 
   const items = [
@@ -27,7 +27,7 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 85 }) => {
         style={{
           animationDuration: `${speed}s`,
         }}
-        onMouseEnter={() => setSpeed(200)}
+        onMouseEnter={() => setSpeed(baseSpeed * 4)} // slows down slightly on hover
         onMouseLeave={() => setSpeed(baseSpeed)}
       >
         {loopItems.map((text, index) => (
