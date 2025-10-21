@@ -7,11 +7,10 @@ const Contact = () => {
     <>
       <div
         className="
-       
           w-full 
           flex flex-col-reverse md:flex-row 
           justify-center items-center md:items-start
-          mt-[10vh] lg:mt-[20vh]
+          mt-[30vh] md:mt-[25vh]
           gap-[5vw] md:gap-0
           px-[4vw]
         "
