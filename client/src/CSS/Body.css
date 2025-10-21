@@ -162,34 +162,58 @@
   z-index: 0;
 }
 
+/* ✅ Continuous, seamless infinite scroll with no jump */
+
+.scroll-track {
+  display: flex;
+  width: max-content;
+}
+
+.scroll-left {
+  animation: scroll-left linear infinite;
+}
+
+.scroll-right {
+  animation: scroll-right linear infinite;
+}
+
 @keyframes scroll-left {
-  0% {
+  from {
     transform: translateX(0);
   }
 
-  100% {
-    transform: translateX(-50%);
-    /* move half (since we doubled items) */
+  to {
+    transform: translateX(-40%);
   }
 }
 
 @keyframes scroll-right {
-  0% {
-    transform: translateX(-50%);
+  from {
+    transform: translateX(-40%);
   }
 
-  100% {
+  to {
     transform: translateX(0);
   }
 }
 
-.animate-scroll-left {
+/* ✅ Prevents any pause or blank gap */
+.scroll-left,
+.scroll-right {
+  animation-timing-function: linear;
+  will-change: transform;
+}
+
+
+/* ✅ Apply continuous linear motion with no visible jump */
+/* .animate-scroll-left {
   animation: scroll-left linear infinite;
 }
 
 .animate-scroll-right {
   animation: scroll-right linear infinite;
-}
+} */
+
 
 
 

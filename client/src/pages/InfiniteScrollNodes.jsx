@@ -9,25 +9,27 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 25 }) => {
     "IOS DEVELOPMENT",
     "WEB DEVELOPMENT",
     "UX RESEARCH",
+    "MOBILE APPLICATIONS",
     "USER EXPERIENCE",
     "CUSTOM SOFTWARE",
+    "WEB DESIGN",
     "CLOUD APPLICATIONS",
     "MOBILE APPLICATIONS",
   ];
 
-  // ✅ Duplicate items only once for seamless scrolling
+  // ✅ Duplicate twice (for perfect looping)
   const loopItems = [...items, ...items];
 
   return (
-    <div className=" relative w-full h-[70px] overflow-hidden flex items-center justify-center">
+    <div className="relative w-full h-[70px] overflow-hidden flex items-center justify-center">
       <div
-        className={`flex   gap-[14px] whitespace-nowrap ${
-          direction === "left" ? "animate-scroll-left" : "animate-scroll-right"
+        className={`scroll-track flex gap-[14px] whitespace-nowrap ${
+          direction === "left" ? "scroll-left" : "scroll-right"
         }`}
         style={{
           animationDuration: `${speed}s`,
         }}
-        onMouseEnter={() => setSpeed(baseSpeed * 4)} // slows down slightly on hover
+        onMouseEnter={() => setSpeed(baseSpeed * 4)}
         onMouseLeave={() => setSpeed(baseSpeed)}
       >
         {loopItems.map((text, index) => (

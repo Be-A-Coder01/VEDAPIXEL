@@ -38,6 +38,7 @@ const Base = () => {
     <div className="bg-[#101820] lg:w-[100vw] h-fit">
       <div className="sticky top-0 z-10">
         <Face scrollProgress={scrollYProgress} />
+        {/* <Face></Face> */}
       </div>
 
       <div className="relative z-20">
