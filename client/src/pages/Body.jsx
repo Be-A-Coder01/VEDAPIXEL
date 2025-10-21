@@ -307,11 +307,11 @@ const Body = () => {
               </motion.p>
             )}
 
-            <p className="about-card-title text-white text-[24px] leading-[30px] md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
+            <p className="about-card-title  text-white text-[20px] leading-[30px] md:text-[28px] lg:text-[3rem] md:leading-[40px] lg:leading-[52px]">
               We bridge innovation and execution with
-              <br className="hidden md:block" />
+              <br className="block" />
               user-centric, future-ready systems that
-              <br className="hidden md:block" />
+              <br className="block" />
               <span className="text-[#b19cd9] font-semibold">
                 streamline operations
               </span>

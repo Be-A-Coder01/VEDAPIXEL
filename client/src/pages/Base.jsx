@@ -14,19 +14,22 @@ const Base = () => {
   useEffect(() => {
     const hasShownFace = sessionStorage.getItem("hasShownFace");
 
-    // ✅ Only show Face if user is on "/" and hasn't seen it before
     if (location.pathname === "/" && !hasShownFace) {
       setShowFace(true);
 
-      // After 3 seconds, hide Face and remember that it was shown
-      const timer = setTimeout(() => {
-        setShowFace(false);
-        sessionStorage.setItem("hasShownFace", "true");
-      }, 3000); // ⏱️ Adjust display duration here (in ms)
+      const handleScroll = () => {
+        // ✅ Hide Face when user scrolls down (past 100px)
+        if (window.scrollY > 700) {
+          setShowFace(false);
+          sessionStorage.setItem("hasShownFace", "true");
+          window.removeEventListener("scroll", handleScroll);
+        }
+      };
 
-      return () => clearTimeout(timer);
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
     } else {
-      // Hide Face immediately on any other route
+      // Hide immediately on other pages
       setShowFace(false);
     }
   }, [location.pathname]);
