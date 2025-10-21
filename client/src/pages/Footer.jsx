@@ -39,7 +39,7 @@ const Footer = () => {
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: false, amount: 0.4 }}
+        viewport={{ once: false, amount: 0.1 }}
       >
         <motion.div
           className="flex  flex-col lg:flex-row justify-between items-start gap-10 lg:gap-0"
