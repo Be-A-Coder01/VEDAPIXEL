@@ -36,11 +36,9 @@ const Base = () => {
 
   return (
     <div className="bg-[#101820] lg:w-[100vw] h-fit">
-      {showFace && (
-        <div className="sticky top-0 z-10">
-          <Face scrollProgress={scrollYProgress} />
-        </div>
-      )}
+      <div className="sticky top-0 z-10">
+        <Face scrollProgress={scrollYProgress} />
+      </div>
 
       <div className="relative z-20">
         <LandingPage />
