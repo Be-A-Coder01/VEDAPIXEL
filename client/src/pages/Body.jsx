@@ -336,7 +336,7 @@ const Body = () => {
               solutions below.
             </p>
             <div className="relative inline-block">
-              <button className="rotating-btn relative text-[#b19cd9] font-garota text-[1.2rem] md:text-[1.5rem] rounded-md px-6 py-3 overflow-hidden">
+              <button className="rotating-btn relative text-[#b19cd9] font-garota text-[0.5rem] md:text-[1.5rem] rounded-md px-6 py-3 overflow-hidden">
                 Know More
               </button>
             </div>
@@ -373,11 +373,11 @@ const Body = () => {
               </motion.p>
             )}
             <div className="flex flex-col  lg:gap-4">
-              <InfiniteScrollNodes direction="left" baseSpeed={25} />
-              <InfiniteScrollNodes direction="right" baseSpeed={25} />
-              <InfiniteScrollNodes direction="left" baseSpeed={25} />
-              <InfiniteScrollNodes direction="right" baseSpeed={25} />
-              <InfiniteScrollNodes direction="left" baseSpeed={25} />
+              <InfiniteScrollNodes direction="left" baseSpeed={45} />
+              <InfiniteScrollNodes direction="right" baseSpeed={45} />
+              <InfiniteScrollNodes direction="left" baseSpeed={45} />
+              <InfiniteScrollNodes direction="right" baseSpeed={45} />
+              <InfiniteScrollNodes direction="left" baseSpeed={45} />
             </div>
           </section>
 

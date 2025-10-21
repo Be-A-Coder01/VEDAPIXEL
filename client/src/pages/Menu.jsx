@@ -190,7 +190,7 @@ const Menu = () => {
               </div>
 
               <p className="text-[#F8F9FA]/80 text-[12px] mt-auto">
-                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. <br />
+                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. 
                 All Rights Reserved.
               </p>
             </motion.div>
