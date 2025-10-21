@@ -268,7 +268,7 @@ const Body = () => {
         </AnimatePresence>
 
         {/* ✅ Content */}
-        <div className="flex px-[2vw] flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
+        <div className="flex px-[2vw]  flex-col gap-[10rem] w-full md:pl-[30vw] lg:pl-[30vw]">
           {/* --- Our Aim --- */}
           <section
             id="about"
@@ -299,12 +299,12 @@ const Body = () => {
                 />
               </motion.p>
             )}
-            <p className="text-white text-[20px] md:text-[28px] lg:text-[3rem] leading-[1.3]">
+            <p className="text-white text-[20px]  md:text-[28px] lg:text-[3rem] leading-[1.3]">
               We bridge innovation and execution with user-centric, future-ready
               systems that <br />
               <span
                 id="tag"
-                className="relative  inline-block align-baseline text-[#b19cd9]  overflow-hidden"
+                className=" relative  inline-block align-baseline text-[#b19cd9]  overflow-hidden"
                 style={{
                   display: "inline-flex",
                   verticalAlign: "baseline",
@@ -385,7 +385,7 @@ const Body = () => {
           <section
             id="team"
             ref={teamRef}
-            className="flex flex-col gap-[12px] mt-[7vw]"
+            className="flex  flex-col gap-[12px] mt-[7vw]"
           >
             {isMobile && (
               <motion.p
@@ -412,12 +412,12 @@ const Body = () => {
               </motion.p>
             )}
 
-            <div className="relative mb-[30px] w-[94vw] mx-auto">
-              <p className="begin-title text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)]  bg-gradient-to-b from-[#C7B9F6] to-[#6A6185] bg-clip-text text-transparent leading-[1] absolute top-0 left-0 z-20">
+            <div className="relative mb-[30px]  md:w-[50vw]  mx-auto">
+              <p className="begin-title text-[9vw] md:text-[clamp(1.8rem,4vw,4rem)] font-extrabold bg-gradient-to-b from-[#C7B9F6] to-[#6A6185] bg-clip-text text-transparent leading-[1] absolute top-0 left-0 z-20">
                 Hello!
               </p>
               <div
-                className="relative border md:w-[50vw] border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
+                className="relative border border-white p-[clamp(1.5rem,3vw,2.3rem)] mt-[clamp(20px,3vw,30px)] rounded-tr-[60px] rounded-b-[60px] sm:rounded-tr-[70px] sm:rounded-b-[70px] md:rounded-tr-[80px] md:rounded-b-[80px] shadow-xl transition-all duration-300"
                 style={{
                   background:
                     "linear-gradient(139.47deg, rgba(47, 54, 64, 0.8) -45.69%, rgba(16, 24, 32, 0.8) 54.7%)",
