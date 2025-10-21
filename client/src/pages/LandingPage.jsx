@@ -19,7 +19,7 @@ const LandingPage = () => {
           <Routes>
             <Route path="/" element={<MainSection />} />
             <Route path="/contactus" element={<ContactPage />} />
-            {/* <Route path="/about" element={<AboutPage />} /> */}
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </div>
         <Footer />

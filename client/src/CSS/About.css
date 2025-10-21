@@ -1,54 +1,109 @@
-/* Animation remains same, just ensure consistent motion */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+.about-page {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes scroll-right {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
+/* 🌌 Background image behind grid */
+#layout::before {
+  content: "";
+  position: absolute;
+  width: 65vw;
+  height: 130vh;
+  background: url("../assets/aboutbg.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.35;
+  filter: brightness(0.8) contrast(1.1);
+  z-index: 0;
+  pointer-events: none;
 }
 
-.animate-scroll-left {
-  animation: scroll-left linear infinite;
-  will-change: transform;
+/* Box style for Mission, Vision, Story */
+.about-card {
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 7px;
+  padding: 20px 24px 33px 20px;
+  background: linear-gradient(139.47deg,
+      rgba(57, 64, 73) -45.69%,
+      rgba(16, 24, 32) 54.7%);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.animate-scroll-right {
-  animation: scroll-right linear infinite;
-  will-change: transform;
+/* Title & Paragraph consistency */
+.about-part-title {
+  font-family: "Garota Sans", sans-serif;
+  font-weight: 600;
 }
 
-/* Text font control for all devices */
-.infinite-scroll-node {
-  font-family: 'Garota Sans', sans-serif;
+.about-part1-desc {
+  font-family: "Garota Sans", sans-serif;
   font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
+  line-height: 1.6;
 }
 
-/* Small-screen fix: tighter layout */
+/* =====================
+   RESPONSIVE FIXES
+   ===================== */
+
+/* 📱 Mobile */
 @media (max-width: 640px) {
-  .infinite-scroll-node {
-    letter-spacing: 0.5px;
-    padding: 4px 10px;
+  #layout::before {
+    width: 85vw;
+    height: 120vh;
+    background-position: center top;
+    background-size: contain;
+    opacity: 0.25;
+  }
+
+  .about-part-title {
+    font-size: 1.3rem !important;
+    text-align: center;
+  }
+
+  .about-part1-desc {
+    font-size: 1rem !important;
+    text-align: center;
+    padding: 0 12px;
+  }
+
+  .about-card {
+    width: 90% !important;
+    height: auto !important;
+    padding: 16px 18px;
   }
 }
 
-/* Large-screen fix: spacing balance */
-@media (min-width: 1600px) {
-  .infinite-scroll-node {
-    font-size: 1.5rem;
-    width: 280px;
+/* 📱 Tablet */
+@media (min-width: 641px) and (max-width: 1023px) {
+  #layout::before {
+    width: 80vw;
+    height: 130vh;
+    background-position: center top;
+    background-size: cover;
+    opacity: 0.3;
+  }
+
+  .about-card {
+    width: 80% !important;
+    height: auto;
+  }
+
+  .about-part-title {
+    font-size: 1.6rem !important;
+  }
+
+  .about-part1-desc {
+    font-size: 1.2rem !important;
+  }
+}
+
+/* 💻 Desktop (original preserved) */
+@media (min-width: 1024px) {
+  #layout::before {
+    width: 65vw;
+    height: 130vh;
+    background-size: cover;
+    opacity: 0.35;
   }
 }
