@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 const AboutPage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 750, behavior: "instant" });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  // }, []);
 
   // --- Grid setup ---
   const topLeftGrid = {
@@ -134,14 +134,14 @@ const AboutPage = () => {
         {/* --- Background + Boxes Section --- */}
         <motion.div
           id="layout"
-          className="w-[90%] md:w-[66%] h-fit mx-auto flex flex-col items-center gap-16 md:gap-20"
+          className="w-[90%]  md:w-[66%] h-fit mx-auto flex flex-col items-center "
           variants={layoutVariant}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
           {/* --- Info Cards --- */}
-          <div className="w-full flex justify-end md:justify-end">
+          <div className="w-full  flex justify-end md:justify-end">
             <div className="about-card w-[90%] md:w-1/2 lg:w-1/3 h-auto md:h-[40vh]">
               <p className="about-part-title text-[1.4rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Mission
