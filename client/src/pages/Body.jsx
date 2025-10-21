@@ -318,7 +318,7 @@ const Body = () => {
                   scale: servicesVisible ? 1 : 0.97,
                 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="relative my-[30px] text-center text-[clamp(1.3rem,4vw,2rem)] font-semibold
+                className=" relative my-[30px] text-center text-[clamp(1.3rem,4vw,2rem)] font-semibold
                   bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
                   bg-clip-text text-transparent inline-block"
               >
