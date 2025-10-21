@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 const AboutPage = () => {
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  // }, []);
+
   // --- Grid setup ---
   const topLeftGrid = {
     startX: "0%",
@@ -130,7 +134,7 @@ const AboutPage = () => {
         {/* --- Background + Boxes Section --- */}
         <motion.div
           id="layout"
-          className="w-[90%]  md:w-[66%] h-fit mx-auto flex flex-col items-center "
+          className="w-[90%]  md:w-[66%] h-fit mx-auto flex flex-col items-center gap-16 md:gap-0"
           variants={layoutVariant}
           initial="hidden"
           whileInView="visible"

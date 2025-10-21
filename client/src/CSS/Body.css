@@ -169,6 +169,7 @@
 
   100% {
     transform: translateX(-50%);
+    /* move half (since we doubled items) */
   }
 }
 
@@ -184,13 +185,12 @@
 
 .animate-scroll-left {
   animation: scroll-left linear infinite;
-  will-change: transform;
 }
 
 .animate-scroll-right {
   animation: scroll-right linear infinite;
-  will-change: transform;
 }
+
 
 
 
