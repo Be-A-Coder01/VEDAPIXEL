@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../CSS/Body.css";
 
-const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 80 }) => {
+const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 90 }) => {
   const [speed, setSpeed] = useState(baseSpeed);
 
   const items = [
