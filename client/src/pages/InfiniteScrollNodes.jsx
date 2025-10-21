@@ -21,7 +21,7 @@ const InfiniteScrollNodes = ({ direction = "left", baseSpeed = 25 }) => {
   return (
     <div className=" relative w-full h-[70px] overflow-hidden flex items-center justify-center">
       <div
-        className={`flex border-2 -my-1 md:my-0  border-red-500 gap-[14px] whitespace-nowrap ${
+        className={`flex   gap-[14px] whitespace-nowrap ${
           direction === "left" ? "animate-scroll-left" : "animate-scroll-right"
         }`}
         style={{
