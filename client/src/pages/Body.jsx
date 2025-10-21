@@ -323,9 +323,11 @@ const Body = () => {
               <br />
               solutions below.
             </p>
-            <button className="body-nav w-[30vw] h-[5vh]  md:h-[50px] md:w-[140px] lg:h-[8vh] lg:w-[20%] md:text-[20px] lg:text-[1.5rem] rounded-md border border-[#b19cd9] text-[#b19cd9] hover:bg-[#b19cd9] hover:text-black font-garota transition-all duration-300 mt-[2vw]">
-              Know More
-            </button>
+            <div className="relative inline-block">
+              <button className="rotating-btn relative text-[#b19cd9] font-garota text-[1.2rem] md:text-[1.5rem] rounded-md px-6 py-3 overflow-hidden">
+                Know More
+              </button>
+            </div>
           </section>
 
           <section

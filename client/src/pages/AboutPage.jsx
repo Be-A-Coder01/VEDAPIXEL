@@ -4,10 +4,6 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 const AboutPage = () => {
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  // }, []);
-
   // --- Grid setup ---
   const topLeftGrid = {
     startX: "0%",

@@ -1,5 +1,4 @@
 // pages/Base.jsx
-
 import React, { useState, useEffect } from "react";
 import Face from "./Face";
 import LandingPage from "./LandingPage";
@@ -10,21 +9,31 @@ const Base = () => {
   const { scrollYProgress } = useScroll();
   const location = useLocation();
 
-  // ✅ Tracks whether the Face has already been shown
-  const [hasShownFace, setHasShownFace] = useState(false);
+  const [showFace, setShowFace] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/" && !hasShownFace) {
-      setHasShownFace(true);
-    }
-  }, [location.pathname, hasShownFace]);
+    const hasShownFace = sessionStorage.getItem("hasShownFace");
 
-  // ✅ Show Face only the very first time on the home route
-  const shouldShowFace = location.pathname === "/" && !hasShownFace;
+    // ✅ Only show Face if user is on "/" and hasn't seen it before
+    if (location.pathname === "/" && !hasShownFace) {
+      setShowFace(true);
+
+      // After 3 seconds, hide Face and remember that it was shown
+      const timer = setTimeout(() => {
+        setShowFace(false);
+        sessionStorage.setItem("hasShownFace", "true");
+      }, 3000); // ⏱️ Adjust display duration here (in ms)
+
+      return () => clearTimeout(timer);
+    } else {
+      // Hide Face immediately on any other route
+      setShowFace(false);
+    }
+  }, [location.pathname]);
 
   return (
     <div className="bg-[#101820] lg:w-[100vw] h-fit">
-      {shouldShowFace && (
+      {showFace && (
         <div className="sticky top-0 z-10">
           <Face scrollProgress={scrollYProgress} />
         </div>

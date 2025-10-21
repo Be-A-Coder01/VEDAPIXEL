@@ -11,6 +11,48 @@
   font-style: normal;
 }
 
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* ✅ Rotating Border Effect */
+.rotating-btn {
+  position: relative;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  background:
+    linear-gradient(#101820, #101820) padding-box,
+    conic-gradient(from var(--border-angle),
+      #101820,
+      #9c88ff,
+      #b19cd9,
+      #d1c4e9,
+      #b19cd9) border-box;
+  animation: border-rotate 3s linear infinite;
+  transition: color 0.3s smooth;
+}
+
+@keyframes border-rotate {
+  from {
+    --border-angle: 0deg;
+  }
+
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* ✅ Optional Hover Glow */
+.rotating-btn:hover {
+  color: white;
+  box-shadow: 0 0 12px #b19cd9, 0 0 25px #9c88ff inset;
+}
+
+
+
+
 .about-card {
   font-family: "DM Sans", sans-serif;
   font-weight: 500;
