@@ -14,29 +14,36 @@ const Menu = () => {
   );
 
   useEffect(() => {
-    const handleScroll = () => {
-      const menu = document.querySelector(".menu-sticky");
-      if (!menu) return;
+    let lastVisible = false; // ✅ keeps track of current visibility
+    let timeoutId;
 
-      const rect = menu.getBoundingClientRect();
-      if (rect.top <= 0) {
-        controls.start({
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.8, ease: "easeOut" },
-        });
-      } else {
-        controls.start({
-          opacity: 0,
-          y: 20,
-          transition: { duration: 0.5, ease: "easeInOut" },
-        });
-      }
+    const handleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const menu = document.querySelector(".menu-sticky");
+        if (!menu) return;
+
+        const rect = menu.getBoundingClientRect();
+        const shouldBeVisible = rect.top <= 0;
+
+        // ✅ Only trigger animation when visibility changes
+        if (shouldBeVisible !== lastVisible) {
+          lastVisible = shouldBeVisible;
+          controls.start({
+            opacity: shouldBeVisible ? 1 : 0,
+            y: shouldBeVisible ? 0 : 20,
+            transition: { duration: 0.5, ease: "easeInOut" },
+          });
+        }
+      }, 50); // ✅ Debounced by 50ms to prevent rapid firing
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [controls]);
 
   // ✅ Optional: auto-close navPopup when resizing above mobile width
