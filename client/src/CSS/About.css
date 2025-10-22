@@ -52,7 +52,7 @@
     content: "";
     position: absolute;
     width: 90vw;
-    height: 42vh;
+    height: 43vh;
     background: url("../assets/aboutbg.png") no-repeat;
     background-size: cover;
     opacity: 0.35;
@@ -105,11 +105,11 @@
 
 
 /* 💻 Desktop (original preserved) */
-/* @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   #layout::before {
     width: 65vw;
     height: 130vh;
     background-size: cover;
     opacity: 0.35;
   }
-} */
+}
