@@ -228,7 +228,7 @@ const Body = () => {
                 Meet Our Team
               </p>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-14 sm:gap-8 lg:gap-24 px-2 sm:px-4 pb-10">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-16 sm:gap-8 lg:gap-24 px-2 sm:px-4 pb-10">
                 {[
                   { name: "Sunil MB", role: "Co-Founder - MD / CEO" },
                   { name: "Nithin MB", role: "Co-Founder - MD" },
