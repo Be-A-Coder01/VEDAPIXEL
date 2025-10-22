@@ -30,6 +30,11 @@
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
+.about-card-title {
+  font-family: "Garota Sans", sans-serif;
+  font-weight: 600;
+}
+
 /* Title & Paragraph consistency */
 .about-part-title {
   font-family: "Garota Sans", sans-serif;
@@ -42,40 +47,39 @@
   line-height: 1.6;
 }
 
+@media (min-width: 400px) and (max-width: 1023px) {
+  #layout::before {
+    content: "";
+    position: absolute;
+    width: 90vw;
+    height: 42vh;
+    background: url("../assets/aboutbg.png") no-repeat;
+    background-size: cover;
+    opacity: 0.35;
+    filter: brightness(0.8) contrast(1.1);
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
 /* =====================
    RESPONSIVE FIXES
    ===================== */
 
 /* 📱 Mobile */
 @media (max-width: 640px) {
-  #layout::before {
-    width: 85vw;
-    height: 120vh;
-    background-position: center top;
-    background-size: contain;
-    opacity: 0.25;
-  }
+
 
   .about-part-title {
     font-size: 1.3rem !important;
     text-align: center;
   }
 
-  .about-part1-desc {
-    font-size: 1rem !important;
-    text-align: center;
-    padding: 0 12px;
-  }
 
-  .about-card {
-    width: 90% !important;
-    height: auto !important;
-    padding: 16px 18px;
-  }
 }
 
 /* 📱 Tablet */
-@media (min-width: 641px) and (max-width: 1023px) {
+/* @media (min-width: 641px) and (max-width: 1023px) {
   #layout::before {
     width: 80vw;
     height: 130vh;
@@ -96,14 +100,16 @@
   .about-part1-desc {
     font-size: 1.2rem !important;
   }
-}
+} */
+
+
 
 /* 💻 Desktop (original preserved) */
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   #layout::before {
     width: 65vw;
     height: 130vh;
     background-size: cover;
     opacity: 0.35;
   }
-}
+} */

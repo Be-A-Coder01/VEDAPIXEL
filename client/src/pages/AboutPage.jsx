@@ -92,7 +92,7 @@ const AboutPage = () => {
     <>
       <div
         id="about"
-        className="flex mt-16 flex-col gap-40 relative overflow-hidden"
+        className=" flex mt-16 flex-col gap-40 relative overflow-hidden"
       >
         {/* --- Top Text Section --- */}
         <div className="w-[85%] h-[auto] md:h-[40vh] p-[10px] mx-auto">
@@ -137,19 +137,19 @@ const AboutPage = () => {
         {/* --- Background + Boxes Section --- */}
         <motion.div
           id="layout"
-          className="w-[90%]  md:w-[66%] h-fit mx-auto flex flex-col items-center gap-16 md:gap-0"
+          className="w-[90%] md:w-[66%] h-fit mx-auto flex flex-col items-center  md:gap-0"
           variants={layoutVariant}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false, amount: 0.3 }}
         >
           {/* --- Info Cards --- */}
-          <div className="w-full  flex justify-end md:justify-end">
-            <div className="about-card w-[90%] md:w-1/2 lg:w-1/3 h-auto md:h-[40vh]">
-              <p className="about-part-title text-[1.4rem] md:text-[1.75rem] text-[#F8F9FA]">
+          <div className="w-full   flex justify-end md:justify-end">
+            <div className="about-card  w-[32.5%] md:px-0 md:py-0 md:w-1/2 lg:w-1/3 h-[15vh] md:h-[40vh]">
+              <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Mission
               </p>
-              <p className="about-part-title text-[1.1rem] md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="about-card-title text-[0.5rem]  md:text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel uses tech to bring clarity, speed, and reliability to
                 outdated sectors, building ecosystems where innovation can
                 thrive.
@@ -158,11 +158,11 @@ const AboutPage = () => {
           </div>
 
           <div className="w-full flex justify-center md:justify-center">
-            <div className="about-card w-[90%] md:w-1/2 lg:w-1/3 h-auto md:h-[40vh]">
-              <p className="about-part-title text-[1.4rem] md:text-[1.75rem] text-[#F8F9FA]">
+            <div className="about-card border-2 border-green-600 w-[32.5%] md:px-0 md:py-0 md:w-1/2 lg:w-1/3 h-[15vh] md:h-[40vh]">
+              <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Vision
               </p>
-              <p className="about-part-title text-[1.1rem] md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="about-card-title text-[0.5rem]  md:text-[1.5rem] text-[#C8C1C1]">
                 We redefine how businesses use tech by creating integrated
                 platforms that simplify workflows and unlock new growth.
               </p>
@@ -170,11 +170,11 @@ const AboutPage = () => {
           </div>
 
           <div className="w-full flex justify-start md:justify-start">
-            <div className="about-card w-[90%] md:w-1/2 lg:w-1/3 h-auto md:h-[40vh]">
-              <p className="about-part-title text-[1.4rem] md:text-[1.75rem] text-[#F8F9FA]">
+            <div className="about-card border-2 border-green-600 w-[32.5%] px-1 py-1 md:px-0 md:py-0 md:w-1/2 lg:w-1/3 h-[15vh] md:h-[40vh]">
+              <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Story
               </p>
-              <p className="about-part-title text-[1.1rem] md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="about-card-title text-[0.5rem]  md:text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel Tech Solutions Pvt. Ltd. builds intelligent, scalable
                 digital platforms that solve real-world business challenges.
               </p>
