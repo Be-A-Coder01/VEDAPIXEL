@@ -17,10 +17,10 @@ import pic11 from "../assets/blockchain.png";
 
 const Services = () => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: true, // animate only once when seen
-    threshold: 0.35, // triggers when 35% visible
-  });
+  // const [ref, inView] = useInView({
+  //   triggerOnce: true, // animate only once when seen
+  //   threshold: 0.35, // triggers when 35% visible
+  // });
 
   const container = {
     hidden: {},
@@ -61,11 +61,11 @@ const Services = () => {
     },
   };
 
-  React.useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [inView, controls]);
+  // React.useEffect(() => {
+  //   if (inView) {
+  //     controls.start("visible");
+  //   }
+  // }, [inView, controls]);
 
   const cardVariants = {
     hidden: {
@@ -147,7 +147,7 @@ const Services = () => {
   return (
     <>
       <div className=" flex flex-col gap-10 mt-20 px-6 sm:px-10 md:px-16 lg:px-28">
-        <p className="service-title text-4xl md:text-[4rem] font-semibold text-white text-center md:text-left">
+        <p className="service-title text-4xl md:text-[4rem] font-semibold text-white pl-[30px]  md:pl-24">
           Our Services
         </p>
 
@@ -155,8 +155,7 @@ const Services = () => {
           className="services-box w-[73vw] pt-[20px] md:mt-0 flex flex-wrap mx-auto gap-[30px]"
           variants={container}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          animate="visible"
           style={{ willChange: "transform, opacity" }}
         >
           {services.map((service, index) => (
