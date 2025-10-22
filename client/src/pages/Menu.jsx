@@ -113,6 +113,14 @@ const Menu = () => {
                 About Us
               </p>
             </Link>
+            <Link to="/services">
+              <p
+                className="body-nav text-[12px] md:px-[clamp(4px,0.6vw,8px)] md:py-[6px] 
+              md:text-[clamp(14px,1.4vw,22px)] cursor-pointer"
+              >
+                Services
+              </p>
+            </Link>
 
             <Link to="/contactus">
               <motion.p
@@ -175,6 +183,11 @@ const Menu = () => {
                   Contact us
                 </p>
               </Link>
+              <Link to="/services" onClick={() => setNavPopup(!navPopup)}>
+                <p className="hover:text-[#C7B9F6] cursor-pointer transition">
+                  Services
+                </p>
+              </Link>
 
               <div className="flex items-center gap-2 mt-3">
                 <img src={email} alt="email" className="h-[16px] sm:h-[20px]" />
@@ -190,8 +203,8 @@ const Menu = () => {
               </div>
 
               <p className="text-[#F8F9FA]/80 text-[12px] mt-auto">
-                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. 
-                All Rights Reserved.
+                &copy; 2025 VedaPixel Tech Solution Pvt. Ltd. All Rights
+                Reserved.
               </p>
             </motion.div>
           )}

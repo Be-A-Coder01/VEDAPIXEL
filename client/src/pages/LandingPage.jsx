@@ -9,6 +9,7 @@ import ContactPage from "./ContactPage";
 import MainSection from "./MainSection";
 import AboutPage from "./AboutPage";
 import ScrollToTop from "./ScrollToTop";
+import Services from "./Services";
 import { Routes, Route } from "react-router-dom";
 
 const LandingPage = () => {
@@ -25,6 +26,7 @@ const LandingPage = () => {
             <Route path="/" element={<MainSection />} />
             <Route path="/contactus" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<Services />} />
           </Routes>
         </div>
 

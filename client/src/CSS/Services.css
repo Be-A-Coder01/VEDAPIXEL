@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Garota Sans';
+  src: url('../fonts/garota_sans/GarotaSans-Regular-FFP.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.service-title {
+  font-family: 'Garota Sans', sans-serif;
+  font-weight: 400;
+  font-style: regular;
+}
+
+.service-desc {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-style: normal;
+}

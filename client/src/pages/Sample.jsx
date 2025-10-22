@@ -1,70 +1,88 @@
-{
-  /* --- Our Aim --- */
-}
-<section
-  id="about"
-  ref={aboutRef}
-  className="flex flex-col gap-[12px] mt-[7vw]"
->
-  {isMobile && (
-    <motion.p
-      ref={aimTitleRef}
-      animate={{
-        opacity: aimVisible ? 1 : 0,
-        y: aimVisible ? 0 : 25,
-        scale: aimVisible ? 1 : 0.97,
-      }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative my-[30px] text-center text-[clamp(1.3rem,4vw,2rem)] font-semibold
-        bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185]
-        bg-clip-text text-transparent inline-block"
-    >
-      Our Aim
-      <motion.span
-        className="absolute left-1/2 -translate-x-1/2 bottom-[-5px] h-[2px] w-[25%]
-       bg-gradient-to-r from-[#C7B9F6] via-[#A699D9] to-[#6A6185] rounded-full"
-        initial={{ scaleX: 0, opacity: 0 }}
-        whileInView={{ scaleX: 1, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-        viewport={{ once: false, amount: 0.4 }}
-      />
-    </motion.p>
-  )}
+import React from "react";
+import pic1 from "../assets/appDevelopment.png";
 
-  {/* ✅ Animated text transition (slides upward) */}
-  <p className="text-white text-[20px] md:text-[28px] lg:text-[3rem] leading-[1.3]">
-    We bridge innovation and execution with user-centric, future-ready systems
-    that <br />
-    <span
-      id="tag"
-      className="relative inline-block text-[#b19cd9] font-semibold min-h-[1em] overflow-hidden"
-    >
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentWord}
-          initial={{ y: "100%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "-100%", opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="block"
-        >
-          {currentWord}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  </p>
+const Services = () => {
+  const services = [
+    {
+      title: "Mobile Applications",
+      desc: "Crafting seamless iOS and Android apps that engage users.",
+      img: pic1,
+    },
+    {
+      title: "Web Development",
+      desc: "Building dynamic, responsive websites for every need.",
+      img: pic1,
+    },
+    {
+      title: "Gaming App Development",
+      desc: "Creating immersive, high-quality games across all platforms.",
+      img: pic1,
+    },
+    {
+      title: "AR/VR",
+      desc: "Delivering lifelike AR and VR experiences for learning and innovation.",
+      img: pic1,
+    },
+    {
+      title: "ERP",
+      desc: " Streamlining operations with intelligent, all-in-one ERP systems.",
+      img: pic1,
+    },
+    {
+      title: "Chatbot Development",
+      desc: "Designing AI chatbots that simplify support and engagement.",
+      img: pic1,
+    },
+    {
+      title: "AL/ML",
+      desc: "Empowering automation and insights through advanced AI and ML.",
+      img: pic1,
+    },
+    {
+      title: "CRM",
+      desc: "Enhancing relationships through efficient, customized CRM solutions.",
+      img: pic1,
+    },
+    {
+      title: "Cloud & DevOps Services",
+      desc: "Driving efficiency with seamless cloud and DevOps tools.",
+      img: pic1,
+    },
+    {
+      title: "Maintenance & Support",
+      desc: "Ensuring software stays secure, reliable, and up to date.",
+      img: pic1,
+    },
+  ];
 
-  <p className="about-card-desc text-[#C8C1C1] text-[12px] md:text-[16px] lg:text-[1.5rem]">
-    We offer future-ready solutions to streamline your business, drive
-    <br />
-    growth, and put your processes in place. Explore our range of
-    <br />
-    solutions below.
-  </p>
+  return (
+    <div className="flex flex-col gap-10 mt-20 px-6 sm:px-10 md:px-16 lg:px-28">
+      <p className="text-4xl md:text-5xl font-semibold text-white text-center md:text-left">
+        Our Services
+      </p>
 
-  <div className="relative inline-block">
-    <button className="rotating-btn relative text-[#b19cd9] font-garota text-[1.2rem] md:text-[1.5rem] rounded-md px-6 py-3 overflow-hidden">
-      Know More
-    </button>
-  </div>
-</section>;
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+        {services.map((service, index) => (
+          <div
+            key={index}
+            className="w-full sm:w-[80%] md:w-[90%] lg:w-[23vw] h-auto border border-[#F2F2F2] flex flex-col gap-3 rounded-xl p-6 hover:bg-[#141414] transition-all duration-300"
+          >
+            <img
+              src={service.img}
+              alt={service.title}
+              className="w-[60px] h-[60px] md:w-[70px] md:h-[70px] object-contain"
+            />
+            <p className="text-xl md:text-2xl text-white font-semibold">
+              {service.title}
+            </p>
+            <p className="text-sm md:text-base text-[#C8C1C1] leading-relaxed">
+              {service.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Services;
