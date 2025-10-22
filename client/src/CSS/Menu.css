@@ -15,6 +15,22 @@
   font-weight: 300;
 }
 
+.menu-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(15, 15, 20, 0.3);
+  /* stabilizes blur */
+  will-change: transform, opacity;
+  /* forces GPU acceleration */
+  transform: translateZ(0);
+  /* isolates layer */
+  backface-visibility: hidden;
+}
+
+
 /* 🟣 Contact Button — same design, responsive size */
 .contact-button {
   background: linear-gradient(to right, #bbabeb, #6a6185);

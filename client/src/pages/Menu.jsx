@@ -14,36 +14,25 @@ const Menu = () => {
   );
 
   useEffect(() => {
-    let lastVisible = false; // ✅ keeps track of current visibility
-    let timeoutId;
+    let lastVisible = null;
 
     const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        const menu = document.querySelector(".menu-sticky");
-        if (!menu) return;
+      const scrollY = window.scrollY;
+      const shouldBeVisible = scrollY > 20; // start animation only after 20px scroll
 
-        const rect = menu.getBoundingClientRect();
-        const shouldBeVisible = rect.top <= 0;
-
-        // ✅ Only trigger animation when visibility changes
-        if (shouldBeVisible !== lastVisible) {
-          lastVisible = shouldBeVisible;
-          controls.start({
-            opacity: shouldBeVisible ? 1 : 0,
-            y: shouldBeVisible ? 0 : 20,
-            transition: { duration: 0.5, ease: "easeInOut" },
-          });
-        }
-      }, 50); // ✅ Debounced by 50ms to prevent rapid firing
+      // ✅ only trigger if visibility actually changes
+      if (shouldBeVisible !== lastVisible) {
+        lastVisible = shouldBeVisible;
+        controls.start({
+          opacity: shouldBeVisible ? 0.98 : 1, // smooth fade, no flicker
+          y: 0,
+          transition: { duration: 0.4, ease: "easeOut" },
+        });
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [controls]);
 
   // ✅ Optional: auto-close navPopup when resizing above mobile width
