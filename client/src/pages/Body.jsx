@@ -238,7 +238,7 @@ const Body = () => {
                   <div
                     key={i}
                     className="relative flex justify-start w-full sm:w-[45%] md:w-[46%] lg:w-[32vw]
-                h-[100px] sm:h-[130px] md:h-[150px] lg:h-[22vh]
+                h-[100px] sm:h-[130px] md:h-[150px] lg:h-[20vh]
                 rounded-t-[50px] rounded-br-[50px]
                 bg-[#9C90BD]/90 border border-white/20 
                 shadow-[0_8px_25px_rgba(156,144,189,0.4)]
@@ -249,7 +249,7 @@ const Body = () => {
                     <img
                       src={profileImg}
                       alt="Profile"
-                      className="absolute bottom-0 left-0 object-cover h-[150px] -translate-y-[10px]"
+                      className="absolute bottom-0 left-0 object-cover h-[150px] md:h-[200px] -translate-y-[10px]"
                     />
                     <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[60%] flex flex-col justify-center items-start pl-3">
                       <p className="text-white font-bold text-[1rem] lg:text-[22px]">
@@ -398,11 +398,11 @@ const Body = () => {
               </motion.p>
             )}
             <div className="flex flex-col  lg:gap-4">
-              <InfiniteScrollNodes direction="left" baseSpeed={50} />
-              <InfiniteScrollNodes direction="right" baseSpeed={50} />
-              <InfiniteScrollNodes direction="left" baseSpeed={50} />
-              <InfiniteScrollNodes direction="right" baseSpeed={50} />
-              <InfiniteScrollNodes direction="left" baseSpeed={50} />
+              <InfiniteScrollNodes direction="left" baseSpeed={65} />
+              <InfiniteScrollNodes direction="right" baseSpeed={65} />
+              <InfiniteScrollNodes direction="left" baseSpeed={65} />
+              <InfiniteScrollNodes direction="right" baseSpeed={65} />
+              <InfiniteScrollNodes direction="left" baseSpeed={65} />
             </div>
           </section>
 
