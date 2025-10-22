@@ -149,7 +149,7 @@ const AboutPage = () => {
               <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Mission
               </p>
-              <p className="about-card-title text-[7px]  md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="mt-2 md:mt-0 about-card-title text-[7px]  md:text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel uses tech to bring clarity, speed, and reliability to
                 outdated sectors, building ecosystems where innovation can
                 thrive.
@@ -162,7 +162,7 @@ const AboutPage = () => {
               <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Vision
               </p>
-              <p className="about-card-title text-[7px]  md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="about-card-title text-[7px] mt-2 md:mt-0 md:text-[1.5rem] text-[#C8C1C1]">
                 We redefine how businesses use tech by creating integrated
                 platforms that simplify workflows and unlock new growth.
               </p>
@@ -174,7 +174,7 @@ const AboutPage = () => {
               <p className="about-card-title text-[0.6rem] md:text-[1.75rem] text-[#F8F9FA]">
                 Our Story
               </p>
-              <p className="about-card-title text-[7px]  md:text-[1.5rem] text-[#C8C1C1]">
+              <p className="about-card-title text-[7px] mt-2 md:mt-0  md:text-[1.5rem] text-[#C8C1C1]">
                 Vedapixel Tech Solutions Pvt. Ltd. builds intelligent, scalable
                 digital platforms that solve real-world business challenges.
               </p>
