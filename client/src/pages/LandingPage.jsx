@@ -21,7 +21,7 @@ const LandingPage = () => {
         {/* ✅ Scroll reset only for internal pages */}
         <ScrollToTop />
 
-        <div className="w-[100vw] pt-[32px] h-fit">
+        <div className="w-screen pt-[32px] h-fit">
           <Routes>
             <Route path="/" element={<MainSection />} />
             <Route path="/contactus" element={<ContactPage />} />

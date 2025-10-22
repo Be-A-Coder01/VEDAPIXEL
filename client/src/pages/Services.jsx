@@ -176,7 +176,7 @@ const Services = () => {
                 boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
                 backdropFilter: "blur(10px) saturate(180%)",
                 WebkitBackdropFilter: "blur(10px) saturate(180%)",
-                transition: { duration: 0.5, ease: "easeOut" },
+                transition: { duration: 0.1, ease: "easeOut" },
               }}
             >
               <motion.img

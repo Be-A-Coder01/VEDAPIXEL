@@ -10,7 +10,7 @@ const Base = () => {
   const location = useLocation();
 
   return (
-    <div className="bg-[#101820] lg:w-[100vw] h-fit">
+    <div className="bg-[#101820] lg:w-screen h-fit">
       {/* ✅ Show Face only when on the homepage */}
       {location.pathname === "/" && (
         <div className="sticky top-0 z-10">
