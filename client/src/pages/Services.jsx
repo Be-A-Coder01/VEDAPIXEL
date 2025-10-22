@@ -1,6 +1,7 @@
 import React from "react";
 // import pic1 from "../assets/appDevelopment.png";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import pic1 from "../assets/appDevelopment.png";
 import pic2 from "../assets/website.png";
 import pic3 from "../assets/gaming.png";
@@ -14,20 +15,78 @@ import pic10 from "../assets/maintenance.png";
 import pic11 from "../assets/blockchain.png";
 // import pic12 from "../assets/appDevelopment.png";
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (index) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: index * 0.15, // staggered animation
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
-
 const Services = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // animate only once when seen
+    threshold: 0.35, // triggers when 35% visible
+  });
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1, // smooth stagger
+        when: "beforeChildren",
+      },
+    },
+  };
+
+  const img = {
+    hidden: { opacity: 0, scale: 0.92 },
+    visible: (i) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.45,
+        ease: "easeOut",
+        delay: i * 0.06,
+      },
+    }),
+  };
+
+  // Child variant uses a soft spring for natural motion
+  const card = {
+    hidden: { opacity: 0, y: 20, scale: 0.995 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 90, // softer than snappy
+        damping: 16, // smooth settling
+        mass: 0.9,
+      },
+    },
+  };
+
+  React.useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [inView, controls]);
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      rotateX: 10,
+      scale: 0.97,
+      filter: "blur(2px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1], // smooth cubic-bezier
+      },
+    },
+  };
   const services = [
     {
       title: "Mobile Applications",
@@ -92,35 +151,43 @@ const Services = () => {
           Our Services
         </p>
 
-        <div className="services-box w-[73vw] pt-[20px] md:mt-0 flex flex-wrap mx-auto gap-[30px]">
+        <motion.div
+          className="services-box w-[73vw] pt-[20px] md:mt-0 flex flex-wrap mx-auto gap-[30px]"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          style={{ willChange: "transform, opacity" }}
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="w-full sm:w-[80%] md:w-[90%] lg:w-[23vw] h-auto border border-[#F2F2F2] flex flex-col gap-3 rounded-xl px-3 py-6 hover:bg-[#141414] transition-all duration-300"
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+              className="w-full sm:w-[80%] md:w-[90%] lg:w-[23vw] h-auto border border-[#F2F2F2] flex flex-col gap-3 rounded-xl p-6 hover:bg-[#141414] transition-all duration-300"
+              variants={card}
               custom={index}
+              // use transform for subpixel/GPU rendering
+              style={{ transform: "translateZ(0)" }}
             >
               <motion.img
                 src={service.img}
                 alt={service.title}
                 className="w-[60px] h-[60px] md:w-[70px] md:h-[70px] object-contain"
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                viewport={{ once: true }}
+                variants={img}
+                custom={index}
+                // small accessibility improvement: avoid layout shifts
+                loading="lazy"
               />
+
               <p className="service-title text-xl md:text-[1.75rem] text-white font-semibold">
                 {service.title}
               </p>
+
               <p className="service-desc text-sm md:text-[1rem] text-[#C8C1C1] leading-relaxed">
                 {service.desc}
               </p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </>
   );
