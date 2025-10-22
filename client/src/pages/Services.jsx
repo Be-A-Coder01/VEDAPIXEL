@@ -166,7 +166,19 @@ const Services = () => {
               variants={card}
               custom={index}
               // use transform for subpixel/GPU rendering
-              style={{ transform: "translateZ(0)" }}
+              style={{
+                transform: "translateZ(0)",
+              }}
+              whileHover={{
+                scale: 1.03,
+                background:
+                  "linear-gradient(139.47deg, rgba(50, 58, 68, 0.8) -45.69%, rgba(16, 24, 32, 0.9) 54.7%)",
+                border: "2px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+                backdropFilter: "blur(10px) saturate(180%)",
+                WebkitBackdropFilter: "blur(10px) saturate(180%)",
+                transition: { duration: 0.5, ease: "easeOut" },
+              }}
             >
               <motion.img
                 src={service.img}

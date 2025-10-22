@@ -8,6 +8,7 @@ import profileImg from "../assets/profileImg.png";
 const Body = () => {
   const [showBody, setShowBody] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const [navOpacity, setNavOpacity] = useState(1);
   const [showTeamPopup, setShowTeamPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [currentWord, setCurrentWord] = useState("streamline operations");
@@ -166,6 +167,30 @@ const Body = () => {
     }, 1400);
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const teamSection = teamRef.current;
+      if (!teamSection) return;
+
+      const rect = teamSection.getBoundingClientRect();
+
+      // 👇 Keep nav fully visible until Team section's top < 100px
+      if (rect.top > 100) {
+        setNavOpacity(1); // fully visible
+      } else if (rect.top > 0) {
+        // start fading gradually between 100px → 0px
+        const progress = rect.top / 100; // normalize 1 → 0
+        setNavOpacity(Math.max(0, Math.min(1, progress)));
+      } else {
+        setNavOpacity(0); // completely hidden after top passes 0
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
