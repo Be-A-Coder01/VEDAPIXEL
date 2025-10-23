@@ -6,6 +6,7 @@ import AboutPage from "./AboutPage";
 const MainSection = () => {
   return (
     <>
+    
       <Body></Body>
       <Contact></Contact>
     </>

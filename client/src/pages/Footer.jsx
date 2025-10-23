@@ -157,18 +157,40 @@ const Footer = () => {
                   Follow us on
                 </p>
                 <div className="flex gap-4">
-                  <motion.img
-                    src={linkedin}
-                    alt="LinkedIn"
-                    className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
-                    whileHover={{ scale: 1.2, y: -3 }}
-                  />
-                  <motion.img
-                    src={Instagram}
-                    alt="Instagram"
-                    className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
-                    whileHover={{ scale: 1.2, y: -3 }}
-                  />
+                  <a
+                    target="_blank"
+                    href="https://www.linkedin.com/company/vedapixel-tech-solutions-private-limited/"
+                  >
+                    <motion.img
+                      src={linkedin}
+                      alt="LinkedIn"
+                      className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
+                      whileHover={{ scale: 1.2, y: -3 }}
+                    />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/vedapixel/?igsh=MTBxbHdra2FzbWFzbg%3D%3D&utm_source=qr#"
+                  >
+                    <motion.img
+                      src={Instagram}
+                      alt="Instagram"
+                      className="w-[25px] sm:w-[30px] lg:w-[2vw] cursor-pointer"
+                      whileHover={{ scale: 1.2, y: -3 }}
+                    />
+                  </a>
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/vedapixel/?igsh=MTBxbHdra2FzbWFzbg%3D%3D&utm_source=qr#"
+                  >
+                    <motion.i
+                      alt="Whatsapp"
+                      className="fa-brands fa-whatsapp fa-lg w-[25px] sm:w-[30px] text-white lg:w-[7vw] cursor-pointer"
+                      whileHover={{ scale: 1.2, y: -3 }}
+                    />
+                  </a>
+
+                  {/* <i class="fa-brands fa-whatsapp fa-lg"></i> */}
                 </div>
               </div>
             </motion.div>

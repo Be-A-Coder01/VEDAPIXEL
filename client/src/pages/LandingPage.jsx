@@ -16,7 +16,7 @@ const LandingPage = () => {
   return (
     <>
       <div>
-        <Menu />
+        {/* <Menu /> */}
 
         {/* ✅ Scroll reset only for internal pages */}
         <ScrollToTop />
