@@ -18,7 +18,7 @@ const Face = ({ scrollProgress }) => {
 
   const fadeRange = isTablet ? [0.03, 0.1] : [0.05, 0.2];
   const opacity = useTransform(scrollProgress, fadeRange, [1, 0]);
-  const textDelay = 1.5;
+  const textDelay = 0.3;
 
   const containerVariants = {
     hidden: { opacity: 0 },
