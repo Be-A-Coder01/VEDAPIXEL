@@ -5,20 +5,28 @@ import { motion, useTransform } from "framer-motion";
 import PixelCubeScene from "./PixelCubeScene"; // Optional 3D cube
 
 const Face = ({ scrollProgress }) => {
-  const [isTablet, setIsTablet] = useState(false);
+  const [deviceType, setDeviceType] = useState("desktop");
 
   useEffect(() => {
     const handleResize = () => {
-      setIsTablet(window.innerWidth <= 1024 && window.innerWidth >= 768);
+      if (window.innerWidth < 768) setDeviceType("mobile");
+      else if (window.innerWidth < 1024) setDeviceType("tablet");
+      else setDeviceType("desktop");
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const fadeRange = isTablet ? [0.03, 0.1] : [0.05, 0.2];
+  let fadeRange;
+  if (deviceType === "mobile")
+    fadeRange = [0.02, 0.14]; // faster fade on mobile
+  else if (deviceType === "tablet") fadeRange = [0.03, 0.1];
+  else fadeRange = [0.05, 0.2]; // desktop unchanged
+
   const opacity = useTransform(scrollProgress, fadeRange, [1, 0]);
-  const textDelay = 0.3;
+
+  const textDelay = 1;
 
   const containerVariants = {
     hidden: { opacity: 0 },
