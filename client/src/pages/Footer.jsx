@@ -6,6 +6,7 @@ import linkedin from "../assets/linkedin.png";
 import Instagram from "../assets/instagram.png";
 import email from "../assets/email.png";
 import phone from "../assets/phone.png";
+import whatsapp from "../assets/whatsapp.png";
 import { motion } from "framer-motion";
 
 const Footer = () => {
@@ -179,13 +180,11 @@ const Footer = () => {
                       whileHover={{ scale: 1.2, y: -3 }}
                     />
                   </a>
-                  <a
-                    target="_blank"
-                    href="https://www.instagram.com/vedapixel/?igsh=MTBxbHdra2FzbWFzbg%3D%3D&utm_source=qr#"
-                  >
-                    <motion.i
-                      alt="Whatsapp"
-                      className="fa-brands fa-whatsapp fa-lg w-[25px] sm:w-[30px] text-white lg:w-[7vw] cursor-pointer"
+                  <a target="_blank" href="https://wa.me/919036354263">
+                    <motion.img
+                      src={whatsapp}
+                      alt="whatsapp"
+                      className="w-[25px] sm:w-[30px] lg:w-[26px] cursor-pointer"
                       whileHover={{ scale: 1.2, y: -3 }}
                     />
                   </a>
